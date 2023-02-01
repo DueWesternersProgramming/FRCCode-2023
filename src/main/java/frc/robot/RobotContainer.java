@@ -7,7 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.DriveSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
+//import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -18,10 +18,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
+  private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
+  //private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
+
   private final CommandXboxController m_driverController, m_asisstController;
 
 
@@ -35,7 +35,7 @@ public class RobotContainer {
     configureBindings();
     m_driveSubsystem.setDefaultCommand(new TankDrive(m_driveSubsystem,
     () -> m_driverController.getRawAxis(1),
-    () -> m_driverController.getRawAxis(3)));
+    () -> m_driverController.getRawAxis(5)));
 
   }
 

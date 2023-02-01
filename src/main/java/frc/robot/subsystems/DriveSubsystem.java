@@ -10,12 +10,11 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import frc.robot.Constants.*;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -26,7 +25,6 @@ public class DriveSubsystem extends SubsystemBase {
   private AHRS ahrs;
   private MotorControllerGroup leftMotors, rightMotors;
   private DifferentialDrive m_drive;
-  private DifferentialDriveOdometry m_odometry;
 
   /** Creates a new DriveSubsystem.
    * @todo Fix error catching
@@ -151,13 +149,8 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    
-    m_odometry.update(ahrs.getRotation2d(), encoderL.getPosition(), encoderR.getPosition());
-    
-    
     SmartDashboard.putNumber("Roll", ahrs.getRoll());
     SmartDashboard.putNumber("Pitch", ahrs.getPitch());
-    //SmartDashboard.putNumber("Yaw", getPose().getRotation().getRadians());
     SmartDashboard.putNumber("Encoder L", encoderL.getPosition());
     SmartDashboard.putNumber("Encoder R", encoderR.getPosition());
     SmartDashboard.putNumber("Speed L", leftMotors.get());
