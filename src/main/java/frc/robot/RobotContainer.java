@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.TankDrive;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.VisionSubsystem;
 //import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -20,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
 
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  //private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
+  private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
 
   private final CommandXboxController m_driverController, m_asisstController;
 
