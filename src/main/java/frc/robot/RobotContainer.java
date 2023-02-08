@@ -10,8 +10,9 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabberSubsystem;
 import frc.robot.subsystems.LightSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
-//import frc.robot.subsystems.VisionSubsystem;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -27,21 +28,21 @@ public class RobotContainer {
   private final LightSubsystem m_lightSubsystem = new LightSubsystem();
   private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
 
-  private final CommandXboxController m_driverController, m_asisstController;
+  private final GenericHID m_driverController, m_asisstController;
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-
-    m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-    m_asisstController = new CommandXboxController(OperatorConstants.kAsisstControllerPort);
-
+     
+    m_driverController = new GenericHID(OperatorConstants.kDriverControllerPort);
+    m_asisstController = new GenericHID(OperatorConstants.kAsisstControllerPort);
+    
     // Configure the trigger bindings
-    configureBindings();
+    configureButttonBindings();
     m_driveSubsystem.setDefaultCommand(new TankDrive(m_driveSubsystem,
     () -> m_driverController.getRawAxis(1),
     () -> m_driverController.getRawAxis(5)));
-
+    
   }
 
   /**
@@ -53,8 +54,23 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() {
-
+  private void configureButttonBindings() {
+    Trigger yButton = new JoystickButton(m_driverController, 4); 
+    Trigger xButton = new JoystickButton(m_driverController, 3); 
+    Trigger aButton = new JoystickButton(m_driverController, 1); 
+    Trigger bButton = new JoystickButton(m_driverController, 2); 
+    Trigger lbButton = new JoystickButton(m_driverController, 5); 
+    Trigger rbButton = new JoystickButton(m_driverController, 6); 
+    Trigger y2Button = new JoystickButton(m_asisstController, 4); 
+  
+  
+  
+  
+  
+  
+  
+  
+  };
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
 
@@ -69,4 +85,4 @@ public class RobotContainer {
   //   // An example command will be run in autonomous
   //   return Autos.exampleAuto(m_exampleSubsystem);
   // }
-}
+  
