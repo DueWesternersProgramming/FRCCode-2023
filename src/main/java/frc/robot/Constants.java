@@ -21,6 +21,10 @@ public final class Constants {
     public static final int kRight1MotorPort = 4;
     public static final int kRight2MotorPort = 5;
 
+    public static final int kTurretMotorPort = 8;  // NOT SET UP
+    public static final int kArmJointOneMotorPort = 100000; // NOT SET UP
+
+
     public static final double kSpeedMultiplier = 0.37;
 
     public static final double kControllerDeadZone = 0.01;
