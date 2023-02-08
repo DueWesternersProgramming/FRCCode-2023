@@ -27,8 +27,6 @@ public final class Constants {
 
     public static final double kSpeedMultiplier = 0.37;
 
-
-
     public static final double kControllerDeadZone = 0.01;
   }
 
