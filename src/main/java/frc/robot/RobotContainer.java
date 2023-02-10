@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.TankDrive;
+import frc.robot.commands.Turret;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabberSubsystem;
 import frc.robot.subsystems.LightSubsystem;
@@ -55,7 +56,7 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureButttonBindings() {
-    Trigger yButton = new JoystickButton(m_driverController, 4); 
+    Trigger yButton = new JoystickButton(m_driverController, 4).onTrue(new Turret(m_grabberSubsystem, () -> m_driverController.getRawAxis(3))); 
     Trigger xButton = new JoystickButton(m_driverController, 3); 
     Trigger aButton = new JoystickButton(m_driverController, 1); 
     Trigger bButton = new JoystickButton(m_driverController, 2); 
