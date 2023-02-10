@@ -13,6 +13,7 @@ import frc.robot.subsystems.VisionSubsystem;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
@@ -60,16 +61,25 @@ public class RobotContainer {
     Trigger aButton = new JoystickButton(m_driverController, 1); 
     Trigger bButton = new JoystickButton(m_driverController, 2); 
     Trigger lbButton = new JoystickButton(m_driverController, 5); 
-    Trigger rbButton = new JoystickButton(m_driverController, 6); 
-    Trigger y2Button = new JoystickButton(m_asisstController, 4); 
-  
-  
-  
-  
-  
-  
-  
-  
+    Trigger rbButton = new JoystickButton(m_driverController, 6);
+    Trigger uButton = new JoystickButton(m_driverController, 7); 
+    Trigger pButton = new JoystickButton(m_driverController, 8);     
+    Trigger yButton2 = new JoystickButton(m_asisstController, 4); 
+    Trigger xButton2 = new JoystickButton(m_asisstController, 3); 
+    Trigger aButton2 = new JoystickButton(m_asisstController, 1); 
+    Trigger bButton2 = new JoystickButton(m_asisstController, 2); 
+    Trigger lbButton2 = new JoystickButton(m_asisstController, 5); 
+    Trigger rbButton2 = new JoystickButton(m_asisstController, 6); 
+    Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
+    Trigger pButton2 = new JoystickButton(m_asisstController, 8); 
+    POVButton uPovButton = new POVButton(m_driverController, 0);
+    POVButton rPovButton = new POVButton(m_driverController, 90);
+    POVButton lPovButton = new POVButton(m_driverController, 270);
+    POVButton dPovButton = new POVButton(m_driverController, 180);
+    POVButton uPovButton2 = new POVButton(m_asisstController, 0) ;
+    POVButton rPovButton2 = new POVButton(m_asisstController, 90);
+    POVButton lPovButton2 = new POVButton(m_asisstController, 270);
+    POVButton dPovButton2 = new POVButton(m_asisstController, 180);
   };
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
