@@ -2,6 +2,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import java.util.function.DoubleSupplier;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
@@ -27,10 +29,10 @@ public class GrabberSubsystem extends SubsystemBase{
 
     }
 
-    public void TurretTurn(){
+    public void TurretTurn(double speed){
         //TURN TURRET
         System.out.println("TURNING THE TURRET!!!!!");
-        turretMotor.set(-.1);
+        turretMotor.set(speed);
     }
     public void Grabber(){
         //GRABBER CODE
