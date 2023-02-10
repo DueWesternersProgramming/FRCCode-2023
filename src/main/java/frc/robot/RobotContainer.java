@@ -65,7 +65,8 @@ public class RobotContainer {
     Trigger lbButton = new JoystickButton(m_driverController, 5); 
     Trigger rbButton = new JoystickButton(m_driverController, 6);
     Trigger uButton = new JoystickButton(m_driverController, 7); 
-    Trigger pButton = new JoystickButton(m_driverController, 8);     
+    Trigger pButton = new JoystickButton(m_driverController, 8); 
+    // The Buttons For the Asisst Controller will have a 2 after them      
     Trigger yButton2 = new JoystickButton(m_asisstController, 4); 
     Trigger xButton2 = new JoystickButton(m_asisstController, 3); 
     Trigger aButton2 = new JoystickButton(m_asisstController, 1); 
@@ -74,10 +75,12 @@ public class RobotContainer {
     Trigger rbButton2 = new JoystickButton(m_asisstController, 6); 
     Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
     Trigger pButton2 = new JoystickButton(m_asisstController, 8); 
+    // POV(D-pad) Button for the Driver Controller 
     POVButton uPovButton = new POVButton(m_driverController, 0);
     POVButton rPovButton = new POVButton(m_driverController, 90);
     POVButton lPovButton = new POVButton(m_driverController, 270);
     POVButton dPovButton = new POVButton(m_driverController, 180);
+    // POV(D-pad) Buttons for the Asisst Controller 
     POVButton uPovButton2 = new POVButton(m_asisstController, 0) ;
     POVButton rPovButton2 = new POVButton(m_asisstController, 90);
     POVButton lPovButton2 = new POVButton(m_asisstController, 270);
