@@ -75,12 +75,12 @@ public class RobotContainer {
     Trigger rbButton2 = new JoystickButton(m_asisstController, 6); 
     Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
     Trigger pButton2 = new JoystickButton(m_asisstController, 8); 
-    // POV Button for the Driver Controller 
+    // POV(D-pad) Button for the Driver Controller 
     POVButton uPovButton = new POVButton(m_driverController, 0);
     POVButton rPovButton = new POVButton(m_driverController, 90);
     POVButton lPovButton = new POVButton(m_driverController, 270);
     POVButton dPovButton = new POVButton(m_driverController, 180);
-    // POV Buttons for the Asisst Controller 
+    // POV(D-pad) Buttons for the Asisst Controller 
     POVButton uPovButton2 = new POVButton(m_asisstController, 0) ;
     POVButton rPovButton2 = new POVButton(m_asisstController, 90);
     POVButton lPovButton2 = new POVButton(m_asisstController, 270);
