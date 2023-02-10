@@ -30,7 +30,11 @@ public final class Constants {
     public static final double kControllerDeadZone = 0.01;
   }
 
-
+  public static class LightConstants {
+    public static final int kLightPort = 25;
+    public static final int kLightCount = 8;
+    public static final double kLightBrightness = 0.5;
+  }
 
 
   public static class OperatorConstants {
