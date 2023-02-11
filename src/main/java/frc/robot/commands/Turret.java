@@ -56,6 +56,8 @@ public class Turret extends CommandBase {
     }
     else {
       m_grabberSubsystem.TurretTurn(0);
+      m_grabberSubsystem.brakeTheturret();
+
     }
     
   }
