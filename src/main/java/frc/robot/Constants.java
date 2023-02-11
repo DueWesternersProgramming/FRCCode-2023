@@ -25,7 +25,7 @@ public final class Constants {
     public static final int kArmJointOneMotorPort = 100000; // NOT SET UP
 
 
-    public static final double kSpeedMultiplier = 0.6;
+    public static final double kSpeedMultiplier = 0.35;
 
     public static final double kControllerDeadZone = 0.01;
   }

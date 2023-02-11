@@ -32,7 +32,7 @@ public class GrabberSubsystem extends SubsystemBase{
     public void TurretTurn(double speed){
         //TURN TURRET
         System.out.println("TURNING THE TURRET!!!!!");
-        turretMotor.set(speed);
+        turretMotor.set(speed/10);
     }
     public void Grabber(){
         //GRABBER CODE
