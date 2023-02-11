@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class Turret extends CommandBase {
   private final GrabberSubsystem m_grabberSubsystem;
-  private DoubleSupplier m_left, m_right;
+  static DoubleSupplier m_left, m_right;
   private double m_leftModified, m_rightModified;
 
   /**
@@ -22,10 +22,19 @@ public class Turret extends CommandBase {
    *
    * @param driveSubsystem The subsystem used by this command.
    */
-  public Turret(GrabberSubsystem grabberSubsystem, DoubleSupplier left) {
+  public Turret(GrabberSubsystem grabberSubsystem, DoubleSupplier left, DoubleSupplier right) {
     m_grabberSubsystem = grabberSubsystem;
     m_left = left;
-    
+    m_right = right;
+
+    System.out.print("left: ");
+    System.out.println(left);
+
+    System.out.print("right: ");
+    System.out.println(right);
+
+
+
     addRequirements(m_grabberSubsystem);
   }
 
@@ -39,7 +48,15 @@ public class Turret extends CommandBase {
   @Override
   public void execute() {
 
-    m_grabberSubsystem.TurretTurn(m_left.getAsDouble() * -0.5);
+    if (m_left.getAsDouble() > 0.2) {
+      m_grabberSubsystem.TurretTurn((m_left.getAsDouble() - m_right.getAsDouble())*-1);
+    }
+    else if (m_right.getAsDouble() > 0.2) {
+      m_grabberSubsystem.TurretTurn(m_right.getAsDouble() - m_left.getAsDouble());
+    }
+    else {
+      m_grabberSubsystem.TurretTurn(0);
+    }
     
   }
 

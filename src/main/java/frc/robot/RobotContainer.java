@@ -59,10 +59,10 @@ public class RobotContainer {
    */
   private void configureButttonBindings() {
     // The Buttons for the Driver Controller
-    Trigger yButton = new JoystickButton(m_driverController, 4).onTrue(new Turret(m_grabberSubsystem, () -> m_driverController.getRawAxis(3))); 
-    Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDControl(m_lightSubsystem)); 
+    Trigger yButton = new JoystickButton(m_driverController, 4).onTrue(new Turret(m_grabberSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2))); 
+    Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDControl(m_lightSubsystem));
     Trigger aButton = new JoystickButton(m_driverController, 1); 
-    Trigger bButton = new JoystickButton(m_driverController, 2); 
+    Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new Turret(m_grabberSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2)));
     Trigger lbButton = new JoystickButton(m_driverController, 5); 
     Trigger rbButton = new JoystickButton(m_driverController, 6);
     Trigger uButton = new JoystickButton(m_driverController, 7); 
@@ -86,7 +86,7 @@ public class RobotContainer {
     POVButton rPovButton2 = new POVButton(m_asisstController, 90);
     POVButton lPovButton2 = new POVButton(m_asisstController, 270);
     POVButton dPovButton2 = new POVButton(m_asisstController, 180);
-  };
+    };
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
 
