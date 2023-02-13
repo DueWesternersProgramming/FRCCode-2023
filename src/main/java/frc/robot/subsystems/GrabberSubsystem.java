@@ -31,8 +31,12 @@ public class GrabberSubsystem extends SubsystemBase{
 
     public void TurretTurn(double speed){
         //TURN TURRET
-        System.out.println("TURNING THE TURRET!!!!!");
-        turretMotor.set(speed/10);
+        turretMotor.set(speed/15);
+    }
+
+    public void brakeTheturret(){
+        turretMotor.setIdleMode(IdleMode.kBrake);
+
     }
     public void Grabber(){
         //GRABBER CODE
@@ -48,7 +52,7 @@ public class GrabberSubsystem extends SubsystemBase{
 
     @Override
     public void periodic() {
-        
+
     }
     
 }
