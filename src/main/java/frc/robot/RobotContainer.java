@@ -6,7 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriveCommands.TankDrive;
-import frc.robot.commands.GrabberCommands.AutoTurretTurn;
+import frc.robot.commands.GrabberCommands.TurretTurnManual;
 import frc.robot.commands.GrabberCommands.ManualTurretTurn;
 import frc.robot.commands.LightCommands.LEDControl;
 import frc.robot.subsystems.*;
@@ -78,7 +78,7 @@ public class RobotContainer {
     Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
     Trigger pButton2 = new JoystickButton(m_asisstController, 8); 
     // POV(D-pad) Button for the Driver Controller 
-    Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new AutoTurretTurn(m_turretSubsystem, 0));
+    Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnManual(m_turretSubsystem, 0));
     Trigger rPovButton = new POVButton(m_driverController, 90);
     Trigger lPovButton = new POVButton(m_driverController, 270);
     Trigger dPovButton = new POVButton(m_driverController, 180);

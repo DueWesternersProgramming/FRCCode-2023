@@ -10,7 +10,7 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class AutoTurretTurn extends CommandBase {
+public class TurretTurnManual extends CommandBase {
   private final TurretSubsystem m_turretSubsystem;
   private int m_angle, direction;
   private boolean finished = false;
@@ -21,7 +21,7 @@ public class AutoTurretTurn extends CommandBase {
    *
    * @param driveSubsystem The subsystem used by this command.
    */
-  public AutoTurretTurn(TurretSubsystem turretSubsystem, int angle) {
+  public TurretTurnManual(TurretSubsystem turretSubsystem, int angle) {
     m_turretSubsystem = turretSubsystem;
     m_angle = angle;
     addRequirements(m_turretSubsystem);
