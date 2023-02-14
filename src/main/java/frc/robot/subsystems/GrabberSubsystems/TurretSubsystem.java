@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.subsystems.GrabberSubsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -8,11 +8,11 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import frc.robot.Constants.*;
 
 
-public class GrabberSubsystem extends SubsystemBase{
+public class TurretSubsystem extends SubsystemBase{
 
     CANSparkMax turretMotor = new CANSparkMax(DriveConstants.kTurretMotorPort,CANSparkMax.MotorType.kBrushless);
 
-    public GrabberSubsystem(){
+    public TurretSubsystem(){
         //CANSparkMax turretMotor = new CANSparkMax(DriveConstants.kTurretMotorPort,CANSparkMax.MotorType.kBrushless);
 
     }

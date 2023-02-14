@@ -8,10 +8,8 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriveCommands.TankDrive;
 import frc.robot.commands.GrabberCommands.TurnTurret;
 import frc.robot.commands.LightCommands.LEDControl;
-import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.GrabberSubsystem;
-import frc.robot.subsystems.LightSubsystem;
-import frc.robot.subsystems.VisionSubsystem;
+import frc.robot.subsystems.*;
+import frc.robot.subsystems.GrabberSubsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -27,7 +25,9 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
 
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final GrabberSubsystem m_grabberSubsystem = new GrabberSubsystem();
+  private final TurretSubsystem m_grabberSubsystem = new TurretSubsystem();
+  private final ClawSubsystem m_clawSubsystem = new ClawSubsystem();
+  private final ArmSubsystem m_ArmSubsystem = new ArmSubsystem();
   private final LightSubsystem m_lightSubsystem = new LightSubsystem();
   private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
 

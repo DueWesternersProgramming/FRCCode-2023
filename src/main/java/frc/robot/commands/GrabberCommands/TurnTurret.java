@@ -4,14 +4,14 @@
 
 package frc.robot.commands.GrabberCommands;
 
-import frc.robot.subsystems.GrabberSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
 
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class TurnTurret extends CommandBase {
-  private final GrabberSubsystem m_grabberSubsystem;
+  private final TurretSubsystem m_turretSubsystem;
   static DoubleSupplier m_left, m_right;
 
   /**
@@ -19,8 +19,8 @@ public class TurnTurret extends CommandBase {
    *
    * @param driveSubsystem The subsystem used by this command.
    */
-  public TurnTurret(GrabberSubsystem grabberSubsystem, DoubleSupplier left, DoubleSupplier right) {
-    m_grabberSubsystem = grabberSubsystem;
+  public TurnTurret(TurretSubsystem turretSubsystem, DoubleSupplier left, DoubleSupplier right) {
+    m_turretSubsystem = turretSubsystem;
     m_left = left;
     m_right = right;
 
@@ -30,16 +30,13 @@ public class TurnTurret extends CommandBase {
     System.out.print("right: ");
     System.out.println(right);
 
-
-
-    addRequirements(m_grabberSubsystem);
+    addRequirements(m_turretSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_grabberSubsystem.brakeTheturret();
-
+    m_turretSubsystem.brakeTheturret();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -47,14 +44,13 @@ public class TurnTurret extends CommandBase {
   public void execute() {
 
     if (m_left.getAsDouble() > 0.2) {
-      m_grabberSubsystem.TurretTurn((m_left.getAsDouble() - m_right.getAsDouble())*-1);
+      m_turretSubsystem.TurretTurn((m_left.getAsDouble() - m_right.getAsDouble())*-1);
     }
     else if (m_right.getAsDouble() > 0.2) {
-      m_grabberSubsystem.TurretTurn(m_right.getAsDouble() - m_left.getAsDouble());
+      m_turretSubsystem.TurretTurn(m_right.getAsDouble() - m_left.getAsDouble());
     }
     else {
-      m_grabberSubsystem.TurretTurn(0);
-
+      m_turretSubsystem.TurretTurn(0);
     }
     
   }
