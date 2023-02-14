@@ -2,27 +2,24 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.GrabberCommands;
 
-import frc.robot.Constants.DriveConstants;
-import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabberSubsystem;
 
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class Turret extends CommandBase {
+public class TurnTurret extends CommandBase {
   private final GrabberSubsystem m_grabberSubsystem;
   static DoubleSupplier m_left, m_right;
-  private double m_leftModified, m_rightModified;
 
   /**
    * Creates a new TankDrive command.
    *
    * @param driveSubsystem The subsystem used by this command.
    */
-  public Turret(GrabberSubsystem grabberSubsystem, DoubleSupplier left, DoubleSupplier right) {
+  public TurnTurret(GrabberSubsystem grabberSubsystem, DoubleSupplier left, DoubleSupplier right) {
     m_grabberSubsystem = grabberSubsystem;
     m_left = left;
     m_right = right;
@@ -41,6 +38,7 @@ public class Turret extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_grabberSubsystem.brakeTheturret();
 
   }
 
@@ -56,7 +54,6 @@ public class Turret extends CommandBase {
     }
     else {
       m_grabberSubsystem.TurretTurn(0);
-      m_grabberSubsystem.brakeTheturret();
 
     }
     
