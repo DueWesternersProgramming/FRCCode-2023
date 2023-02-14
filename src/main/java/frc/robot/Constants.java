@@ -43,4 +43,10 @@ public final class Constants {
 
     public static final int kPDPPort = 15;
   }
+
+  public static class ClawConstants{
+    public static final double kOpenPosition = 0;
+    public static final double kClosedCube = 25;
+    public static final double kClosedCone = 27;
+  }
 }
