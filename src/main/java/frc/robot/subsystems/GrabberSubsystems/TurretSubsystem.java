@@ -3,6 +3,7 @@ package frc.robot.subsystems.GrabberSubsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import frc.robot.Constants.*;
@@ -11,10 +12,10 @@ import frc.robot.Constants.*;
 public class TurretSubsystem extends SubsystemBase{
 
     CANSparkMax turretMotor = new CANSparkMax(DriveConstants.kTurretMotorPort,CANSparkMax.MotorType.kBrushless);
+    RelativeEncoder turretEncoder = turretMotor.getEncoder();
 
     public TurretSubsystem(){
-        //CANSparkMax turretMotor = new CANSparkMax(DriveConstants.kTurretMotorPort,CANSparkMax.MotorType.kBrushless);
-
+        
     }
 
     public void TurretTurn(double speed){
@@ -22,20 +23,19 @@ public class TurretSubsystem extends SubsystemBase{
         turretMotor.set(speed/2);
     }
 
-    public void brakeTheturret(){
+    public void TurretBrake(){
         turretMotor.setIdleMode(IdleMode.kBrake);
 
     }
-    public void Grabber(){
-        //GRABBER CODE
 
-
+    public double getEncoderPosition() {
+        return turretEncoder.getPosition();
     }
 
-    public void ArmPosition(){
-        //ARM POS
-        System.out.println("");
-      }
+    public void resetEncoder() {
+        turretEncoder.setPosition(0.0);
+    }
+    
 
 
     @Override

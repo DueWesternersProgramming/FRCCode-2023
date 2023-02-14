@@ -42,6 +42,16 @@ public final class Constants {
     public static final int kAsisstControllerPort = 1;
 
     public static final int kPDPPort = 15;
+
+
+  
+  }
+
+  public static class TurretConstants {
+
+    public static final double kBumperDeadZone = 0.2;
+    public static final double kRightAngle = 2379;
+
   }
 
   public static class ClawConstants{

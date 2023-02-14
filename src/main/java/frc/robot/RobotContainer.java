@@ -6,7 +6,8 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriveCommands.TankDrive;
-import frc.robot.commands.GrabberCommands.TurnTurret;
+import frc.robot.commands.GrabberCommands.TurretTurnManual;
+import frc.robot.commands.GrabberCommands.ManualTurretTurn;
 import frc.robot.commands.LightCommands.LEDControl;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
@@ -25,7 +26,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
 
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final TurretSubsystem m_grabberSubsystem = new TurretSubsystem();
+  private final TurretSubsystem m_turretSubsystem = new TurretSubsystem();
   private final ClawSubsystem m_clawSubsystem = new ClawSubsystem();
   private final ArmSubsystem m_ArmSubsystem = new ArmSubsystem();
   private final LightSubsystem m_lightSubsystem = new LightSubsystem();
@@ -59,10 +60,10 @@ public class RobotContainer {
    */
   private void configureButttonBindings() {
     // The Buttons for the Driver Controller
-    Trigger yButton = new JoystickButton(m_driverController, 4).onTrue(new TurnTurret(m_grabberSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2))); 
+    Trigger yButton = new JoystickButton(m_driverController, 4).whileTrue(new ManualTurretTurn(m_turretSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2))); 
     Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDControl(m_lightSubsystem));
     Trigger aButton = new JoystickButton(m_driverController, 1); 
-    Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new TurnTurret(m_grabberSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2)));
+    Trigger bButton = new JoystickButton(m_driverController, 2);//.whileTrue(new TurnTurret(m_grabberSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2)));
     Trigger lbButton = new JoystickButton(m_driverController, 5); 
     Trigger rbButton = new JoystickButton(m_driverController, 6);
     Trigger uButton = new JoystickButton(m_driverController, 7); 
@@ -77,15 +78,15 @@ public class RobotContainer {
     Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
     Trigger pButton2 = new JoystickButton(m_asisstController, 8); 
     // POV(D-pad) Button for the Driver Controller 
-    POVButton uPovButton = new POVButton(m_driverController, 0);
-    POVButton rPovButton = new POVButton(m_driverController, 90);
-    POVButton lPovButton = new POVButton(m_driverController, 270);
-    POVButton dPovButton = new POVButton(m_driverController, 180);
+    Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnManual(m_turretSubsystem, 0));
+    Trigger rPovButton = new POVButton(m_driverController, 90);
+    Trigger lPovButton = new POVButton(m_driverController, 270);
+    Trigger dPovButton = new POVButton(m_driverController, 180);
     // POV(D-pad) Buttons for the Asisst Controller 
-    POVButton uPovButton2 = new POVButton(m_asisstController, 0) ;
-    POVButton rPovButton2 = new POVButton(m_asisstController, 90);
-    POVButton lPovButton2 = new POVButton(m_asisstController, 270);
-    POVButton dPovButton2 = new POVButton(m_asisstController, 180);
+    Trigger uPovButton2 = new POVButton(m_asisstController, 0);
+    Trigger rPovButton2 = new POVButton(m_asisstController, 90);
+    Trigger lPovButton2 = new POVButton(m_asisstController, 270);
+    Trigger dPovButton2 = new POVButton(m_asisstController, 180);
     };
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
