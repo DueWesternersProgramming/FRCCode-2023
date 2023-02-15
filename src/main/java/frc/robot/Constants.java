@@ -28,6 +28,15 @@ public final class Constants {
     public static final double kSpeedMultiplier = 0.35;
 
     public static final double kControllerDeadZone = 0.01;
+    public static final double kDefaultP = 0;
+    public static final double kDefaultI = 0;
+    public static final double kDefaultD = 0;
+    public static final int kEncoderCPR = 1024;
+    public static final double kGearRatio = 1/10.75;
+    public static final double kWheelDiameterInches = 6;
+    public static final double kMaxRPM = 5676;
+    public static final double kEncoderDistancePerPulse = (kWheelDiameterInches * Math.PI) / (double) kEncoderCPR;
+    public static final double kMaxRobotSpeed = (kMaxRPM/60) * kGearRatio * (kWheelDiameterInches * Math.PI);
   }
 
   public static class LightConstants {
@@ -43,8 +52,6 @@ public final class Constants {
 
     public static final int kPDPPort = 15;
 
-
-  
   }
 
   public static class TurretConstants {
