@@ -12,6 +12,10 @@ public class ClawSubsystem extends SubsystemBase{
 
     }
 
+    public void setPosition(double position){
+        
+    }
+
 
     @Override
     public void periodic() {
