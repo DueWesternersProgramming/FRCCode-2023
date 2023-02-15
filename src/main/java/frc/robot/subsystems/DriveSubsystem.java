@@ -7,9 +7,11 @@ package frc.robot.subsystems;
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import frc.robot.Constants.*;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -24,6 +26,10 @@ public class DriveSubsystem extends SubsystemBase {
   private AHRS ahrs;
   private MotorControllerGroup leftMotors, rightMotors;
   private DifferentialDrive m_drive;
+  private double PID_P = DriveConstants.kDefaultP;
+  private double PID_I = DriveConstants.kDefaultI;
+  private double PID_D = DriveConstants.kDefaultD;
+
 
   /** Creates a new DriveSubsystem.
    * @todo Fix error catching
@@ -45,6 +51,7 @@ public class DriveSubsystem extends SubsystemBase {
       encoderR.setPositionConversionFactor(0.00398982267005903741284755709676/10.71);
       leftMotors.setInverted(true);
       resetEncoders();
+      updatePID();
     }
     catch (Exception e){
       System.out.println("Motor setup error: " + e + "\n");
@@ -63,15 +70,29 @@ public class DriveSubsystem extends SubsystemBase {
     m_drive.feed();
   }
 
-  public void tankDriveVolts(double leftVolts, double rightVolts) {
-    leftMotors.setVoltage(leftVolts);
-    rightMotors.setVoltage(rightVolts);
-    m_drive.feed();
+  private void updatePID() {
+    motor1L.getPIDController().setP(PID_P);
+    motor1R.getPIDController().setP(PID_P);
+    motor1L.getPIDController().setI(PID_I);
+    motor1R.getPIDController().setI(PID_I);
+    motor1L.getPIDController().setD(PID_D);
+    motor1R.getPIDController().setD(PID_D);
   }
 
-  public void ArcadeDrive(double fwd, double rot) {
-    m_drive.arcadeDrive(fwd, rot);
-    m_drive.feed();
+  public void tankDrivePID(double left, double right) {
+    motor1L.getPIDController().setReference(left * DriveConstants.kMaxRPM , ControlType.kVelocity);
+    motor1R.getPIDController().setReference(right * DriveConstants.kMaxRPM , ControlType.kVelocity);
+  }
+
+  public void driveVelocity(double velocity) {
+    System.out.println((velocity / DriveConstants.kMaxRobotSpeed) * DriveConstants.kMaxRPM);
+    motor1L.getPIDController().setReference((velocity / DriveConstants.kMaxRobotSpeed) * DriveConstants.kMaxRPM , ControlType.kVelocity);
+    motor1R.getPIDController().setReference((velocity / DriveConstants.kMaxRobotSpeed) * DriveConstants.kMaxRPM , ControlType.kVelocity);
+  }
+
+  public void setDistancePerPulse() {
+    encoderL.setPositionConversionFactor((DriveConstants.kGearRatio)*Math.PI*DriveConstants.kWheelDiameterInches);
+    encoderR.setPositionConversionFactor((DriveConstants.kGearRatio)*Math.PI*DriveConstants.kWheelDiameterInches);
   }
 
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
@@ -123,6 +144,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void calibrateGyro() {
     ahrs.calibrate();
+    while(ahrs.isCalibrating()) {
+    }
   }
 
   public boolean gyroIsCalibrating() {
@@ -143,6 +166,38 @@ public class DriveSubsystem extends SubsystemBase {
 
   public double getTurnRate() {
     return -ahrs.getRate();
+  }
+
+  public void restorePID_Defaults() {
+    PID_P = DriveConstants.kDefaultP;
+    PID_I = DriveConstants.kDefaultI;
+    PID_D = DriveConstants.kDefaultD;
+    updatePID();
+  }
+
+  public void setPID_P(double p) {
+    PID_P = p;
+    updatePID();
+  }
+
+  public void setPID_I(double i) {
+    PID_I = i;
+    updatePID();
+  }
+
+  public void setPID_D(double d) {
+    PID_D = d;
+    updatePID();
+  }
+
+  public void resetIAccum() {
+    motor1L.getPIDController().setIAccum(0);
+    motor1R.getPIDController().setIAccum(0);
+  }
+
+  //get the average speed of the motors
+  public double getVelocity() {
+    return (getRightEncoder().getVelocity() + getRightEncoder().getVelocity()) / 2;
   }
 
   @Override
