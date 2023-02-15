@@ -4,6 +4,7 @@
 
 package frc.robot.commands.GrabberCommands;
 
+import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
 
 import java.util.function.DoubleSupplier;
@@ -12,65 +13,40 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class TurretTurnManual extends CommandBase {
   private final TurretSubsystem m_turretSubsystem;
-  private int m_angle, direction;
-  private boolean finished = false;
+  static DoubleSupplier m_left, m_right;
 
-
-  /** 
+  /**
    * Creates a new TankDrive command.
    *
    * @param driveSubsystem The subsystem used by this command.
    */
-  public TurretTurnManual(TurretSubsystem turretSubsystem, int angle) {
+  public TurretTurnManual(TurretSubsystem turretSubsystem, DoubleSupplier left, DoubleSupplier right) {
     m_turretSubsystem = turretSubsystem;
-    m_angle = angle;
+    m_left = left;
+    m_right = right;
     addRequirements(m_turretSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
-    if (m_turretSubsystem.getEncoderPosition() < 0) {
-
-      direction = -1;
-
-      m_turretSubsystem.TurretTurn(-0.1);
-      //turn left
-      
-    }
-    else if (m_turretSubsystem.getEncoderPosition() > 0) {
-
-      m_turretSubsystem.TurretTurn(0.1);
-
-      direction = 1;
-
-
-      //go right
-    }
-
+    m_turretSubsystem.TurretBrake();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
 
-    if (direction == 1) {
-      if (m_turretSubsystem.getEncoderPosition() >= 0) {
-        m_turretSubsystem.TurretTurn(0);
-        finished = true;
-      }
+    if (m_left.getAsDouble() > TurretConstants.kBumperDeadZone) {
+      m_turretSubsystem.TurretTurn((m_left.getAsDouble() - m_right.getAsDouble())*-1);
     }
-
-    else if (direction == -1) {
-      if (m_turretSubsystem.getEncoderPosition() <= 0) {
-        m_turretSubsystem.TurretTurn(0);
-        finished = true;
-      }
+    else if (m_right.getAsDouble() > TurretConstants.kBumperDeadZone) {
+      m_turretSubsystem.TurretTurn(m_right.getAsDouble() - m_left.getAsDouble());
+    }
+    else {
+      m_turretSubsystem.TurretTurn(0);
     }
     
-
-
   }
 
   // Called once the command ends or is interrupted.
@@ -82,6 +58,6 @@ public class TurretTurnManual extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return false;
   }
 }

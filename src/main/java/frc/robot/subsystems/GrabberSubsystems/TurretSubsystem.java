@@ -1,5 +1,7 @@
 package frc.robot.subsystems.GrabberSubsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
@@ -20,7 +22,7 @@ public class TurretSubsystem extends SubsystemBase{
 
     public void TurretTurn(double speed){
         //TURN TURRET
-        turretMotor.set(speed/2);
+        turretMotor.set(speed/15);
     }
 
     public void TurretBrake(){
@@ -40,7 +42,8 @@ public class TurretSubsystem extends SubsystemBase{
 
     @Override
     public void periodic() {
-
+        SmartDashboard.putNumber("TurretPos", getEncoderPosition());
+        SmartDashboard.putNumber("Speed", turretMotor.get());
     }
     
 }

@@ -6,12 +6,16 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriveCommands.TankDrive;
+import frc.robot.commands.GrabberCommands.TurretTurnAuto;
 import frc.robot.commands.GrabberCommands.TurretTurnManual;
-import frc.robot.commands.GrabberCommands.ManualTurretTurn;
 import frc.robot.commands.LightCommands.LEDControl;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -60,7 +64,7 @@ public class RobotContainer {
    */
   private void configureButttonBindings() {
     // The Buttons for the Driver Controller
-    Trigger yButton = new JoystickButton(m_driverController, 4).whileTrue(new ManualTurretTurn(m_turretSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2))); 
+    Trigger yButton = new JoystickButton(m_driverController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2))); 
     Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDControl(m_lightSubsystem));
     Trigger aButton = new JoystickButton(m_driverController, 1); 
     Trigger bButton = new JoystickButton(m_driverController, 2);//.whileTrue(new TurnTurret(m_grabberSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2)));
@@ -78,7 +82,7 @@ public class RobotContainer {
     Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
     Trigger pButton2 = new JoystickButton(m_asisstController, 8); 
     // POV(D-pad) Button for the Driver Controller 
-    Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnManual(m_turretSubsystem, 0));
+    Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnAuto(m_turretSubsystem, 0));
     Trigger rPovButton = new POVButton(m_driverController, 90);
     Trigger lPovButton = new POVButton(m_driverController, 270);
     Trigger dPovButton = new POVButton(m_driverController, 180);
