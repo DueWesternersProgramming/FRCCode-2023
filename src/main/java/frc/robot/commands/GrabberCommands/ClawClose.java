@@ -10,25 +10,31 @@ import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ClawOpen extends CommandBase {
+public class ClawClose extends CommandBase {
   private final ClawSubsystem m_clawSubsystem;
   private boolean finished = false;
-
+  private int m_item;
   /**
    * Creates a new TankDrive command.
    *
    * @param driveSubsystem The subsystem used by this command.
+   * @param item 0 = cube, 1 = cone
    */
-  public ClawOpen(ClawSubsystem clawSubsystem) {
+  public ClawClose(ClawSubsystem clawSubsystem , int item) {
     m_clawSubsystem = clawSubsystem;
-  
+    m_item = item;
     addRequirements(m_clawSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_clawSubsystem.setPosition(ClawConstants.kOpenPosition);
+    if (m_item == 0){
+      m_clawSubsystem.setPosition(ClawConstants.kClosedCube);
+    }
+    else if (m_item == 1){
+      m_clawSubsystem.setPosition(ClawConstants.kClosedCone);
+    }
     finished = true;
   }
 
