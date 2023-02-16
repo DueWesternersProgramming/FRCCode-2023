@@ -6,16 +6,12 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriveCommands.TankDrive;
-import frc.robot.commands.GrabberCommands.TurretTurnAuto;
-import frc.robot.commands.GrabberCommands.TurretTurnManual;
+import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
+import frc.robot.commands.GrabberCommands.Turret.TurretTurnManual;
 import frc.robot.commands.LightCommands.LEDControl;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.shuffleboard.EventImportance;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
