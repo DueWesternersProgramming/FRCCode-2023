@@ -4,41 +4,36 @@
 
 package frc.robot.commands.GrabberCommands.Arm;
 
+import frc.robot.Constants.ArmConstants;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 
-import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class Arm extends CommandBase {
+public class ArmRetract extends CommandBase {
   private final ArmSubsystem m_armSubsystem;
-  static DoubleSupplier m_up, m_down;
+  static double m_extention;
 
   /**
    * Creates a new TankDrive command.
    *
-   * @param driveSubsystem The subsystem used by this command.
+   * @param armsubsystem The subsystem used by this command.
    */
-  public Arm(ArmSubsystem armSubsystem, DoubleSupplier left, DoubleSupplier right) {
+  public ArmRetract(ArmSubsystem armSubsystem) {
     m_armSubsystem = armSubsystem;
-
-
-
     addRequirements(m_armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    //m_armSubsystem.setSpeed(1);
+    m_armSubsystem.setPosition(ArmConstants.kArmDown);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-  
-    
   }
 
   // Called once the command ends or is interrupted.
@@ -50,7 +45,7 @@ public class Arm extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }
     

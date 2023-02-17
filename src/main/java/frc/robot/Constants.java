@@ -41,6 +41,9 @@ public final class Constants {
   public static class ArmConstants {  
     public static final int kLowerArmMotorPort = 0;
     public static final int kUpperArmMotorPort = 0;
+
+    public static final double kArmUp = 0.8;
+    public static final double kArmDown = 0.2;
   }
 
   public static class LightConstants {
