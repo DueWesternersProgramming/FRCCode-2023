@@ -39,6 +39,8 @@ public class DriveSubsystem extends SubsystemBase {
       motor2L = new CANSparkMax(DriveConstants.kLeft2MotorPort,CANSparkMax.MotorType.kBrushless);
       motor1R = new CANSparkMax(DriveConstants.kRight1MotorPort,CANSparkMax.MotorType.kBrushless);
       motor2R = new CANSparkMax(DriveConstants.kRight2MotorPort,CANSparkMax.MotorType.kBrushless);
+      motor2L.follow(motor1L);
+      motor2R.follow(motor1R);
       leftMotors = new MotorControllerGroup(motor1L, motor2L);
       rightMotors = new MotorControllerGroup(motor1R, motor2R);
       m_drive = new DifferentialDrive(leftMotors, rightMotors);

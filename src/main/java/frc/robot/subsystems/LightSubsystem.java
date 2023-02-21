@@ -8,6 +8,7 @@ import com.ctre.phoenix.led.CANdle;
 
 import com.ctre.phoenix.led.CANdleConfiguration;
 import com.ctre.phoenix.led.CANdle.LEDStripType;
+import com.ctre.phoenix.led.CANdle.VBatOutputMode;
 
 public class LightSubsystem extends SubsystemBase {
 
@@ -21,7 +22,9 @@ public class LightSubsystem extends SubsystemBase {
             candleConfig = new CANdleConfiguration();
             candleConfig.stripType = LEDStripType.RGB;
             candleConfig.statusLedOffWhenActive = true;
-            candleConfig.disableWhenLOS = true;
+            candleConfig.disableWhenLOS = false;
+            candleConfig.v5Enabled = true;
+            candleConfig.vBatOutputMode = VBatOutputMode.On;
             candleConfig.brightnessScalar = LightConstants.kLightBrightness;
             candle.configAllSettings(candleConfig);
         }
@@ -39,6 +42,22 @@ public class LightSubsystem extends SubsystemBase {
      */
     public void setAnimation(Animation animation) {
         candle.animate(animation);
+    }
+
+    /**
+     *
+     * @apiNote Used to set a premade animation from this list: ColorFlowAnimation,
+     * @apiNote FireAnimation, LarsonAnimation, RainbowAnimation, RgbFadeAnimation,
+     * @apiNote SingleFadeAnimation, StrobeAnimation, TwinkleAnimation, TwinkleOffAnimation 
+     * @param animation
+     * @param slot
+     */
+    public void setAnimation(Animation animation, int slot){
+        candle.animate(animation, slot);
+    }
+
+    public void stopAnimation(int slot){
+        candle.clearAnimation(slot);
     }
 
     /**
