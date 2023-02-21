@@ -4,8 +4,11 @@
 
 package frc.robot;
 
+import frc.robot.Constants.ArmConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.DriveCommands.TankDrive;
+import frc.robot.commands.GrabberCommands.Arm.ArmExtend;
+import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
 import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
 import frc.robot.commands.GrabberCommands.Turret.TurretTurnManual;
 import frc.robot.commands.LightCommands.LEDControl;
@@ -62,8 +65,8 @@ public class RobotContainer {
     // The Buttons for the Driver Controller
     Trigger yButton = new JoystickButton(m_driverController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2))); 
     Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDControl(m_lightSubsystem));
-    Trigger aButton = new JoystickButton(m_driverController, 1); 
-    Trigger bButton = new JoystickButton(m_driverController, 2);//.whileTrue(new TurnTurret(m_grabberSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2)));
+    Trigger aButton = new JoystickButton(m_driverController, 1).onTrue(new ArmRetract(m_ArmSubsystem)); 
+    Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new ArmExtend(m_ArmSubsystem));
     Trigger lbButton = new JoystickButton(m_driverController, 5); 
     Trigger rbButton = new JoystickButton(m_driverController, 6);
     Trigger uButton = new JoystickButton(m_driverController, 7); 

@@ -38,6 +38,13 @@ public final class Constants {
     public static final double kEncoderDistancePerPulse = (kWheelDiameterInches * Math.PI) / (double) kEncoderCPR;
     public static final double kMaxRobotSpeed = (kMaxRPM/60) * kGearRatio * (kWheelDiameterInches * Math.PI);
   }
+  public static class ArmConstants {  
+    public static final int kLowerArmMotorPort = 0;
+    public static final int kUpperArmMotorPort = 0;
+
+    public static final double kArmUp = 0.8;
+    public static final double kArmDown = 0.2;
+  }
 
   public static class LightConstants {
     public static final int kLightPort = 25;
