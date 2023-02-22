@@ -27,10 +27,15 @@ public final class Constants {
 
     public static final double kSpeedMultiplier = 0.25;
 
+    public static final double kMaxAccel = 12;
+
     public static final double kControllerDeadZone = 0.01;
-    public static final double kDefaultP = 0;
-    public static final double kDefaultI = 0;
-    public static final double kDefaultD = 0;
+    //public static final double kDefaultP = .00038;
+    // public static final double kDefaultI = .0000011;
+    // public static final double kDefaultD = .0001;
+    public static final double kDefaultP = .00030;
+    public static final double kDefaultI = .00000011;
+    public static final double kDefaultD = .0001;
     public static final int kEncoderCPR = 1024;
     public static final double kGearRatio = 1/10.75;
     public static final double kWheelDiameterInches = 6;
@@ -38,6 +43,7 @@ public final class Constants {
     public static final double kEncoderDistancePerPulse = (kWheelDiameterInches * Math.PI) / (double) kEncoderCPR;
     public static final double kMaxRobotSpeed = (kMaxRPM/60) * kGearRatio * (kWheelDiameterInches * Math.PI);
   }
+
   public static class ArmConstants {  
     public static final int kLowerArmMotorPort = 0;
     public static final int kUpperArmMotorPort = 0;

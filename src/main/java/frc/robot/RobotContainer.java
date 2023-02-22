@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.ArmConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.DriveCommands.TankDrive;
 import frc.robot.commands.GrabberCommands.Arm.ArmExtend;
 import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
@@ -67,7 +68,7 @@ public class RobotContainer {
     Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDControl(m_lightSubsystem));
     Trigger aButton = new JoystickButton(m_driverController, 1).onTrue(new ArmRetract(m_ArmSubsystem)); 
     Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new ArmExtend(m_ArmSubsystem));
-    Trigger lbButton = new JoystickButton(m_driverController, 5); 
+    Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new AutoTest(m_driveSubsystem)); 
     Trigger rbButton = new JoystickButton(m_driverController, 6);
     Trigger uButton = new JoystickButton(m_driverController, 7); 
     Trigger pButton = new JoystickButton(m_driverController, 8); 

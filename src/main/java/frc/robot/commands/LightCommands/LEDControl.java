@@ -35,9 +35,11 @@ public class LEDControl extends CommandBase {
   @Override
   public void initialize() {
     m_lightSubsystem.setAnimation(colorFlowAnimation1, 0);
-    m_lightSubsystem.setAnimation(colorFlowAnimation2, 1);
-    m_lightSubsystem.setAnimation(colorFlowAnimation3, 2);
+    //m_lightSubsystem.setAnimation(colorFlowAnimation2, 1);
+    //m_lightSubsystem.setAnimation(colorFlowAnimation3, 2);
     //m_lightSubsystem.stopAnimation(0);
+    //m_lightSubsystem.stopAnimation(1);
+    //m_lightSubsystem.stopAnimation(2);
     //m_lightSubsystem.setColor(255, 0, 247);
   }
 

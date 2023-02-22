@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.LightConstants;
 
@@ -38,7 +39,7 @@ public class LightSubsystem extends SubsystemBase {
      * @apiNote Used to set a premade animation from this list: ColorFlowAnimation,
      * @apiNote FireAnimation, LarsonAnimation, RainbowAnimation, RgbFadeAnimation,
      * @apiNote SingleFadeAnimation, StrobeAnimation, TwinkleAnimation, TwinkleOffAnimation 
-     * @param animation
+     * @param animation The animation being set
      */
     public void setAnimation(Animation animation) {
         candle.animate(animation);
@@ -49,8 +50,8 @@ public class LightSubsystem extends SubsystemBase {
      * @apiNote Used to set a premade animation from this list: ColorFlowAnimation,
      * @apiNote FireAnimation, LarsonAnimation, RainbowAnimation, RgbFadeAnimation,
      * @apiNote SingleFadeAnimation, StrobeAnimation, TwinkleAnimation, TwinkleOffAnimation 
-     * @param animation
-     * @param slot
+     * @param animation The animation being set
+     * @param slot The animation slot being used
      */
     public void setAnimation(Animation animation, int slot){
         candle.animate(animation, slot);
@@ -85,9 +86,14 @@ public class LightSubsystem extends SubsystemBase {
         candle.setLEDs(red, green, blue, white, startindex, count);
     }
 
+    public double getCurrent() {
+        return candle.getCurrent();
+    }
+
+
     @Override
     public void periodic() {
-        
+        SmartDashboard.putNumber("Light Current", getCurrent());
     }
     
 }

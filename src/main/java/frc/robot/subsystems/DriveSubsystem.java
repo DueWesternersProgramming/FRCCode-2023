@@ -41,8 +41,12 @@ public class DriveSubsystem extends SubsystemBase {
       motor2R = new CANSparkMax(DriveConstants.kRight2MotorPort,CANSparkMax.MotorType.kBrushless);
       motor2L.follow(motor1L);
       motor2R.follow(motor1R);
+      motor1R.setInverted(true);
+      motor2R.setInverted(true);
       leftMotors = new MotorControllerGroup(motor1L, motor2L);
       rightMotors = new MotorControllerGroup(motor1R, motor2R);
+      leftMotors.setInverted(true);
+      rightMotors.setInverted(true);
       m_drive = new DifferentialDrive(leftMotors, rightMotors);
       encoderL = motor1L.getEncoder();
       encoderR = motor1R.getEncoder();
@@ -50,7 +54,6 @@ public class DriveSubsystem extends SubsystemBase {
       encoderR.setVelocityConversionFactor(0.00398982267005903741284755709676/10.71);
       encoderL.setPositionConversionFactor(0.00398982267005903741284755709676/10.71);
       encoderR.setPositionConversionFactor(0.00398982267005903741284755709676/10.71);
-      leftMotors.setInverted(true);
       resetEncoders();
       updatePID();
     }
@@ -98,6 +101,22 @@ public class DriveSubsystem extends SubsystemBase {
 
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
     return new DifferentialDriveWheelSpeeds(encoderL.getVelocity(), encoderR.getVelocity());
+  }
+
+  public void DriveVelocity(double velocity) {
+    //forward and turning variables for calculation
+    double m_fwd = velocity;
+    System.out.println((m_fwd / DriveConstants.kMaxRobotSpeed) * DriveConstants.kMaxRPM);
+    motor1L.getPIDController().setReference((m_fwd / DriveConstants.kMaxRobotSpeed) * DriveConstants.kMaxRPM , ControlType.kVelocity);
+    motor1R.getPIDController().setReference((m_fwd / DriveConstants.kMaxRobotSpeed) * DriveConstants.kMaxRPM , ControlType.kVelocity);
+  }
+
+  public CANSparkMax getFrontLeftSparkMax() {
+    return motor1L;
+  }
+
+  public CANSparkMax getFrontRightSparkMax() {
+    return motor1R;
   }
 
   public double getLeftEncoderPosition(){
