@@ -82,7 +82,7 @@ public class VisionSubsystem extends SubsystemBase{
     public double getyaw(){
         try{
             if (hasTarget()){
-                return getBestTarget().getPitch();
+                return getBestTarget().getYaw();
             }
         }
         catch (Exception e){

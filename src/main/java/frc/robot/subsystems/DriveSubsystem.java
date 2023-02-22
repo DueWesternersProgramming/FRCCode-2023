@@ -71,7 +71,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void TankDrive(double left, double right){
     m_drive.tankDrive(left * DriveConstants.kSpeedMultiplier, right * DriveConstants.kSpeedMultiplier);
-    m_drive.feed();
+  
+    
   }
 
   private void updatePID() {
@@ -223,6 +224,7 @@ public class DriveSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    m_drive.feed();
     SmartDashboard.putNumber("Roll", ahrs.getRoll());
     SmartDashboard.putNumber("Pitch", ahrs.getPitch());
     SmartDashboard.putNumber("Encoder L", encoderL.getPosition());

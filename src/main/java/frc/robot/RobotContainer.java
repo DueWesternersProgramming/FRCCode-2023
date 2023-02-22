@@ -13,6 +13,7 @@ import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
 import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
 import frc.robot.commands.GrabberCommands.Turret.TurretTurnManual;
 import frc.robot.commands.LightCommands.LEDControl;
+import frc.robot.commands.VisionCommands.AutoTurnTarget;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -69,7 +70,7 @@ public class RobotContainer {
     Trigger aButton = new JoystickButton(m_driverController, 1).onTrue(new ArmRetract(m_ArmSubsystem)); 
     Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new ArmExtend(m_ArmSubsystem));
     Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new AutoTest(m_driveSubsystem)); 
-    Trigger rbButton = new JoystickButton(m_driverController, 6);
+    Trigger rbButton = new JoystickButton(m_driverController, 6).onTrue(new AutoTurnTarget(m_visionSubsystem, m_driveSubsystem));
     Trigger uButton = new JoystickButton(m_driverController, 7); 
     Trigger pButton = new JoystickButton(m_driverController, 8); 
     // The Buttons For the Asisst Controller will have a 2 after them      
