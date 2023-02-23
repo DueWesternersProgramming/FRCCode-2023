@@ -28,6 +28,9 @@ public final class Constants {
     public static final double kSpeedMultiplier = 0.25;
 
     public static final double kMaxAccel = 12;
+    public static final int kLeft = -1;
+    public static final int kRight = 1;
+    public static final double kDriveWidth = 25;
 
     public static final double kControllerDeadZone = 0.01;
     //public static final double kDefaultP = .00038;
@@ -68,15 +71,18 @@ public final class Constants {
   }
 
   public static class TurretConstants {
-
     public static final double kBumperDeadZone = 0.2;
     public static final double kRightAngle = 2379;
-
+    public static final double kTurretSpeed = 0.5;
+    public static final int kTurnRight = 1;
+    public static final int kTurnLeft = -1;
   }
 
   public static class ClawConstants{
     public static final double kOpenPosition = 0;
-    public static final double kClosedCube = 25;
-    public static final double kClosedCone = 27;
+    public static final double kClosedCube = 5;
+    public static final double kClosedCone = 10;
+    public static final int kClawMotorPort = 15;
+    public static final double kClawSpeed = 0.25;
   }
 }

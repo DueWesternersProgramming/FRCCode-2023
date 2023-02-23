@@ -4,20 +4,25 @@
 
 package frc.robot;
 
-import frc.robot.Constants.ArmConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.Autonomous.AutoDoNothing;
 import frc.robot.commands.Autonomous.AutoTest;
+import frc.robot.commands.Autonomous.Paths.Red.*;
+import frc.robot.commands.Autonomous.Paths.Blue.*;
 import frc.robot.commands.DriveCommands.TankDrive;
-import frc.robot.commands.GrabberCommands.Arm.ArmExtend;
-import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
-import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
-import frc.robot.commands.GrabberCommands.Turret.TurretTurnManual;
+import frc.robot.commands.GrabberCommands.Arm.*;
+import frc.robot.commands.GrabberCommands.Turret.*;
+import frc.robot.commands.GrabberCommands.Claw.*;
 import frc.robot.commands.LightCommands.LEDControl;
-import frc.robot.commands.VisionCommands.AutoTurnTarget;
+import frc.robot.commands.VisionCommands.TurretTurnTarget;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -39,6 +44,8 @@ public class RobotContainer {
 
   private final GenericHID m_driverController, m_asisstController;
 
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
+
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -52,17 +59,25 @@ public class RobotContainer {
     () -> m_driverController.getRawAxis(1),
     () -> m_driverController.getRawAxis(5)));
     
+
+    Shuffleboard.getTab("Autonomous").add("Alliance Color", DriverStation.getAlliance().toString());
+    if (DriverStation.getAlliance() == Alliance.Red){
+      m_chooser.setDefaultOption("Red 1", new Red1(m_driveSubsystem));
+      m_chooser.addOption("Red 2", new Red2(m_driveSubsystem));
+      m_chooser.addOption("Red 3", new Red3(m_driveSubsystem));
+      m_chooser.addOption("Do Nothing", new AutoDoNothing());
+    }
+    else if (DriverStation.getAlliance() == Alliance.Blue) {
+      m_chooser.setDefaultOption("Blue 1", new Blue1(m_driveSubsystem));
+      m_chooser.addOption("Blue 2", new Blue2(m_driveSubsystem));
+      m_chooser.addOption("Blue 3", new Blue3(m_driveSubsystem));
+      m_chooser.addOption("Do Nothing", new AutoDoNothing());
+    }
+
+    Shuffleboard.getTab("Autonomous").add(m_chooser);
+
   }
 
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
   private void configureButttonBindings() {
     // The Buttons for the Driver Controller
     Trigger yButton = new JoystickButton(m_driverController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2))); 
@@ -70,9 +85,9 @@ public class RobotContainer {
     Trigger aButton = new JoystickButton(m_driverController, 1).onTrue(new ArmRetract(m_ArmSubsystem)); 
     Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new ArmExtend(m_ArmSubsystem));
     Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new AutoTest(m_driveSubsystem)); 
-    Trigger rbButton = new JoystickButton(m_driverController, 6).onTrue(new AutoTurnTarget(m_visionSubsystem, m_driveSubsystem));
-    Trigger uButton = new JoystickButton(m_driverController, 7); 
-    Trigger pButton = new JoystickButton(m_driverController, 8); 
+    Trigger rbButton = new JoystickButton(m_driverController, 6).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem));
+    Trigger uButton = new JoystickButton(m_driverController, 7).onTrue(new ClawClose(m_clawSubsystem, 0)); 
+    Trigger pButton = new JoystickButton(m_driverController, 8).onTrue(new ClawOpen(m_clawSubsystem)); 
     // The Buttons For the Asisst Controller will have a 2 after them      
     Trigger yButton2 = new JoystickButton(m_asisstController, 4); 
     Trigger xButton2 = new JoystickButton(m_asisstController, 3); 
@@ -92,19 +107,15 @@ public class RobotContainer {
     Trigger rPovButton2 = new POVButton(m_asisstController, 90);
     Trigger lPovButton2 = new POVButton(m_asisstController, 270);
     Trigger dPovButton2 = new POVButton(m_asisstController, 180);
-    };
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-
-  }
+    }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
    */
-  // public Command getAutonomousCommand() {
-  //   // An example command will be run in autonomous
-  //   return Autos.exampleAuto(m_exampleSubsystem);
-  // }
-  
+  public Command getAutonomousCommand() {
+    // An example command will be run in autonomous
+    return m_chooser.getSelected();
+  }
+}

@@ -15,12 +15,12 @@ public class ClawClose extends CommandBase {
   private boolean finished = false;
   private int m_item;
   /**
-   * Creates a new TankDrive command.
+   * Creates a new ClawClose command.
    *
    * @param driveSubsystem The subsystem used by this command.
    * @param item 0 = cube, 1 = cone
    */
-  public ClawClose(ClawSubsystem clawSubsystem , int item) {
+  public ClawClose(ClawSubsystem clawSubsystem, int item) {
     m_clawSubsystem = clawSubsystem;
     m_item = item;
     addRequirements(m_clawSubsystem);
@@ -29,25 +29,29 @@ public class ClawClose extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (m_item == 0){
-      m_clawSubsystem.setPosition(ClawConstants.kClosedCube);
-    }
-    else if (m_item == 1){
-      m_clawSubsystem.setPosition(ClawConstants.kClosedCone);
-    }
-    finished = true;
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    if (m_item == 0){
+      if (m_clawSubsystem.getPosition() >= ClawConstants.kClosedCube){
+        finished = true;
+      }
+    }
+    else if (m_item == 1) {
+      if (m_clawSubsystem.getPosition() >= ClawConstants.kClosedCone){
+        finished = true;
+      }
+    }
+    m_clawSubsystem.runClaw(ClawConstants.kClawSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
+    m_clawSubsystem.runClaw(0.0);
   }
 
   // Returns true when the command should end.

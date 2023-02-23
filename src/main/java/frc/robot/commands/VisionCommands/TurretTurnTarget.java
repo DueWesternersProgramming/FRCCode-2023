@@ -5,25 +5,26 @@
 package frc.robot.commands.VisionCommands;
 
 import frc.robot.subsystems.VisionSubsystem;
-import frc.robot.subsystems.DriveSubsystem;
-import java.util.function.DoubleSupplier;
+import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
+import frc.robot.Constants.TurretConstants;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
 /** An example command that uses an example subsystem. */
-public class AutoTurnTarget extends CommandBase {
+public class TurretTurnTarget extends CommandBase {
   private final VisionSubsystem m_visionSubsystem;
-  private final DriveSubsystem m_DriveSubsystem;
+  private final TurretSubsystem m_TurretSubsystem;
   private boolean finished = false;
 
   /**
    *
-   * @param driveSubsystem The subsystem used by this command.
+   * @param turretSubsystem
+   * @param visionSubsystem
    */
-  public AutoTurnTarget(VisionSubsystem visionSubsystem, DriveSubsystem driveSubsystem) {
+  public TurretTurnTarget(TurretSubsystem turretSubsystem, VisionSubsystem visionSubsystem) {
     m_visionSubsystem = visionSubsystem;
-    m_DriveSubsystem = driveSubsystem;
-    addRequirements(m_DriveSubsystem);
+    m_TurretSubsystem = turretSubsystem;
+    addRequirements(m_TurretSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -38,23 +39,21 @@ public class AutoTurnTarget extends CommandBase {
 
     System.out.println(m_visionSubsystem.getyaw());
 
-  if (m_visionSubsystem.getyaw() > 2) {
-    m_DriveSubsystem.TankDrive(-1, 1);
-  }
-  else if(m_visionSubsystem.getyaw() < -2) {
-    m_DriveSubsystem.TankDrive(1, -1);
-  }
-  else {
-    m_DriveSubsystem.TankDrive(0, 0);
-    finished = true;
-  }
-    
+    if (m_visionSubsystem.getyaw() > 1) {
+      m_TurretSubsystem.TurretTurn(TurretConstants.kTurretSpeed * -1);
+    }
+    else if(m_visionSubsystem.getyaw() < -1) {
+      m_TurretSubsystem.TurretTurn(TurretConstants.kTurretSpeed);
+    }
+    else {
+      finished = true;
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    
+    m_TurretSubsystem.TurretTurn(0);
   }
 
   // Returns true when the command should end.

@@ -71,8 +71,6 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void TankDrive(double left, double right){
     m_drive.tankDrive(left * DriveConstants.kSpeedMultiplier, right * DriveConstants.kSpeedMultiplier);
-  
-    
   }
 
   private void updatePID() {
@@ -163,6 +161,10 @@ public class DriveSubsystem extends SubsystemBase {
     m_drive.setMaxOutput(maxOutput);
   }
 
+  public double getGyro() {
+    return (ahrs.getAngle());
+  }
+
   public void calibrateGyro() {
     ahrs.calibrate();
     while(ahrs.isCalibrating()) {
@@ -225,6 +227,7 @@ public class DriveSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     m_drive.feed();
+    SmartDashboard.putNumber("Angle", ahrs.getAngle());
     SmartDashboard.putNumber("Roll", ahrs.getRoll());
     SmartDashboard.putNumber("Pitch", ahrs.getPitch());
     SmartDashboard.putNumber("Encoder L", encoderL.getPosition());
