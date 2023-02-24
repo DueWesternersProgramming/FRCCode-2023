@@ -29,6 +29,7 @@ public class ClawClose extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    finished = false;
 
   }
 
