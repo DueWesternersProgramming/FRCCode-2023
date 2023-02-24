@@ -16,7 +16,7 @@ public class TurretSubsystem extends SubsystemBase{
     RelativeEncoder turretEncoder = turretMotor.getEncoder();
 
     public TurretSubsystem(){
-        
+        turretEncoder.setPosition(0.0);
     }
 
     public void TurretTurn(double speed){
@@ -26,7 +26,6 @@ public class TurretSubsystem extends SubsystemBase{
 
     public void TurretBrake(){
         turretMotor.setIdleMode(IdleMode.kBrake);
-
     }
 
     public double getEncoderPosition() {
@@ -36,13 +35,11 @@ public class TurretSubsystem extends SubsystemBase{
     public void resetEncoder() {
         turretEncoder.setPosition(0.0);
     }
-    
-
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("TurretPos", getEncoderPosition());
-        SmartDashboard.putNumber("Speed", turretMotor.get());
+        SmartDashboard.putNumber("Turret Pos", getEncoderPosition());
+        SmartDashboard.putNumber("Turret Speed", turretMotor.get());
     }
     
 }

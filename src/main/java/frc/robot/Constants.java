@@ -25,7 +25,7 @@ public final class Constants {
     public static final int kArmJointOneMotorPort = 100000; // NOT SET UP
 
 
-    public static final double kSpeedMultiplier = 0.25;
+    public static final double kSpeedMultiplier = 0.35;
 
     public static final double kMaxAccel = 12;
     public static final int kLeft = -1;
@@ -80,8 +80,8 @@ public final class Constants {
 
   public static class ClawConstants{
     public static final double kOpenPosition = 0;
-    public static final double kClosedCube = 5;
-    public static final double kClosedCone = 10;
+    public static final double kClosedCube = 6;
+    public static final double kClosedCone = 11;
     public static final int kClawMotorPort = 15;
     public static final double kClawSpeed = 0.25;
   }

@@ -36,12 +36,12 @@ public class ClawClose extends CommandBase {
   @Override
   public void execute() {
     if (m_item == 0){
-      if (m_clawSubsystem.getPosition() >= ClawConstants.kClosedCube){
+      if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCube){
         finished = true;
       }
     }
     else if (m_item == 1) {
-      if (m_clawSubsystem.getPosition() >= ClawConstants.kClosedCone){
+      if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCone){
         finished = true;
       }
     }
@@ -52,6 +52,7 @@ public class ClawClose extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_clawSubsystem.runClaw(0.0);
+    cancel();
   }
 
   // Returns true when the command should end.

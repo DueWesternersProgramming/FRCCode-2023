@@ -31,7 +31,8 @@ public class TurretTurnAuto extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    finished = false;
+    currentPos = m_turretSubsystem.getEncoderPosition();
     if (currentPos > m_angle) {
       direction = TurretConstants.kTurnLeft;
     }
@@ -43,28 +44,44 @@ public class TurretTurnAuto extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println("Running");
     currentPos = m_turretSubsystem.getEncoderPosition();    
+    System.out.println("Current Position: " + currentPos);
+    System.out.println("Direction: " + direction);
+    System.out.println("m_angle: " + m_angle);
+
     if (direction == TurretConstants.kTurnLeft) {
+      System.out.println("Left");
       if (currentPos > m_angle) {
-        m_turretSubsystem.TurretTurn(-0.5);
+        m_turretSubsystem.TurretTurn(-0.10);
+        System.out.println("Turing left");
       }
       else {
+        System.out.println("Finishing left");
         finished = true;
       }
     }
     else if (direction == TurretConstants.kTurnRight) {
+      System.out.println("Right");
       if (currentPos < m_angle) {
-        m_turretSubsystem.TurretTurn(0.5);
+        m_turretSubsystem.TurretTurn(0.10);
+        System.out.println("Turing right");
       }
       else {
+        System.out.println("Finishing right");
         finished = true;
       }
+    }
+    else {
+      System.out.println("You shouldn't be here.");
+      finished = true;
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    System.out.println("Stopped PERMANENTLY " + finished);
     m_turretSubsystem.TurretTurn(0);
   }
 

@@ -99,8 +99,8 @@ public class RobotContainer {
     Trigger pButton2 = new JoystickButton(m_asisstController, 8); 
     // POV(D-pad) Button for the Driver Controller 
     Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnAuto(m_turretSubsystem, 0));
-    Trigger rPovButton = new POVButton(m_driverController, 90);
-    Trigger lPovButton = new POVButton(m_driverController, 270);
+    Trigger rPovButton = new POVButton(m_driverController, 90).onTrue(new TurretTurnAuto(m_turretSubsystem, 4));
+    Trigger lPovButton = new POVButton(m_driverController, 270).onTrue(new TurretTurnAuto(m_turretSubsystem, -4));
     Trigger dPovButton = new POVButton(m_driverController, 180);
     // POV(D-pad) Buttons for the Asisst Controller 
     Trigger uPovButton2 = new POVButton(m_asisstController, 0);

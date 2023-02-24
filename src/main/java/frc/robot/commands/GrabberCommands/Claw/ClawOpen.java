@@ -33,7 +33,7 @@ public class ClawOpen extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_clawSubsystem.getPosition() <= ClawConstants.kOpenPosition){
+    if (m_clawSubsystem.getEncoderPosition() <= ClawConstants.kOpenPosition){
       finished = true;
     }
     m_clawSubsystem.runClaw(ClawConstants.kClawSpeed * -1);
@@ -43,6 +43,7 @@ public class ClawOpen extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_clawSubsystem.runClaw(0.0);
+    cancel();
   }
 
   // Returns true when the command should end.
