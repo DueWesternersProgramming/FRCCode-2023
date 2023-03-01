@@ -44,11 +44,18 @@ public final class Constants {
   }
 
   public static class ArmConstants {  
-    public static final int kLeftArmMotorPort = 0;
-    public static final int kRightArmMotorPort = 1;
-
-    public static final double kArmUp = 0.8;
-    public static final double kArmDown = 0.2;
+    
+    public static final double kUpPosition = 0;
+    public static final double kDownPosition = 0;
+    
+    public static final int kArmMotorPort = 17;//was 15
+    
+    
+    
+    //public static final int kLeftArmMotorPort = 0;
+    //public static final int kRightArmMotorPort = 1;
+    //public static final double kArmUp = 0.8;
+    //public static final double kArmDown = 0.2;
   }
 
   public static class LightConstants {
@@ -77,11 +84,11 @@ public final class Constants {
   }
 
   public static class ClawConstants{
-    public static final double kOpenPosition = 0;
-    public static final double kClosedCube = 6;
-    public static final double kClosedCone = 11;
-    public static final int kClawMotorPort = 1000;//was 15
-    public static final double kClawSpeed = 0.25;
+    //public static final double kOpenPosition = 0;
+    //public static final double kClosedCube = 6;
+    //public static final double kClosedCone = 11;
+    //public static final int kClawMotorPort = 1000;//was 15
+    //public static final double kClawSpeed = 0.25;
   }
 
   public static class BaseArmConstants{

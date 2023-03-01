@@ -1,48 +1,38 @@
 package frc.robot.subsystems.GrabberSubsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.ClawConstants;
 
+//import frc.robot.Constants.*;
+
+
 public class ClawSubsystem extends SubsystemBase{
+    
+    Servo actuatorServo1 = new Servo(0);
+    Servo actuatorServo2 = new Servo(1);
 
-    CANSparkMax clawMotor = new CANSparkMax(ClawConstants.kClawMotorPort, MotorType.kBrushless);
-    RelativeEncoder clawEncoder = clawMotor.getEncoder();
-
+    
     public ClawSubsystem(){
-        clawMotor.setIdleMode(IdleMode.kBrake);
-        clawEncoder.setPosition(0.0);
+       
     }
 
-    /**
-     * @apiNote Sets claw to closed position
-     * @param speed Claw speed
-     */
-    public void runClaw(double speed){
-        clawMotor.set(speed);
+    public void setPosition(double position){
+        actuatorServo1.set(position);
+        actuatorServo2.set(position);
     }
 
-    public double getSpeed(){
-        return clawMotor.get();
+    public void setSpeed(double speed) {
+        actuatorServo1.setSpeed(Math.abs(speed));
+        actuatorServo2.setSpeed(Math.abs(speed));
     }
 
-    public double getEncoderPosition() {
-        return clawEncoder.getPosition();
-    }
-
-    public void resetEncoder() {
-        clawEncoder.setPosition(0.0);
-    }
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Claw Pos", getEncoderPosition());
-        SmartDashboard.putNumber("Claw Speed", getSpeed());
+        SmartDashboard.putNumber("Claw Actuator #1", actuatorServo1.getPosition());
     }
+
     
 }
