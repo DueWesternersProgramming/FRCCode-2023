@@ -3,14 +3,15 @@ package frc.robot.subsystems.GrabberSubsystems;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.ArmConstants;
 
 //import frc.robot.Constants.*;
 
 
 public class ArmSubsystem extends SubsystemBase{
     
-    Servo actuatorServo1 = new Servo(0);
-    Servo actuatorServo2 = new Servo(1);
+    Servo actuatorServo1 = new Servo(ArmConstants.kLeftArmMotorPort);
+    Servo actuatorServo2 = new Servo(ArmConstants.kRightArmMotorPort);
 
     
     public ArmSubsystem(){

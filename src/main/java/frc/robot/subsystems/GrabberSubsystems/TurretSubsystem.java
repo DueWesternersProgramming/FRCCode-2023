@@ -7,12 +7,12 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
 
-import frc.robot.Constants.*;
+import frc.robot.Constants.TurretConstants;
 
 
 public class TurretSubsystem extends SubsystemBase{
 
-    CANSparkMax turretMotor = new CANSparkMax(DriveConstants.kTurretMotorPort,CANSparkMax.MotorType.kBrushless);
+    CANSparkMax turretMotor = new CANSparkMax(TurretConstants.kTurretMotorPort,CANSparkMax.MotorType.kBrushless);
     RelativeEncoder turretEncoder = turretMotor.getEncoder();
 
     public TurretSubsystem(){
@@ -21,7 +21,7 @@ public class TurretSubsystem extends SubsystemBase{
 
     public void TurretTurn(double speed){
         //TURN TURRET
-        turretMotor.set(speed/2.5);
+        turretMotor.set(speed*TurretConstants.kTurretSpeedMultiplier);
     }
 
     public void TurretBrake(){

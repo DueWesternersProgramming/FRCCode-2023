@@ -21,10 +21,6 @@ public final class Constants {
     public static final int kRight1MotorPort = 4;
     public static final int kRight2MotorPort = 5;
 
-    public static final int kTurretMotorPort = 8;  // NOT SET UP
-    public static final int kArmJointOneMotorPort = 100000; // NOT SET UP
-
-
     public static final double kSpeedMultiplier = 0.35;
 
     public static final double kMaxAccel = 12;
@@ -48,8 +44,8 @@ public final class Constants {
   }
 
   public static class ArmConstants {  
-    public static final int kLowerArmMotorPort = 0;
-    public static final int kUpperArmMotorPort = 0;
+    public static final int kLeftArmMotorPort = 0;
+    public static final int kRightArmMotorPort = 1;
 
     public static final double kArmUp = 0.8;
     public static final double kArmDown = 0.2;
@@ -66,23 +62,30 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
     public static final int kAsisstControllerPort = 1;
 
-    public static final int kPDPPort = 15;
+    public static final int kPDPPort = 16;
 
   }
 
   public static class TurretConstants {
+    public static final int kTurretMotorPort = 8;
     public static final double kBumperDeadZone = 0.2;
     public static final double kRightAngle = 2379;
     public static final double kTurretSpeed = 0.5;
     public static final int kTurnRight = 1;
     public static final int kTurnLeft = -1;
+    public static final double kTurretSpeedMultiplier = 0.33;
   }
 
   public static class ClawConstants{
     public static final double kOpenPosition = 0;
     public static final double kClosedCube = 6;
     public static final double kClosedCone = 11;
-    public static final int kClawMotorPort = 15;
+    public static final int kClawMotorPort = 1000;//was 15
     public static final double kClawSpeed = 0.25;
+  }
+
+  public static class BaseArmConstants{
+    public static final int kBaseArmMotorPort = 15;
+    public static final double kBaseArmSpeedMultiplier = 0.70;
   }
 }

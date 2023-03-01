@@ -43,6 +43,8 @@ public class DriveSubsystem extends SubsystemBase {
       motor2R.follow(motor1R);
       motor1R.setInverted(true);
       motor2R.setInverted(true);
+      motor1L.setInverted(false);
+      motor2L.setInverted(false);
       leftMotors = new MotorControllerGroup(motor1L, motor2L);
       rightMotors = new MotorControllerGroup(motor1R, motor2R);
       leftMotors.setInverted(true);
