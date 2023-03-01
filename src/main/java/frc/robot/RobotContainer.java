@@ -7,7 +7,12 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autonomous.AutoDoNothing;
 import frc.robot.commands.Autonomous.AutoTest;
-import frc.robot.commands.Autonomous.Paths.Red.*;
+import frc.robot.commands.Autonomous.Paths.Red.PathRed1.*;
+import frc.robot.commands.Autonomous.Paths.Red.PathRed2.*;
+import frc.robot.commands.Autonomous.Paths.Red.PathRed3.*;
+import frc.robot.commands.Autonomous.Paths.Blue.PathBlue1.*;
+import frc.robot.commands.Autonomous.Paths.Blue.PathBlue2.*;
+import frc.robot.commands.Autonomous.Paths.Blue.PathBlue3.*;
 import frc.robot.commands.Autonomous.Paths.Blue.*;
 import frc.robot.commands.DriveCommands.TankDrive;
 import frc.robot.commands.GrabberCommands.Arm.*;
@@ -66,7 +71,7 @@ public class RobotContainer {
 
     Shuffleboard.getTab("Autonomous").add("Alliance Color", DriverStation.getAlliance().toString());
     if (DriverStation.getAlliance() == Alliance.Red){
-      m_chooser.setDefaultOption("Red 1", new Red1(m_driveSubsystem));
+      m_chooser.setDefaultOption("Red 1", new Red1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem));
       m_chooser.addOption("Red 2", new Red2(m_driveSubsystem));
       m_chooser.addOption("Red 3", new Red3(m_driveSubsystem));
       m_chooser.addOption("Do Nothing", new AutoDoNothing());

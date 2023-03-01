@@ -1,21 +1,18 @@
-package frc.robot.commands.Autonomous.Paths.Red;
+package frc.robot.commands.Autonomous.Paths.Blue.PathBlue1;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.DriveCommands.*;
+import frc.robot.commands.DriveCommands.DriveDistance;
 import frc.robot.subsystems.DriveSubsystem;
 
-public class Red1 extends SequentialCommandGroup{
+public class Blue1 extends SequentialCommandGroup{
     
 
-    /**
-     * @param m_drive
-     */
-    public Red1(DriveSubsystem m_drive) {
+    public Blue1(DriveSubsystem m_drive) {
         addCommands(
-      
-        /**
+            /** (make sure code is in opisite deriection as red)
+            /**
          * "robot will start with claw backwards"
-         * extend arm towards node 3 
+         * extend arm towards node 3C
          * drop cone (open claw)
          * retract arm
          * drive forwarard towards the middle 

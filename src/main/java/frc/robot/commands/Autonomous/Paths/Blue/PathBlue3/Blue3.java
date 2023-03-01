@@ -1,4 +1,4 @@
-package frc.robot.commands.Autonomous.Paths.Blue;
+package frc.robot.commands.Autonomous.Paths.Blue.PathBlue3;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.DriveDistance;
