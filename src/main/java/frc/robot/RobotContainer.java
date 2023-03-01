@@ -67,6 +67,9 @@ public class RobotContainer {
     
     m_armBaseSubsystem.setDefaultCommand(new BaseArmManuelMove(m_armBaseSubsystem,
     () -> m_asisstController.getRawAxis(1)));
+
+    m_armSubsystem.setDefaultCommand(new ArmManuelMove(m_armSubsystem,
+    () -> m_asisstController.getRawAxis(5)));
     
 
     Shuffleboard.getTab("Autonomous").add("Alliance Color", DriverStation.getAlliance().toString());
@@ -91,14 +94,14 @@ public class RobotContainer {
     // The Buttons for the Driver Controller
     Trigger yButton = new JoystickButton(m_driverController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2))); 
     Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDControl(m_lightSubsystem));
-    Trigger aButton = new JoystickButton(m_driverController, 1).onTrue(new ArmRetract(m_armSubsystem)); 
-    Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new ArmExtend(m_armSubsystem));
+    Trigger aButton = new JoystickButton(m_driverController, 1);
+    Trigger bButton = new JoystickButton(m_driverController, 2);//.onTrue(new ArmExtend(m_armSubsystem));
     //Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new AutoTest(m_driveSubsystem)); 
     Trigger rbButton = new JoystickButton(m_driverController, 6).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem));
-    Trigger uButton = new JoystickButton(m_driverController, 7).onTrue(new ClawClose(m_clawSubsystem, 0)); 
-    Trigger pButton = new JoystickButton(m_driverController, 8).onTrue(new ClawOpen(m_clawSubsystem)); 
+    Trigger uButton = new JoystickButton(m_driverController, 7);//.onTrue(new ClawClose(m_clawSubsystem, 0)); 
+    Trigger pButton = new JoystickButton(m_driverController, 8);//.onTrue(new ClawOpen(m_clawSubsystem)); 
     // The Buttons For the Asisst Controller will have a 2 after them      
-    Trigger yButton2 = new JoystickButton(m_asisstController, 4); 
+    Trigger yButton2 = new JoystickButton(m_asisstController, 4);
     Trigger xButton2 = new JoystickButton(m_asisstController, 3); 
     Trigger aButton2 = new JoystickButton(m_asisstController, 1); 
     Trigger bButton2 = new JoystickButton(m_asisstController, 2); 

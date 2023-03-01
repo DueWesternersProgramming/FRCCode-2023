@@ -13,14 +13,16 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ClawOpen extends CommandBase {
   private final ClawSubsystem m_clawSubsystem;
   private boolean finished = false;
-
+  private int m_item;
   /**
-   * Creates a new TankDrive command.
+   * Creates a new ClawClose command.
    *
    * @param driveSubsystem The subsystem used by this command.
+   * @param item 0 = cube, 1 = cone
    */
-  public ClawOpen(ClawSubsystem clawSubsystem) {
+  public ClawOpen(ClawSubsystem clawSubsystem, int item) {
     m_clawSubsystem = clawSubsystem;
+    m_item = item;
     addRequirements(m_clawSubsystem);
   }
 
@@ -29,21 +31,31 @@ public class ClawOpen extends CommandBase {
   public void initialize() {
     finished = false;
 
+    m_clawSubsystem.setPosition(7);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_clawSubsystem.getEncoderPosition() <= ClawConstants.kOpenPosition){
-      finished = true;
-    }
-    m_clawSubsystem.runClaw(ClawConstants.kClawSpeed * -1);
+    
+    //if (m_item == 0){
+      //if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCube){
+        //finished = true;
+      //}
+    //}
+    //else if (m_item == 1) {
+      //if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCone){
+        //finished = true;
+      //}
+    //}
+    //m_clawSubsystem.runClaw(ClawConstants.kClawSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_clawSubsystem.runClaw(0.0);
+    //m_clawSubsystem.runClaw(0.0);
     cancel();
   }
 

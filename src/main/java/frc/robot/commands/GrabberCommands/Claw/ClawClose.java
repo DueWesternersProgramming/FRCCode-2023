@@ -31,28 +31,31 @@ public class ClawClose extends CommandBase {
   public void initialize() {
     finished = false;
 
+    m_clawSubsystem.setPosition(0);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_item == 0){
-      if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCube){
-        finished = true;
-      }
-    }
-    else if (m_item == 1) {
-      if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCone){
-        finished = true;
-      }
-    }
-    m_clawSubsystem.runClaw(ClawConstants.kClawSpeed);
+    
+    //if (m_item == 0){
+      //if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCube){
+        //finished = true;
+      //}
+    //}
+    //else if (m_item == 1) {
+      //if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCone){
+        //finished = true;
+      //}
+    //}
+    //m_clawSubsystem.runClaw(ClawConstants.kClawSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_clawSubsystem.runClaw(0.0);
+    //m_clawSubsystem.runClaw(0.0);
     cancel();
   }
 

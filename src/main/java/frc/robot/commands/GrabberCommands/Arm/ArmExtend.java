@@ -28,7 +28,7 @@ public class ArmExtend extends CommandBase {
   @Override
   public void initialize() {
     //m_armSubsystem.setSpeed(1);
-    m_armSubsystem.setPosition(ArmConstants.kArmUp);
+    //m_armSubsystem.setPosition(ArmConstants.kArmUp);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
