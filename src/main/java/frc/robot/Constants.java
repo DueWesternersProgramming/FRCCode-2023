@@ -84,15 +84,13 @@ public final class Constants {
   }
 
   public static class ClawConstants{
-    //public static final double kOpenPosition = 0;
-    //public static final double kClosedCube = 6;
-    //public static final double kClosedCone = 11;
-    //public static final int kClawMotorPort = 1000;//was 15
-    //public static final double kClawSpeed = 0.25;
+    public static final double kOpenPosition = 0.5;
+    public static final double kClosedCube = 0.71;
+    public static final double kClosedCone = 0.79;
   }
 
   public static class BaseArmConstants{
     public static final int kBaseArmMotorPort = 15;
-    public static final double kBaseArmSpeedMultiplier = 0.70;
+    public static final double kBaseArmSpeedMultiplier = 0.2;
   }
 }

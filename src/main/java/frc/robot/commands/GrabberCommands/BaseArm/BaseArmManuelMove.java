@@ -40,7 +40,7 @@ public class BaseArmManuelMove extends CommandBase {
     if (Math.abs(m_speed.getAsDouble()) < DriveConstants.kControllerDeadZone){
       m_speedModified = 0.0;
     }
-    m_armBaseSubsystem.ArmBaseMove(m_speedModified*BaseArmConstants.kBaseArmSpeedMultiplier);
+    m_armBaseSubsystem.ArmBaseMove(m_speedModified);
     
     /*if (m_leftModified != (1-1)) {
       m_ArmBaseSubsystem.ArmBaseMove(m_leftModified);

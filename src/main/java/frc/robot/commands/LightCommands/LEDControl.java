@@ -25,7 +25,7 @@ public class LEDControl extends CommandBase {
   public LEDControl(LightSubsystem lightSubsystem) {
     m_lightSubsystem = lightSubsystem; 
 
-    colorFlowAnimation1 = new ColorFlowAnimation(255, 0, 0, 0, 0.5, 300, Direction.Forward, 8);
+    //colorFlowAnimation1 = new ColorFlowAnimation(255, 0, 0, 0, 0.5, 300, Direction.Forward, 8);
     //colorFlowAnimation2 = new ColorFlowAnimation(255, 0, 0, 0, 0.5, 100, Direction.Forward, 108);
     //colorFlowAnimation3 = new ColorFlowAnimation(255, 0, 0, 0, 0.5, 100, Direction.Forward, 208);
     addRequirements(m_lightSubsystem);
@@ -34,7 +34,7 @@ public class LEDControl extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_lightSubsystem.setAnimation(colorFlowAnimation1);
+    //m_lightSubsystem.setAnimation(colorFlowAnimation1);
     //m_lightSubsystem.setAnimation(colorFlowAnimation2, 1);
     //m_lightSubsystem.setAnimation(colorFlowAnimation3, 2);
     //m_lightSubsystem.stopAnimation(0);

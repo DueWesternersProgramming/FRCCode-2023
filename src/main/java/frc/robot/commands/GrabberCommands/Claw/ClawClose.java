@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class ClawClose extends CommandBase {
   private final ClawSubsystem m_clawSubsystem;
-  private boolean finished = false;
   private int m_item;
   /**
    * Creates a new ClawClose command.
@@ -29,39 +28,32 @@ public class ClawClose extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    finished = false;
-
-    m_clawSubsystem.setPosition(0);
-
+    System.out.println("Initialize");
+    if (m_item == 0){
+      m_clawSubsystem.setPosition(ClawConstants.kClosedCube);
+      System.out.println("Cube");
+    }
+    else if (m_item == 1) {
+      m_clawSubsystem.setPosition(ClawConstants.kClosedCone);
+      System.out.println("Cone");
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
-    //if (m_item == 0){
-      //if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCube){
-        //finished = true;
-      //}
-    //}
-    //else if (m_item == 1) {
-      //if (m_clawSubsystem.getEncoderPosition() >= ClawConstants.kClosedCone){
-        //finished = true;
-      //}
-    //}
-    //m_clawSubsystem.runClaw(ClawConstants.kClawSpeed);
+  
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //m_clawSubsystem.runClaw(0.0);
-    cancel();
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return true;
   }
 }

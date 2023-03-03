@@ -32,7 +32,6 @@ public class ClawSubsystem extends SubsystemBase{
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Claw Actuator #1", actuatorServo1.getPosition());
+        SmartDashboard.putNumber("Claw Actuator #2", actuatorServo2.getPosition());
     }
-
-    
 }

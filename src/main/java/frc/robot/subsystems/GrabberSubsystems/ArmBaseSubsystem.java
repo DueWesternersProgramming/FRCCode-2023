@@ -22,7 +22,7 @@ public class ArmBaseSubsystem extends SubsystemBase{
 
     public void ArmBaseMove(double speed){
         //TURN TURRET
-        BaseArmMotor.set(speed/2.5);
+        BaseArmMotor.set(speed * BaseArmConstants.kBaseArmSpeedMultiplier);
     }
 
     public void ArmBrake(){
