@@ -13,6 +13,7 @@ import frc.robot.commands.Autonomous.Paths.Blue.PathBlue1.*;
 import frc.robot.commands.Autonomous.Paths.Blue.PathBlue2.*;
 import frc.robot.commands.Autonomous.Paths.Blue.PathBlue3.*;
 import frc.robot.commands.DriveCommands.TankDrive;
+import frc.robot.commands.GrabberCommands.ArmLoadPos;
 import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
 import frc.robot.commands.GrabberCommands.Turret.*;
@@ -107,7 +108,7 @@ public class RobotContainer {
     Trigger yButton2 = new JoystickButton(m_asisstController, 4);
     Trigger xButton2 = new JoystickButton(m_asisstController, 3); 
     Trigger aButton2 = new JoystickButton(m_asisstController, 1); 
-    Trigger bButton2 = new JoystickButton(m_asisstController, 2); 
+    Trigger bButton2 = new JoystickButton(m_asisstController, 2);
     Trigger lbButton2 = new JoystickButton(m_asisstController, 5); 
     Trigger rbButton2 = new JoystickButton(m_asisstController, 6); 
     Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
