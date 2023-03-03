@@ -1,13 +1,19 @@
 package frc.robot.commands.Autonomous.Paths.Blue.PathBlue3;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.DriveDistance;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
 
 public class Blue3 extends SequentialCommandGroup{
     
 
-    public Blue3(DriveSubsystem m_drive) {
+    public Blue3(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, TurretSubsystem m_turret, BooleanSupplier ending) {
         addCommands(
 /** (make sure code is in opisite deriection as red)
      * (arm starts backwards)extend arm toward node 8 or 9

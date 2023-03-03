@@ -1,13 +1,19 @@
 package frc.robot.commands.Autonomous.Paths.Red.PathRed2;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.DriveDistance;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
 
 public class Red2 extends SequentialCommandGroup{
     
 
-    public Red2(DriveSubsystem m_drive) {
+    public Red2(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, TurretSubsystem m_turret, BooleanSupplier ending) {
         addCommands(
            /** robot starts with arm backwards 
             * arm ext retractsends foward and up toward node 4 or 5 
