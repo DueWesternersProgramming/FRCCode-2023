@@ -21,7 +21,7 @@ public final class Constants {
     public static final int kRight1MotorPort = 4;
     public static final int kRight2MotorPort = 5;
 
-    public static final double kSpeedMultiplier = 0.35;
+    public static final double kSpeedMultiplier = 0.45;
 
     public static final double kMaxAccel = 12;
     public static final int kLeft = -1;
@@ -84,7 +84,7 @@ public final class Constants {
   }
 
   public static class ClawConstants{
-    public static final double kOpenPosition = 0.5;
+    public static final double kOpenPosition = 0.3;
     public static final double kClosedCube = 0.71;
     public static final double kClosedCone = 0.79;
   }
