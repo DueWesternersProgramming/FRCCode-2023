@@ -9,12 +9,13 @@ import frc.robot.subsystems.LightSubsystem;
 import com.ctre.phoenix.led.LarsonAnimation;
 import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class LEDPit extends CommandBase {
-  private final LightSubsystem m_lightSubsystem;
-  LarsonAnimation larsonAnimation;
+  public final LightSubsystem m_lightSubsystem;
+  LarsonAnimation larsonAnimationA;
 
 
   /**
@@ -24,17 +25,18 @@ public class LEDPit extends CommandBase {
    */
   public LEDPit(LightSubsystem lightSubsystem) {
     m_lightSubsystem = lightSubsystem; 
-    larsonAnimation= new LarsonAnimation(200, 0, 50, 75, 0.5, 230, BounceMode.Back, 7, 8);
+    larsonAnimationA = new LarsonAnimation(0, 250, 0, 0, 0.5, 230, BounceMode.Back, 7, 7);
     addRequirements(m_lightSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
+  //m_lightSubsystem.setIdleMode{
   public void initialize() {
-    m_lightSubsystem.setAnimation(larsonAnimation);
+    m_lightSubsystem.setAnimation(larsonAnimationA,0);
     System.out.println("Scheduled");
   }
-
+    
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {

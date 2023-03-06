@@ -24,7 +24,7 @@ public class ArmSubsystem extends SubsystemBase{
      * @param speed Claw speed
      */
     public void runArm(double speed){
-        armMotor.set(speed);
+        armMotor.set(speed*ArmConstants.kArmSpeedMultiplier);
     }
 
     public double getSpeed(){

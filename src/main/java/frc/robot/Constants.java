@@ -49,6 +49,8 @@ public final class Constants {
     public static final double kDownPosition = 0;
     
     public static final int kArmMotorPort = 17;//was 15
+
+    public static final int kArmSpeedMultiplier = 1;
     
     
     
@@ -91,6 +93,6 @@ public final class Constants {
 
   public static class BaseArmConstants{
     public static final int kBaseArmMotorPort = 15;
-    public static final double kBaseArmSpeedMultiplier = 0.2;
+    public static final double kBaseArmSpeedMultiplier = 0.45;
   }
 }

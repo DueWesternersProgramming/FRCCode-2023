@@ -13,7 +13,6 @@ import frc.robot.commands.Autonomous.Paths.Blue.PathBlue1.*;
 import frc.robot.commands.Autonomous.Paths.Blue.PathBlue2.*;
 import frc.robot.commands.Autonomous.Paths.Blue.PathBlue3.*;
 import frc.robot.commands.DriveCommands.TankDrive;
-import frc.robot.commands.GrabberCommands.ArmLoadPos;
 import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
 import frc.robot.commands.GrabberCommands.Claw.ClawClose;
@@ -33,7 +32,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj2.command.button.Trigger; 
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -51,13 +50,14 @@ public class RobotContainer {
   private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
   private final ArmBaseSubsystem m_armBaseSubsystem = new ArmBaseSubsystem();
   private final GenericHID m_driverController, m_asisstController;
-
+  
   SendableChooser<Command> m_autoPositionChooser = new SendableChooser<>();
+
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-     
+    
     m_driverController = new GenericHID(OperatorConstants.kDriverControllerPort);
     m_asisstController = new GenericHID(OperatorConstants.kAsisstControllerPort);
     
@@ -93,13 +93,14 @@ public class RobotContainer {
     m_autoPositionChooser.addOption("Do Nothing", new AutoDoNothing());
 
     Shuffleboard.getTab("Autonomous").add(m_autoPositionChooser);
+    
   }
 
 
 
   private void configureButttonBindings() {
     // The Buttons for the Driver Controller
-    Trigger yButton = new JoystickButton(m_driverController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_driverController.getRawAxis(3), () -> m_driverController.getRawAxis(2))); 
+    Trigger yButton = new JoystickButton(m_driverController, 4); 
     Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDControl(m_lightSubsystem));
     Trigger aButton = new JoystickButton(m_driverController, 1);
     Trigger bButton = new JoystickButton(m_driverController, 2);
@@ -108,8 +109,8 @@ public class RobotContainer {
     Trigger uButton = new JoystickButton(m_driverController, 7); 
     Trigger pButton = new JoystickButton(m_driverController, 8); 
     // The Buttons For the Asisst Controller will have a 2 after them      
-    Trigger yButton2 = new JoystickButton(m_asisstController, 4);
-    Trigger xButton2 = new JoystickButton(m_asisstController, 3); 
+    Trigger yButton2 = new JoystickButton(m_asisstController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_asisstController.getRawAxis(3), () -> m_asisstController.getRawAxis(2)));
+    Trigger xButton2 = new JoystickButton(m_asisstController, 3).onTrue(new LEDControl(m_lightSubsystem)); 
     Trigger aButton2 = new JoystickButton(m_asisstController, 1); 
     Trigger bButton2 = new JoystickButton(m_asisstController, 2);
     Trigger lbButton2 = new JoystickButton(m_asisstController, 5); 

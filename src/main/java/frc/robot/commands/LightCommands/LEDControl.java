@@ -7,14 +7,20 @@ package frc.robot.commands.LightCommands;
 import frc.robot.subsystems.LightSubsystem;
 
 import com.ctre.phoenix.led.ColorFlowAnimation;
+import com.ctre.phoenix.led.LarsonAnimation;
+import com.ctre.phoenix.led.StrobeAnimation;
+import com.ctre.phoenix.led.TwinkleAnimation;
 import com.ctre.phoenix.led.ColorFlowAnimation.Direction;
+import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class LEDControl extends CommandBase {
   private final LightSubsystem m_lightSubsystem;
-  ColorFlowAnimation colorFlowAnimation1, colorFlowAnimation2, colorFlowAnimation3;
+  TwinkleAnimation colorFlowAnimation1;
+  LarsonAnimation larsonAnimation1;
+  ColorFlowAnimation colorFlowAnimation2, colorFlowAnimation3;
 
 
   /**
@@ -25,8 +31,10 @@ public class LEDControl extends CommandBase {
   public LEDControl(LightSubsystem lightSubsystem) {
     m_lightSubsystem = lightSubsystem; 
 
-    //colorFlowAnimation1 = new ColorFlowAnimation(255, 0, 0, 0, 0.5, 300, Direction.Forward, 8);
-    //colorFlowAnimation2 = new ColorFlowAnimation(255, 0, 0, 0, 0.5, 100, Direction.Forward, 108);
+    colorFlowAnimation1 = new TwinkleAnimation(255, 0, 0);
+    //larsonAnimation1 = new LarsonAnimation(0, 0, 255);
+    larsonAnimation1 = new LarsonAnimation(0, 0, 200, 0, 0.5, 230, BounceMode.Back,8);
+    //colorFlowAnimation2 = new ColorFlowAnimation(0, 0, 255, 0, 0.5, 100, Direction.Forward, 108);
     //colorFlowAnimation3 = new ColorFlowAnimation(255, 0, 0, 0, 0.5, 100, Direction.Forward, 208);
     addRequirements(m_lightSubsystem);
   }
@@ -34,7 +42,8 @@ public class LEDControl extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //m_lightSubsystem.setAnimation(colorFlowAnimation1);
+    m_lightSubsystem.setAnimation(colorFlowAnimation1, 2);
+    m_lightSubsystem.setAnimation(larsonAnimation1, 1);
     //m_lightSubsystem.setAnimation(colorFlowAnimation2, 1);
     //m_lightSubsystem.setAnimation(colorFlowAnimation3, 2);
     //m_lightSubsystem.stopAnimation(0);
