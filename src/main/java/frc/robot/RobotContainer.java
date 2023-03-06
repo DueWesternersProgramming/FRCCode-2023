@@ -112,8 +112,8 @@ public class RobotContainer {
     Trigger yButton2 = new JoystickButton(m_asisstController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_asisstController.getRawAxis(3), () -> m_asisstController.getRawAxis(2)));
     Trigger xButton2 = new JoystickButton(m_asisstController, 3).onTrue(new LEDControl(m_lightSubsystem)); 
     Trigger aButton2 = new JoystickButton(m_asisstController, 1); 
-    Trigger bButton2 = new JoystickButton(m_asisstController, 2);
-    Trigger lbButton2 = new JoystickButton(m_asisstController, 5); 
+    Trigger bButton2 = new JoystickButton(m_asisstController, 2).onTrue(new ArmExtend(m_armSubsystem));
+    Trigger lbButton2 = new JoystickButton(m_asisstController, 5);
     Trigger rbButton2 = new JoystickButton(m_asisstController, 6).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem)); 
     Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
     Trigger pButton2 = new JoystickButton(m_asisstController, 8); 

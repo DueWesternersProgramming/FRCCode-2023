@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ArmExtend extends CommandBase {
   private final ArmSubsystem m_armSubsystem;
   static double m_extention;
+  private boolean finished;
 
   /**
    * Creates a new TankDrive command.
@@ -27,26 +28,38 @@ public class ArmExtend extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //m_armSubsystem.setSpeed(1);
-    //m_armSubsystem.setPosition(ArmConstants.kArmUp);
+
+    finished = false;
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+
+    if (m_armSubsystem.getEncoderPosition() < -330){
+      m_armSubsystem.runArm(0.2);
+    }
+    else{
+      m_armSubsystem.runArm(0);
+      finished = true;
+    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+
+    m_armSubsystem.runArm(0);
+    finished = true;
     
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return finished;
   }
 }
     
