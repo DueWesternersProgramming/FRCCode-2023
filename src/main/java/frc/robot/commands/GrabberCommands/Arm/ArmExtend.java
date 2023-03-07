@@ -34,7 +34,7 @@ public class ArmExtend extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_armSubsystem.getEncoderPosition() < ArmConstants.kUpPosition){
+    if (m_armSubsystem.getEncoderPosition() > ArmConstants.kUpPosition){
       m_armSubsystem.runArm(ArmConstants.kArmSpeed);
     }
     else{

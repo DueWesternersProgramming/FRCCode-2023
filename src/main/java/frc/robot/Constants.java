@@ -45,9 +45,9 @@ public final class Constants {
 
   public static class ArmConstants {  
     
-    public static final double kUpPosition = 330;
-    public static final double kDownPosition = 20;
-    public static final double kScorePosition = 50;
+    public static final double kUpPosition = -330;
+    public static final double kDownPosition = -20;
+    public static final double kScorePosition = -50;
     public static final double kArmSpeed = 0.2;
 
     public static final int kMoveUp = 1;

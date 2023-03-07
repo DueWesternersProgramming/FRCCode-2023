@@ -28,7 +28,7 @@ public class LEDPitAlternate extends CommandBase {
     m_lightSubsystem = lightSubsystem; 
 
     twinkleAnimation = new TwinkleAnimation(255, 0, 0);
-    larsonAnimation = new LarsonAnimation(0, 0, 200, 0, 0.5, 230, BounceMode.Back,8);
+    larsonAnimation = new LarsonAnimation(0, 0, 200, 0, 0.5, 230, BounceMode.Back,7);
     addRequirements(m_lightSubsystem);
   }
 

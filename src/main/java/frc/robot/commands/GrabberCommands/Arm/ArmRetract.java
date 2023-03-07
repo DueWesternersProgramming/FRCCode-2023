@@ -34,7 +34,7 @@ public class ArmRetract extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_armSubsystem.getEncoderPosition() > ArmConstants.kDownPosition){
+    if (m_armSubsystem.getEncoderPosition() < ArmConstants.kDownPosition){
       m_armSubsystem.runArm(-ArmConstants.kArmSpeed);
     }
     else{

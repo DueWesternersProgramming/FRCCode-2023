@@ -32,10 +32,10 @@ public class ArmScore extends CommandBase {
   public void initialize() {
     finished = false;
     currentPos = m_armSubsystem.getEncoderPosition();
-    if (currentPos > ArmConstants.kScorePosition) {
+    if (currentPos < ArmConstants.kScorePosition) {
       direction = ArmConstants.kMoveDown;
     }
-    else if (currentPos < ArmConstants.kScorePosition) {
+    else if (currentPos > ArmConstants.kScorePosition) {
       direction = ArmConstants.kMoveUp;
     }
   }
@@ -46,16 +46,16 @@ public class ArmScore extends CommandBase {
     currentPos = m_armSubsystem.getEncoderPosition();    
 
     if (direction == ArmConstants.kMoveUp) {
-      if (currentPos < ArmConstants.kScorePosition) {
-        m_armSubsystem.runArm(ArmConstants.kArmSpeed);
+      if (currentPos > ArmConstants.kScorePosition) {
+        m_armSubsystem.runArm(-ArmConstants.kArmSpeed);
       }
       else {
         finished = true;
       }
     }
     else if (direction == ArmConstants.kMoveDown) {
-      if (currentPos > ArmConstants.kScorePosition) {
-        m_armSubsystem.runArm(-ArmConstants.kArmSpeed);
+      if (currentPos < ArmConstants.kScorePosition) {
+        m_armSubsystem.runArm(ArmConstants.kArmSpeed);
       }
       else {
         finished = true;

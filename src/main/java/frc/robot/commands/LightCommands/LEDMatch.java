@@ -35,10 +35,10 @@ public class LEDMatch extends CommandBase {
       m_lightSubsystem.setColor(255, 0, 0);
     }
     else if (m_itemRequest == 1){
-      m_lightSubsystem.setColor(255, 255, 255);
+      m_lightSubsystem.setColor(255, 230, 0);
     }
     else if (m_itemRequest == 2) {
-      m_lightSubsystem.setColor(0, 0, 255);
+      m_lightSubsystem.setColor(150, 27, 191);
     }
   }
     
