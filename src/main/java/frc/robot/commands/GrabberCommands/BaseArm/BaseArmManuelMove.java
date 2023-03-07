@@ -4,7 +4,6 @@
 
 package frc.robot.commands.GrabberCommands.BaseArm;
 
-import frc.robot.Constants.BaseArmConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
 

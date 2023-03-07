@@ -6,9 +6,6 @@ package frc.robot.commands.LightCommands;
 
 import frc.robot.subsystems.LightSubsystem;
 
-import com.ctre.phoenix.led.LarsonAnimation;
-import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
