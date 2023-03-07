@@ -28,6 +28,9 @@ public class LEDMatch extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_lightSubsystem.stopAnimation(0);
+    m_lightSubsystem.stopAnimation(1);
+    m_lightSubsystem.stopAnimation(2);
     if (m_itemRequest == 0) {
       m_lightSubsystem.setColor(255, 0, 0);
     }
