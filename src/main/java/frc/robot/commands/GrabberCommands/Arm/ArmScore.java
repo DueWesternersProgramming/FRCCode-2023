@@ -2,22 +2,19 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.GrabberCommands.;
+package frc.robot.commands.GrabberCommands.Arm;
 
-import frc.robot.Constants.TurretConstants;
-import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
-
-import java.util.function.DoubleSupplier;
+import frc.robot.Constants.ArmConstants;
+import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class TurretTurnAuto extends CommandBase {
-  private final TurretSubsystem m_turretSubsystem;
-  Double m_angle;
+public class ArmScore extends CommandBase {
+  private final ArmSubsystem m_armSubsystem;
+  private double currentPos;
   private int direction;
   private boolean finished = false;
-  private double currentPos;
 
 
   /** 
@@ -25,41 +22,40 @@ public class TurretTurnAuto extends CommandBase {
    *
    * @param driveSubsystem The subsystem used by this command.
    */
-  public TurretTurnAuto(TurretSubsystem turretSubsystem, Double angle) {
-    m_turretSubsystem = turretSubsystem;
-    m_angle = angle;
-    addRequirements(m_turretSubsystem);
+  public ArmScore(ArmSubsystem armSubsystem) {
+    m_armSubsystem = armSubsystem;
+    addRequirements(m_armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     finished = false;
-    currentPos = m_turretSubsystem.getEncoderPosition();
-    if (currentPos > m_angle) {
-      direction = TurretConstants.kTurnLeft;
+    currentPos = m_armSubsystem.getEncoderPosition();
+    if (currentPos > ArmConstants.kScorePosition) {
+      direction = ArmConstants.kMoveDown;
     }
-    else if (currentPos < m_angle) {
-      direction = TurretConstants.kTurnRight;
+    else if (currentPos < ArmConstants.kScorePosition) {
+      direction = ArmConstants.kMoveUp;
     }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    currentPos = m_turretSubsystem.getEncoderPosition();    
+    currentPos = m_armSubsystem.getEncoderPosition();    
 
-    if (direction == TurretConstants.kTurnLeft) {
-      if (currentPos > m_angle) {
-        m_turretSubsystem.TurretTurn(-0.20);
+    if (direction == ArmConstants.kMoveUp) {
+      if (currentPos < ArmConstants.kScorePosition) {
+        m_armSubsystem.runArm(ArmConstants.kArmSpeed);
       }
       else {
         finished = true;
       }
     }
-    else if (direction == TurretConstants.kTurnRight) {
-      if (currentPos < m_angle) {
-        m_turretSubsystem.TurretTurn(0.20);
+    else if (direction == ArmConstants.kMoveDown) {
+      if (currentPos > ArmConstants.kScorePosition) {
+        m_armSubsystem.runArm(-ArmConstants.kArmSpeed);
       }
       else {
         finished = true;
@@ -73,7 +69,7 @@ public class TurretTurnAuto extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_turretSubsystem.TurretTurn(0);
+    m_armSubsystem.runArm(0);
   }
 
   // Returns true when the command should end.

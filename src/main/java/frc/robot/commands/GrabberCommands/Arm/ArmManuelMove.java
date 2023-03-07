@@ -4,9 +4,7 @@
 
 package frc.robot.commands.GrabberCommands.Arm;
 
-import frc.robot.Constants.ArmConstants;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
-
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -14,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class ArmManuelMove extends CommandBase {
   private final ArmSubsystem m_armSubsystem;
-  static double m_extention;
   boolean isFinished = false;
   DoubleSupplier m_speed;
 
@@ -25,7 +22,6 @@ public class ArmManuelMove extends CommandBase {
    */
   public ArmManuelMove(ArmSubsystem armSubsystem, DoubleSupplier speed) {
     m_armSubsystem = armSubsystem;
-    
     m_speed = speed;
     addRequirements(m_armSubsystem);
   }
@@ -33,8 +29,6 @@ public class ArmManuelMove extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //m_armSubsystem.setSpeed(1);
-    //m_armSubsystem.setPosition(ArmConstants.kArmDown);
   
   }
 

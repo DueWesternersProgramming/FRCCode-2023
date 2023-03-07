@@ -3,9 +3,6 @@ package frc.robot.subsystems.GrabberSubsystems;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.ClawConstants;
-
-//import frc.robot.Constants.*;
 
 
 public class ClawSubsystem extends SubsystemBase{

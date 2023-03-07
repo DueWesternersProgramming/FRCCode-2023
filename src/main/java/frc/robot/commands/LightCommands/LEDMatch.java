@@ -12,27 +12,34 @@ import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class LEDPit extends CommandBase {
+public class LEDMatch extends CommandBase {
   public final LightSubsystem m_lightSubsystem;
-  private LarsonAnimation larsonAnimation;
-
+  private int m_itemRequest = 0;
 
   /**
    * Creates a new TankDrive command.
    *
    * @param lightSubsystem The subsystem used by this command.
+   * @param itemRequest 0 = nothing (red), 1 = cone (white), 2 = cube (blue)
    */
-  public LEDPit(LightSubsystem lightSubsystem) {
+  public LEDMatch(LightSubsystem lightSubsystem, int itemRequest) {
     m_lightSubsystem = lightSubsystem; 
-    larsonAnimation = new LarsonAnimation(0, 250, 0, 0, 0.5, 230, BounceMode.Back, 7, 7);
+    m_itemRequest = itemRequest;
     addRequirements(m_lightSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  //m_lightSubsystem.setIdleMode{
   public void initialize() {
-    m_lightSubsystem.setAnimation(larsonAnimation,0);
+    if (m_itemRequest == 0) {
+      m_lightSubsystem.setColor(255, 0, 0);
+    }
+    else if (m_itemRequest == 1){
+      m_lightSubsystem.setColor(255, 255, 255);
+    }
+    else if (m_itemRequest == 2) {
+      m_lightSubsystem.setColor(0, 0, 255);
+    }
   }
     
   // Called every time the scheduler runs while the command is scheduled.

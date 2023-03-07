@@ -6,21 +6,17 @@ package frc.robot.commands.LightCommands;
 
 import frc.robot.subsystems.LightSubsystem;
 
-import com.ctre.phoenix.led.ColorFlowAnimation;
 import com.ctre.phoenix.led.LarsonAnimation;
-import com.ctre.phoenix.led.StrobeAnimation;
 import com.ctre.phoenix.led.TwinkleAnimation;
-import com.ctre.phoenix.led.ColorFlowAnimation.Direction;
 import com.ctre.phoenix.led.LarsonAnimation.BounceMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class LEDControl extends CommandBase {
+public class LEDPitAlternate extends CommandBase {
   private final LightSubsystem m_lightSubsystem;
-  TwinkleAnimation colorFlowAnimation1;
-  LarsonAnimation larsonAnimation1;
-  ColorFlowAnimation colorFlowAnimation2, colorFlowAnimation3;
+  private TwinkleAnimation twinkleAnimation;
+  private LarsonAnimation larsonAnimation;
 
 
   /**
@@ -28,28 +24,19 @@ public class LEDControl extends CommandBase {
    *
    * @param lightSubsystem The subsystem used by this command.
    */
-  public LEDControl(LightSubsystem lightSubsystem) {
+  public LEDPitAlternate(LightSubsystem lightSubsystem) {
     m_lightSubsystem = lightSubsystem; 
 
-    colorFlowAnimation1 = new TwinkleAnimation(255, 0, 0);
-    //larsonAnimation1 = new LarsonAnimation(0, 0, 255);
-    larsonAnimation1 = new LarsonAnimation(0, 0, 200, 0, 0.5, 230, BounceMode.Back,8);
-    //colorFlowAnimation2 = new ColorFlowAnimation(0, 0, 255, 0, 0.5, 100, Direction.Forward, 108);
-    //colorFlowAnimation3 = new ColorFlowAnimation(255, 0, 0, 0, 0.5, 100, Direction.Forward, 208);
+    twinkleAnimation = new TwinkleAnimation(255, 0, 0);
+    larsonAnimation = new LarsonAnimation(0, 0, 200, 0, 0.5, 230, BounceMode.Back,8);
     addRequirements(m_lightSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_lightSubsystem.setAnimation(colorFlowAnimation1, 2);
-    m_lightSubsystem.setAnimation(larsonAnimation1, 1);
-    //m_lightSubsystem.setAnimation(colorFlowAnimation2, 1);
-    //m_lightSubsystem.setAnimation(colorFlowAnimation3, 2);
-    //m_lightSubsystem.stopAnimation(0);
-    //m_lightSubsystem.stopAnimation(1);
-    //m_lightSubsystem.stopAnimation(2);
-    //m_lightSubsystem.setColor(255, 0, 247);
+    m_lightSubsystem.setAnimation(larsonAnimation, 1);
+    m_lightSubsystem.setAnimation(twinkleAnimation, 2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

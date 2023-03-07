@@ -1,6 +1,6 @@
 package frc.robot.subsystems.GrabberSubsystems;
 
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -13,28 +13,37 @@ import frc.robot.Constants.*;
 
 public class ArmBaseSubsystem extends SubsystemBase{
 
-    CANSparkMax BaseArmMotor = new CANSparkMax(BaseArmConstants.kBaseArmMotorPort,CANSparkMax.MotorType.kBrushless);
-    RelativeEncoder BaseArmEncoder = BaseArmMotor.getEncoder();
+    CANSparkMax BaseArmMotorL = new CANSparkMax(BaseArmConstants.kBaseArmMotorPortL,CANSparkMax.MotorType.kBrushless);
+    CANSparkMax BaseArmMotorR = new CANSparkMax(BaseArmConstants.kBaseArmMotorPortR,CANSparkMax.MotorType.kBrushless);
+    RelativeEncoder BaseArmEncoderL = BaseArmMotorL.getEncoder();
+    RelativeEncoder BaseArmEncoderR = BaseArmMotorR.getEncoder();
+    MotorControllerGroup BaseArmMotors = new MotorControllerGroup(BaseArmMotorL, BaseArmMotorR);
 
     public ArmBaseSubsystem(){
-        BaseArmEncoder.setPosition(0.0);
+        resetEncoders();
+        ArmBrake();
     }
 
     public void ArmBaseMove(double speed){
-        //TURN TURRET
-        BaseArmMotor.set(speed * BaseArmConstants.kBaseArmSpeedMultiplier);
+        BaseArmMotors.set(speed * BaseArmConstants.kBaseArmSpeedMultiplier);
     }
 
     public void ArmBrake(){
-        BaseArmMotor.setIdleMode(IdleMode.kBrake);
+        BaseArmMotorR.setIdleMode(IdleMode.kBrake);
+        BaseArmMotorL.setIdleMode(IdleMode.kBrake);
     }
 
-    public double getEncoderPosition() {
-        return BaseArmEncoder.getPosition();
+    public double getEncoderLPosition() {
+        return BaseArmEncoderL.getPosition();
     }
 
-    public void resetEncoder() {
-        BaseArmEncoder.setPosition(0.0);
+    public double getEncoderRPosition() {
+        return BaseArmEncoderR.getPosition();
+    }
+
+    public void resetEncoders() {
+        BaseArmEncoderL.setPosition(0.0);
+        BaseArmEncoderR.setPosition(0.0);
     }
 
     public void BaseArmManuelMove(double m_leftModified, double m_rightModified) {
@@ -43,8 +52,9 @@ public class ArmBaseSubsystem extends SubsystemBase{
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("ArmBase Position", getEncoderPosition());
-        SmartDashboard.putNumber("ArmBase Speed", BaseArmMotor.get());
+        SmartDashboard.putNumber("ArmBase Position L", getEncoderLPosition());
+        SmartDashboard.putNumber("ArmBase Position R", getEncoderRPosition());
+        SmartDashboard.putNumber("ArmBase Speed", BaseArmMotors.get());
     }
     
 }

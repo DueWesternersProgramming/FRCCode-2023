@@ -4,10 +4,8 @@
 
 package frc.robot.commands.VisionCommands;
 
-import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
-import frc.robot.Constants.TurretConstants;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
@@ -15,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class TurretTurnTarget extends CommandBase {
   private final VisionSubsystem m_visionSubsystem;
   private final TurretSubsystem m_TurretSubsystem;
-  //private final DriveSubsystem m_DriveSubsystem;
   private boolean finished = false;
 
   /**
@@ -26,7 +23,6 @@ public class TurretTurnTarget extends CommandBase {
   public TurretTurnTarget(TurretSubsystem turretSubsystem, VisionSubsystem visionSubsystem) {
     m_visionSubsystem = visionSubsystem;
     m_TurretSubsystem = turretSubsystem;
-    //m_driveSubsystem = DriveSubsystem;
     addRequirements(m_TurretSubsystem);
   }
 

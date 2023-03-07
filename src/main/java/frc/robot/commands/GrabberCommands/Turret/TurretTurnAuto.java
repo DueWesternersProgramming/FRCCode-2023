@@ -7,17 +7,14 @@ package frc.robot.commands.GrabberCommands.Turret;
 import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
 
-import java.util.function.DoubleSupplier;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class TurretTurnAuto extends CommandBase {
   private final TurretSubsystem m_turretSubsystem;
-  Double m_angle;
+  private double m_angle, currentPos;
   private int direction;
   private boolean finished = false;
-  private double currentPos;
 
 
   /** 
@@ -51,7 +48,7 @@ public class TurretTurnAuto extends CommandBase {
 
     if (direction == TurretConstants.kTurnLeft) {
       if (currentPos > m_angle) {
-        m_turretSubsystem.TurretTurn(-0.20);
+        m_turretSubsystem.TurretTurn(-TurretConstants.kTurretSpeed);  ///// Turn left trigger is also turning right
       }
       else {
         finished = true;
@@ -59,7 +56,7 @@ public class TurretTurnAuto extends CommandBase {
     }
     else if (direction == TurretConstants.kTurnRight) {
       if (currentPos < m_angle) {
-        m_turretSubsystem.TurretTurn(0.20);
+        m_turretSubsystem.TurretTurn(TurretConstants.kTurretSpeed);
       }
       else {
         finished = true;

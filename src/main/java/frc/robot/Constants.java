@@ -45,19 +45,18 @@ public final class Constants {
 
   public static class ArmConstants {  
     
-    public static final double kUpPosition = 0;
-    public static final double kDownPosition = 0;
+    public static final double kUpPosition = 330;
+    public static final double kDownPosition = 20;
+    public static final double kScorePosition = 50;
+    public static final double kArmSpeed = 0.2;
+
+    public static final int kMoveUp = 1;
+    public static final int kMoveDown = -1;
     
     public static final int kArmMotorPort = 17;//was 15
 
     public static final int kArmSpeedMultiplier = 1;
     
-    
-    
-    //public static final int kLeftArmMotorPort = 0;
-    //public static final int kRightArmMotorPort = 1;
-    //public static final double kArmUp = 0.8;
-    //public static final double kArmDown = 0.2;
   }
 
   public static class LightConstants {
@@ -79,7 +78,7 @@ public final class Constants {
     public static final int kTurretMotorPort = 8;
     public static final double kBumperDeadZone = 0.2;
     public static final double kRightAngle = 2379;
-    public static final double kTurretSpeed = 0.5;
+    public static final double kTurretSpeed = 0.2;
     public static final int kTurnRight = 1;
     public static final int kTurnLeft = -1;
     public static final double kTurretSpeedMultiplier = 0.33;
@@ -92,7 +91,11 @@ public final class Constants {
   }
 
   public static class BaseArmConstants{
-    public static final int kBaseArmMotorPort = 15;
+    public static final int kBaseArmMotorPortL = 15;
+    public static final int kBaseArmMotorPortR = 55;
     public static final double kBaseArmSpeedMultiplier = 0.45;
+    public static final double kBaseArmExtendedPosition = 10;
+    public static final double kBaseArmSpeed = 1;
+    public static final double kBaseArmRetractedPosition = 1;
   }
 }
