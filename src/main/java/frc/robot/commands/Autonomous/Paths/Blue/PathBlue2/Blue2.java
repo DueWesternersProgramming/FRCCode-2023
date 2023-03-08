@@ -2,6 +2,7 @@ package frc.robot.commands.Autonomous.Paths.Blue.PathBlue2;
 
 import java.util.function.BooleanSupplier;
 
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.DriveDistance;
 import frc.robot.subsystems.DriveSubsystem;
@@ -36,9 +37,10 @@ public class Blue2 extends SequentialCommandGroup{
             * open claw 
             * (!With Out Turning Around!) go back on to charge station 
             */    
-             new DriveDistance(m_drive, 96, 0.5)
+             new DriveDistance(m_drive, 96, 0.5),
             /** balence on charge station
             */
+            new ConditionalCommand(new Blue2Score(m_drive, m_arm, m_armBase, m_claw, m_turret), new Blue2ChargeStation(m_drive, m_arm, m_armBase, m_claw, m_turret), ending)
         );
     }
 

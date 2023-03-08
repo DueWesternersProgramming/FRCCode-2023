@@ -163,7 +163,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_drive.setMaxOutput(maxOutput);
   }
 
-  public double getGyro() {
+  public double getGyroAngle() {
     return (ahrs.getAngle());
   }
 

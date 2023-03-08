@@ -2,6 +2,7 @@ package frc.robot.commands.Autonomous.Paths.Blue.PathBlue1;
 
 import java.util.function.BooleanSupplier;
 
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.DriveDistance;
 import frc.robot.subsystems.DriveSubsystem;
@@ -44,7 +45,7 @@ public class Blue1 extends SequentialCommandGroup{
          * (2) if head to  community
          *      trun robot 180 degress 
          */
-        new DriveDistance(m_drive, 224, 50)
+        new DriveDistance(m_drive, 224, 50),
         /**
          *      stop near node 3 or 2 
          *      lower arm to avalible node 
@@ -52,6 +53,7 @@ public class Blue1 extends SequentialCommandGroup{
          *     open claw 
          * stop/end of code
          */
+        new ConditionalCommand(new Blue1Score(m_drive, m_arm, m_armBase, m_claw, m_turret), new Blue1ChargeStation(m_drive, m_arm, m_armBase, m_claw, m_turret), ending)
         );
     }
 

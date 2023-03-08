@@ -2,12 +2,16 @@ package frc.robot.commands.Autonomous.Paths.Red.PathRed1;
 
 import java.util.function.BooleanSupplier;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants.TurretConstants;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.GrabberCommands.Arm.ArmExtend;
-import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
+import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
+import frc.robot.commands.GrabberCommands.Arm.ArmScore;
+import frc.robot.commands.GrabberCommands.BaseArm.BaseArmExtend;
+import frc.robot.commands.GrabberCommands.BaseArm.BaseArmUp;
 import frc.robot.commands.GrabberCommands.Claw.ClawClose;
 import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
 import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
@@ -35,15 +39,18 @@ public class Red1 extends SequentialCommandGroup {
         /**
          * "robot will start with claw backwards"
          * extend arm towards node 3C*/
-         new ArmExtend(m_arm),
+        new ClawClose(m_claw, 0),
+        new BaseArmUp(m_armBase),
+        new ArmExtend(m_arm),
          /**new BaseArmManuelMove(m_armBase, 0.5),*/
         //  drop cone (open claw),
-        //new ClawOpen(m_claw),
+        new ClawOpen(m_claw),
+        new WaitCommand(0.5),
         /** retract arm*/
-        //new ArmRetract(m_arm),
+        new ArmRetract(m_arm),
          /** drive forwarard towards the middle 
          */ 
-        new DriveDistance(m_drive, 210, 14),
+        new DriveDistance(m_drive, 210, 0.5),
 
          /**
          * align robot  with object 1 
@@ -54,9 +61,10 @@ public class Red1 extends SequentialCommandGroup {
        
         /**
          * turn arm towards object 1*/
-        new TurretTurnAuto(m_turret, 10.0), /** turn turret 180*/
+        new TurretTurnAuto(m_turret, TurretConstants.k90Degrees), /** turn turret 180*/
          /* extend arm and lower arm down*/
-        new ArmExtend(m_arm),/** new base manuel move arm down*/
+        new ArmScore(m_arm),/** new base manuel move arm down*/
+        new BaseArmExtend(m_armBase),
          /** close claw on object 1 */
          new ClawClose(m_claw, 0),
          /** raise arm

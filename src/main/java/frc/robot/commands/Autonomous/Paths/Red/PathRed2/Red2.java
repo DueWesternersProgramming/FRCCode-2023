@@ -2,8 +2,13 @@ package frc.robot.commands.Autonomous.Paths.Red.PathRed2;
 
 import java.util.function.BooleanSupplier;
 
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.DriveDistance;
+import frc.robot.commands.GrabberCommands.Arm.ArmExtend;
+import frc.robot.commands.GrabberCommands.BaseArm.BaseArmUp;
+import frc.robot.commands.GrabberCommands.Claw.ClawClose;
+import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
@@ -20,6 +25,10 @@ public class Red2 extends SequentialCommandGroup{
             * claw opens arm
             * robot moves foward over charge station
             */
+            new ClawClose(m_claw, 0),
+            new BaseArmUp(m_armBase),
+            new ArmExtend(m_arm),
+            new ClawOpen(m_claw),
            new DriveDistance(m_drive, 210, 0.5),
            /**
             * once over chage station realign with object 2 or 3(make code for both)
@@ -35,9 +44,10 @@ public class Red2 extends SequentialCommandGroup{
            * open claw 
            * (!With Out Turning Around!) go back on to charge station 
            */    
-            new DriveDistance(m_drive, 96, 0.5)
+            new DriveDistance(m_drive, 96, 0.5),
            /** balence on charge station
            */
+           new ConditionalCommand(new Red2Score(m_drive, m_arm, m_armBase, m_claw, m_turret), new Red2ChargeStation(m_drive, m_arm, m_armBase, m_claw, m_turret), ending)
         );
     }
 

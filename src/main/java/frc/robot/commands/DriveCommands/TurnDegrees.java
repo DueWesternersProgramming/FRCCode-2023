@@ -100,7 +100,7 @@ public class TurnDegrees extends CommandBase {
   public void execute() {
 
     //get the current heading
-    m_accumulatedHeading = m_drive.getGyro();
+    m_accumulatedHeading = m_drive.getGyroAngle();
 
     //if the goal is reached, stop and set the command to finished
     if(m_direction == DriveConstants.kRight && m_accumulatedHeading > m_targetHeading) {

@@ -32,13 +32,21 @@ public class DriveChargeBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+    if (m_driveSubsystem.getRotation() < DriveConstants.kChargeBalanceTolerance){
+      m_driveSubsystem.TankDrive(0.2, 0.2);
+    }
+    else if (m_driveSubsystem.getRotation() > DriveConstants.kChargeBalanceTolerance){
+      m_driveSubsystem.TankDrive(-0.2, -0.2);
+    }
+    else {
+      m_driveSubsystem.TankDrive(0, 0);
+    } // Figure out which is which and make sure that the standard getAngle is the correct angle for turndegrees
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_driveSubsystem.TankDrive(0.0, 0.0);
+    //m_driveSubsystem.TankDrive(0.0, 0.0);
   }
 
   // Returns true when the command should end.

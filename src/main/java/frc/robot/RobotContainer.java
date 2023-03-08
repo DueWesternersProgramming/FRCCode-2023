@@ -5,7 +5,9 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.TurretConstants;
 import frc.robot.commands.Autonomous.AutoDoNothing;
+import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.Autonomous.Paths.Red.PathRed1.*;
 import frc.robot.commands.Autonomous.Paths.Red.PathRed2.*;
 import frc.robot.commands.Autonomous.Paths.Red.PathRed3.*;
@@ -26,7 +28,9 @@ import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -54,6 +58,7 @@ public class RobotContainer {
   private final GenericHID m_driverController, m_asisstController;
   
   SendableChooser<Command> m_autoPositionChooser = new SendableChooser<>();
+  PowerDistribution pdp = new PowerDistribution(OperatorConstants.kPDPPort, ModuleType.kCTRE);
 
 
 
@@ -93,6 +98,7 @@ public class RobotContainer {
         m_autoPositionChooser.addOption("Blue 3 Station", new Blue3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
     }
     m_autoPositionChooser.addOption("Do Nothing", new AutoDoNothing());
+    m_autoPositionChooser.addOption("AutoTest", new AutoTest(m_driveSubsystem));
 
     Shuffleboard.getTab("Autonomous").add(m_autoPositionChooser);
     
@@ -120,9 +126,9 @@ public class RobotContainer {
     Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
     Trigger pButton2 = new JoystickButton(m_asisstController, 8); 
     // POV(D-pad) Button for the Driver Controller 
-    Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnAuto(m_turretSubsystem, 0.0));
-    Trigger rPovButton = new POVButton(m_driverController, 90).onTrue(new TurretTurnAuto(m_turretSubsystem, 4.5));
-    Trigger lPovButton = new POVButton(m_driverController, 270).onTrue(new TurretTurnAuto(m_turretSubsystem,-4.5));
+    Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.k0degrees));
+    Trigger rPovButton = new POVButton(m_driverController, 90).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.k90Degrees));
+    Trigger lPovButton = new POVButton(m_driverController, 270).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.kNeg90Degrees));
     Trigger dPovButton = new POVButton(m_driverController, 180);
     // POV(D-pad) Buttons for the Asisst Controller 
     Trigger uPovButton2 = new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));

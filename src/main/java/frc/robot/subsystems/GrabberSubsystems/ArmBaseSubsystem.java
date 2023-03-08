@@ -20,6 +20,9 @@ public class ArmBaseSubsystem extends SubsystemBase{
     MotorControllerGroup BaseArmMotors = new MotorControllerGroup(BaseArmMotorL, BaseArmMotorR);
 
     public ArmBaseSubsystem(){
+        BaseArmMotorL.setInverted(false);
+        BaseArmMotorR.setInverted(false);
+        //BaseArmMotors.
         resetEncoders();
         ArmBrake();
     }
