@@ -17,6 +17,7 @@ public class TurretSubsystem extends SubsystemBase{
 
     public TurretSubsystem(){
         turretEncoder.setPosition(0.0);
+        TurretBrake();
     }
 
     public void TurretTurn(double speed){
@@ -40,6 +41,7 @@ public class TurretSubsystem extends SubsystemBase{
     public void periodic() {
         SmartDashboard.putNumber("Turret Pos", getEncoderPosition());
         SmartDashboard.putNumber("Turret Speed", turretMotor.get());
+        SmartDashboard.putNumber("Turret Current", turretMotor.getOutputCurrent());
     }
     
 }

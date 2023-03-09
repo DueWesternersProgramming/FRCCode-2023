@@ -27,6 +27,8 @@ import frc.robot.commands.VisionCommands.TurretTurnTarget;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -52,8 +54,8 @@ public class RobotContainer {
   private final GenericHID m_driverController, m_asisstController;
   
   SendableChooser<Command> m_autoPositionChooser = new SendableChooser<>();
-
-
+  
+  PowerDistribution PDP = new PowerDistribution(16, ModuleType.kCTRE);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -89,6 +91,8 @@ public class RobotContainer {
     m_autoPositionChooser.addOption("AutoTest", new AutoTest(m_driveSubsystem));
 
     Shuffleboard.getTab("Autonomous").add(m_autoPositionChooser);
+
+    Shuffleboard.getTab("Power").add(PDP);
     
   }
 

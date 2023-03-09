@@ -236,10 +236,9 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Encoder R", encoderR.getPosition());
     SmartDashboard.putNumber("Speed L", leftMotors.get());
     SmartDashboard.putNumber("Speed R", rightMotors.get());
-  }
-
-  @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
+    SmartDashboard.putNumber("Motor1L Current", motor1L.getOutputCurrent());
+    SmartDashboard.putNumber("Motor2L Current", motor2L.getOutputCurrent());
+    SmartDashboard.putNumber("Motor1R Current", motor1R.getOutputCurrent());
+    SmartDashboard.putNumber("Motor2R Current", motor2R.getOutputCurrent());
   }
 }

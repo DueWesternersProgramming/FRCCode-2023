@@ -43,6 +43,7 @@ public class ArmSubsystem extends SubsystemBase{
     public void periodic() {
         SmartDashboard.putNumber("Arm Pos", getEncoderPosition());
         SmartDashboard.putNumber("Arm Speed", getSpeed());
+        SmartDashboard.putNumber("Arm Current", armMotor.getOutputCurrent());
     }
     
 }

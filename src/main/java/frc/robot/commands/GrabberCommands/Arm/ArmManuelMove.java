@@ -4,6 +4,7 @@
 
 package frc.robot.commands.GrabberCommands.Arm;
 
+import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import java.util.function.DoubleSupplier;
 
@@ -14,6 +15,7 @@ public class ArmManuelMove extends CommandBase {
   private final ArmSubsystem m_armSubsystem;
   boolean isFinished = false;
   DoubleSupplier m_speed;
+  double m_speedModified;
 
   /**
    * Creates a new TankDrive command.
@@ -35,7 +37,11 @@ public class ArmManuelMove extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_armSubsystem.runArm(m_speed.getAsDouble());
+    m_speedModified = m_speed.getAsDouble();
+    if (Math.abs(m_speed.getAsDouble()) < OperatorConstants.kControllerDeadZone){
+      m_speedModified = 0.0;
+    }
+    m_armSubsystem.runArm(m_speedModified);
   }
 
   // Called once the command ends or is interrupted.
@@ -47,7 +53,7 @@ public class ArmManuelMove extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }
     

@@ -4,7 +4,7 @@
 
 package frc.robot.commands.GrabberCommands.BaseArm;
 
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
 
 import java.util.function.DoubleSupplier;
@@ -36,7 +36,7 @@ public class BaseArmManuelMove extends CommandBase {
   @Override
   public void execute() {
     m_speedModified = m_speed.getAsDouble();
-    if (Math.abs(m_speed.getAsDouble()) < DriveConstants.kControllerDeadZone){
+    if (Math.abs(m_speed.getAsDouble()) < OperatorConstants.kControllerDeadZone){
       m_speedModified = 0.0;
     }
     m_armBaseSubsystem.ArmBaseMove(m_speedModified);

@@ -6,9 +6,7 @@ import frc.robot.Constants.LightConstants;
 
 import com.ctre.phoenix.led.Animation;
 import com.ctre.phoenix.led.CANdle;
-
 import com.ctre.phoenix.led.CANdleConfiguration;
-import com.ctre.phoenix.led.LarsonAnimation;
 import com.ctre.phoenix.led.CANdle.LEDStripType;
 import com.ctre.phoenix.led.CANdle.VBatOutputMode;
 
@@ -97,8 +95,5 @@ public class LightSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         SmartDashboard.putNumber("Light Current", getCurrent());
-    }
-
-    public void setIdleMode(LarsonAnimation larsonAnimation, int slot) {
     }
 }

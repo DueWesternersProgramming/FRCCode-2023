@@ -30,7 +30,6 @@ public final class Constants {
     public static final int kRight = 1;
     public static final double kDriveWidth = 25;
 
-    public static final double kControllerDeadZone = 0.01;
     //public static final double kDefaultP = .00038;
     // public static final double kDefaultI = .0000011;
     // public static final double kDefaultD = .0001;
@@ -72,6 +71,8 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
     public static final int kAsisstControllerPort = 1;
 
+    public static final double kControllerDeadZone = 0.01;
+
     public static final int kPDPPort = 16;
 
   }
@@ -91,9 +92,9 @@ public final class Constants {
   }
 
   public static class ClawConstants{
-    public static final double kOpenPosition = 0.3;
-    public static final double kClosedCube = 0.71;
-    public static final double kClosedCone = 0.79;
+    public static final double kOpenPosition = 0.25;
+    public static final double kClosedCube = 0.4;
+    public static final double kClosedCone = 0.65;
   }
 
   public static class BaseArmConstants{

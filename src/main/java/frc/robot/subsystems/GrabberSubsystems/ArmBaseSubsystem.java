@@ -22,13 +22,14 @@ public class ArmBaseSubsystem extends SubsystemBase{
     public ArmBaseSubsystem(){
         BaseArmMotorL.setInverted(false);
         BaseArmMotorR.setInverted(false);
-        //BaseArmMotors.
         resetEncoders();
         ArmBrake();
     }
 
     public void ArmBaseMove(double speed){
-        BaseArmMotors.set(speed * BaseArmConstants.kBaseArmSpeedMultiplier);
+        //BaseArmMotors.set(speed * BaseArmConstants.kBaseArmSpeedMultiplier);
+        BaseArmMotorL.set(speed);
+        BaseArmMotorR.set(speed);
     }
 
     public void ArmBrake(){
@@ -58,6 +59,8 @@ public class ArmBaseSubsystem extends SubsystemBase{
         SmartDashboard.putNumber("ArmBase Position L", getEncoderLPosition());
         SmartDashboard.putNumber("ArmBase Position R", getEncoderRPosition());
         SmartDashboard.putNumber("ArmBase Speed", BaseArmMotors.get());
+        SmartDashboard.putNumber("ArmBaseL Current", BaseArmMotorL.getOutputCurrent());
+        SmartDashboard.putNumber("ArmBaseR Current", BaseArmMotorR.getOutputCurrent());
     }
     
 }

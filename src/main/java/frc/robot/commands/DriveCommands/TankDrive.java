@@ -4,7 +4,7 @@
 
 package frc.robot.commands.DriveCommands;
 
-import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.DriveSubsystem;
 import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -38,10 +38,10 @@ public class TankDrive extends CommandBase {
   public void execute() {
     m_leftModified = m_left.getAsDouble();
     m_rightModified = m_right.getAsDouble();
-    if (Math.abs(m_left.getAsDouble()) < DriveConstants.kControllerDeadZone){
+    if (Math.abs(m_left.getAsDouble()) < OperatorConstants.kControllerDeadZone){
       m_leftModified = 0.0;
     }
-    if (Math.abs(m_right.getAsDouble()) < DriveConstants.kControllerDeadZone){
+    if (Math.abs(m_right.getAsDouble()) < OperatorConstants.kControllerDeadZone){
       m_rightModified = 0.0;
     }
     m_driveSubsystem.TankDrive(m_leftModified, m_rightModified);
