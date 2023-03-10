@@ -53,10 +53,9 @@ public class Red1 extends SequentialCommandGroup {
         //new ArmRetract(m_arm),
          /** drive forwarard towards the middle 
          */
-        new DriveDistance(m_drive, -15, 0.05),
-        new WaitCommand(1),
-        new DriveDistance(m_drive, 10, 0.05),
-        new DriveDistance(m_drive, 28, 0.07)
+        new DriveDistance(m_drive, -15, 0.10),
+        new DriveDistance(m_drive, 216, 0.1)
+        
          /**
          * align robot  with object 1 
          * move robot fowarard 
