@@ -102,7 +102,7 @@ public final class Constants {
     public static final int kBaseArmMotorPortR = 55;
     public static final double kBaseArmSpeedMultiplier = 0.45;
     public static final double kBaseArmExtendedPosition = 10;
-    public static final double kBaseArmSpeed = 1;
+    public static final double kBaseArmSpeed = 0.5;
     public static final double kBaseArmRetractedPosition = 1;
   }
 }

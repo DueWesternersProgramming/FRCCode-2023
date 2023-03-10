@@ -11,6 +11,8 @@ import frc.robot.commands.GrabberCommands.Arm.ArmExtend;
 import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
 import frc.robot.commands.GrabberCommands.Arm.ArmScore;
 import frc.robot.commands.GrabberCommands.BaseArm.BaseArmExtend;
+import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
+import frc.robot.commands.GrabberCommands.BaseArm.BaseArmPop;
 import frc.robot.commands.GrabberCommands.BaseArm.BaseArmUp;
 import frc.robot.commands.GrabberCommands.Claw.ClawClose;
 import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
@@ -39,10 +41,11 @@ public class Red1 extends SequentialCommandGroup {
         /**
          * "robot will start with claw backwards"
          * extend arm towards node 3C*/
-        new ClawClose(m_claw, 0),
-        new BaseArmUp(m_armBase),
+        new ClawClose(m_claw, 1),
+        
+        new BaseArmPop(m_armBase),
         new ArmExtend(m_arm),
-         /**new BaseArmManuelMove(m_armBase, 0.5),*/
+        //new TurretTurnAuto(m_turret, (double) 180),
         //  drop cone (open claw),
         new ClawOpen(m_claw),
         new WaitCommand(0.5),
@@ -67,8 +70,9 @@ public class Red1 extends SequentialCommandGroup {
         new BaseArmExtend(m_armBase),
          /** close claw on object 1 */
          new ClawClose(m_claw, 0),
-         /** raise arm
-         * choose either to go to (1) charge station or or(2) head back to community
+         /** raise arm*/
+         new BaseArmUp(m_armBase),
+         /* choose either to go to (1) charge station or or(2) head back to community
          *(1) if end on charge station 
          *      turn toward charge station
          *      move robot foward

@@ -2,6 +2,7 @@ package frc.robot.commands.Autonomous.Paths.Red.PathRed1;
 
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.DriveCommands.DriveDistance;
 import frc.robot.commands.DriveCommands.TurnDegrees;
 import frc.robot.subsystems.DriveSubsystem;
@@ -28,6 +29,7 @@ public class Red1ChargeStation extends SequentialCommandGroup {
       new DriveDistance(m_drive, 110, 0.5);
       new TurnDegrees(m_drive, 15, 0.5, 0, 0);
       new DriveDistance(m_drive, 55, 0.5);
+      new WaitCommand(2); 
     }
 
 }
