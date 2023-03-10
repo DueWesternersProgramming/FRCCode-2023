@@ -12,7 +12,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 import frc.robot.Constants.*;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
-import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -64,7 +64,7 @@ public class DriveSubsystem extends SubsystemBase {
       e.printStackTrace();
     }
     try {
-      ahrs = new AHRS(SPI.Port.kMXP);
+      ahrs = new AHRS(SerialPort.Port.kUSB);
     }
     catch (Exception e){
       System.out.println("Gyro error: " + e + "\n");

@@ -2,56 +2,50 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.GrabberCommands.Arm;
+package frc.robot.commands.LightCommands;
 
-import frc.robot.Constants.ArmConstants;
-import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
+import frc.robot.subsystems.LightSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ArmRetract extends CommandBase {
-  private final ArmSubsystem m_armSubsystem;
-  static double m_extention;
-  private boolean finished;
+public class LEDOff extends CommandBase {
+  public final LightSubsystem m_lightSubsystem;
 
   /**
    * Creates a new TankDrive command.
    *
-   * @param armsubsystem The subsystem used by this command.
+   * @param lightSubsystem The subsystem used by this command.
    */
-  public ArmRetract(ArmSubsystem armSubsystem) {
-    m_armSubsystem = armSubsystem;
-    addRequirements(m_armSubsystem);
+  public LEDOff(LightSubsystem lightSubsystem) {
+    m_lightSubsystem = lightSubsystem; 
+    addRequirements(m_lightSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    finished = false;
+    m_lightSubsystem.stopAnimation(0);
+    m_lightSubsystem.stopAnimation(1);
+    m_lightSubsystem.stopAnimation(2);
+    m_lightSubsystem.setColor(0, 0, 0);
   }
-
+    
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_armSubsystem.getEncoderPosition() < ArmConstants.kDownPosition){
-      m_armSubsystem.runArm(ArmConstants.kArmSpeed);
-    }
-    else{
-      finished = true;
-    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_armSubsystem.runArm(0);
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return true;
   }
 }
-    

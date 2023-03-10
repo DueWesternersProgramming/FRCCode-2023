@@ -31,14 +31,18 @@ public class DriveChargeBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_driveSubsystem.getRotation() < DriveConstants.kChargeBalanceTolerance){
-      m_driveSubsystem.TankDrive(0.2, 0.2);
+    System.out.println("Looping");
+    if (m_driveSubsystem.getRotation() < -DriveConstants.kChargeBalanceTolerance){
+      m_driveSubsystem.TankDrive(0.25, 0.25);
+      System.out.println("Moving 1");
     }
     else if (m_driveSubsystem.getRotation() > DriveConstants.kChargeBalanceTolerance){
-      m_driveSubsystem.TankDrive(-0.2, -0.2);
+      m_driveSubsystem.TankDrive(-0.25, -0.25);
+      System.out.println("Moving 2");
     }
     else {
       m_driveSubsystem.TankDrive(0, 0);
+      System.out.println("Stopping");
     } // Figure out which is which and make sure that the standard getAngle is the correct angle for turndegrees
   }
 

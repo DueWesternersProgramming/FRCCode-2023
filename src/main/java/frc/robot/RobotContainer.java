@@ -14,6 +14,7 @@ import frc.robot.commands.Autonomous.Paths.Red.PathRed3.*;
 import frc.robot.commands.Autonomous.Paths.Blue.PathBlue1.*;
 import frc.robot.commands.Autonomous.Paths.Blue.PathBlue2.*;
 import frc.robot.commands.Autonomous.Paths.Blue.PathBlue3.*;
+import frc.robot.commands.DriveCommands.DriveChargeBalance;
 import frc.robot.commands.DriveCommands.TankDrive;
 import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
@@ -21,9 +22,9 @@ import frc.robot.commands.GrabberCommands.Claw.ClawClose;
 import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
 import frc.robot.commands.GrabberCommands.Turret.*;
 import frc.robot.commands.LightCommands.LEDPitAlternate;
+import frc.robot.commands.VisionCommands.TurretTurnTarget;
 import frc.robot.commands.LightCommands.LEDMatch;
 import frc.robot.commands.LightCommands.LEDPit;
-import frc.robot.commands.VisionCommands.TurretTurnTarget;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -87,7 +88,7 @@ public class RobotContainer {
     m_autoPositionChooser.addOption("Blue 1 Station", new Blue1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
     m_autoPositionChooser.addOption("Blue 2 Station", new Blue2(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
     m_autoPositionChooser.addOption("Blue 3 Station", new Blue3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
-    m_autoPositionChooser.addOption("Do Nothing", new AutoDoNothing());
+    m_autoPositionChooser.addOption("Do Nothing", new AutoDoNothing(m_driveSubsystem));
     m_autoPositionChooser.addOption("AutoTest", new AutoTest(m_driveSubsystem));
 
     Shuffleboard.getTab("Autonomous").add(m_autoPositionChooser);
@@ -104,19 +105,19 @@ public class RobotContainer {
     Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem));
     Trigger aButton = new JoystickButton(m_driverController, 1).onTrue(new LEDMatch(m_lightSubsystem, 2));
     Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new LEDMatch(m_lightSubsystem, 0));
-    Trigger lbButton = new JoystickButton(m_driverController, 5);
-    Trigger rbButton = new JoystickButton(m_driverController, 6);
+    Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem));
+    Trigger rbButton = new JoystickButton(m_driverController, 6).onTrue(new DriveChargeBalance(m_driveSubsystem));
     Trigger uButton = new JoystickButton(m_driverController, 7); 
     Trigger pButton = new JoystickButton(m_driverController, 8); 
     // The Buttons For the Asisst Controller will have a 2 after them      
     Trigger yButton2 = new JoystickButton(m_asisstController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_asisstController.getRawAxis(3), () -> m_asisstController.getRawAxis(2)));
     Trigger xButton2 = new JoystickButton(m_asisstController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem)); 
     Trigger aButton2 = new JoystickButton(m_asisstController, 1); 
-    Trigger bButton2 = new JoystickButton(m_asisstController, 2).onTrue(new ArmExtend(m_armSubsystem));
-    Trigger lbButton2 = new JoystickButton(m_asisstController, 5);
-    Trigger rbButton2 = new JoystickButton(m_asisstController, 6).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem)); 
+    Trigger bButton2 = new JoystickButton(m_asisstController, 2);
+    Trigger lbButton2 = new JoystickButton(m_asisstController, 5).onTrue(new ArmRetract(m_armSubsystem));
+    Trigger rbButton2 = new JoystickButton(m_asisstController, 6).onTrue(new ArmExtend(m_armSubsystem)); 
     Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
-    Trigger pButton2 = new JoystickButton(m_asisstController, 8); 
+    Trigger pButton2 = new JoystickButton(m_asisstController, 8).onTrue(new ArmScore(m_armSubsystem)); 
     // POV(D-pad) Button for the Driver Controller 
     Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.k0degrees));
     Trigger rPovButton = new POVButton(m_driverController, 90).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.k90Degrees));

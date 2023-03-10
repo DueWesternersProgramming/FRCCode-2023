@@ -4,6 +4,7 @@
 
 package frc.robot.commands.VisionCommands;
 
+import frc.robot.Constants.TurretConstants;
 import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -37,16 +38,16 @@ public class TurretTurnTarget extends CommandBase {
   public void execute() {
 
     System.out.println(m_visionSubsystem.getyaw());
-
-    if (m_visionSubsystem.getyaw() > 1) {
-      //m_TurretSubsystem.TurretTurn(TurretConstants.kTurretSpeed * -1);
-      
-    }
-    else if(m_visionSubsystem.getyaw() < -1) {
-      //m_TurretSubsystem.TurretTurn(TurretConstants.kTurretSpeed);
-    }
-    else {
-      finished = true;
+    if (m_visionSubsystem.hasTarget()){
+      if (m_visionSubsystem.getyaw() > 1) {
+        m_TurretSubsystem.TurretTurn(-.34);
+      }
+      else if(m_visionSubsystem.getyaw() < -1) {
+        m_TurretSubsystem.TurretTurn(.34);
+      }
+      else {
+        finished = true;
+      }
     }
   }
 

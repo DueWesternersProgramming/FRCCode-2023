@@ -16,7 +16,7 @@ public class TurretSubsystem extends SubsystemBase{
     RelativeEncoder turretEncoder = turretMotor.getEncoder();
 
     public TurretSubsystem(){
-        turretEncoder.setPosition(0.0);
+        resetEncoder();
         TurretBrake();
     }
 

@@ -23,7 +23,7 @@ public final class Constants {
 
     public static final double kSpeedMultiplier = 0.45;
 
-    public static final double kChargeBalanceTolerance = 20;
+    public static final double kChargeBalanceTolerance = 15;
 
     public static final double kMaxAccel = 12;
     public static final int kLeft = -1;
@@ -46,10 +46,10 @@ public final class Constants {
 
   public static class ArmConstants {  
     
-    public static final double kUpPosition = -330;
-    public static final double kDownPosition = -20;
-    public static final double kScorePosition = -50;
-    public static final double kArmSpeed = 0.2;
+    public static final double kUpPosition = -275;
+    public static final double kDownPosition = -110;
+    public static final double kScorePosition = -13;
+    public static final double kArmSpeed = 0.75;
 
     public static final int kMoveUp = 1;
     public static final int kMoveDown = -1;
@@ -81,11 +81,11 @@ public final class Constants {
     public static final int kTurretMotorPort = 8;
     public static final double kBumperDeadZone = 0.2;
 
-    public static final double k90Degrees = 4.5;
-    public static final double kNeg90Degrees = -4.5;
+    public static final double k90Degrees = 3.25;
+    public static final double kNeg90Degrees = -3.25;
     public static final double k0degrees = 0;
 
-    public static final double kTurretSpeed = 0.2;
+    public static final double kTurretSpeed = 0.275;
     public static final int kTurnRight = 1;
     public static final int kTurnLeft = -1;
     public static final double kTurretSpeedMultiplier = 0.33;
@@ -94,7 +94,7 @@ public final class Constants {
   public static class ClawConstants{
     public static final double kOpenPosition = 0.25;
     public static final double kClosedCube = 0.4;
-    public static final double kClosedCone = 0.65;
+    public static final double kClosedCone = 0.59;
   }
 
   public static class BaseArmConstants{

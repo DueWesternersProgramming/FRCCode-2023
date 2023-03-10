@@ -35,7 +35,7 @@ public class ArmExtend extends CommandBase {
   @Override
   public void execute() {
     if (m_armSubsystem.getEncoderPosition() > ArmConstants.kUpPosition){
-      m_armSubsystem.runArm(ArmConstants.kArmSpeed);
+      m_armSubsystem.runArm(-ArmConstants.kArmSpeed);
     }
     else{
       finished = true;
