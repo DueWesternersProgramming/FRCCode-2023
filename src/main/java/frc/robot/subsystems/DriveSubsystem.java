@@ -28,6 +28,7 @@ public class DriveSubsystem extends SubsystemBase {
   private double PID_P = DriveConstants.kDefaultP;
   private double PID_I = DriveConstants.kDefaultI;
   private double PID_D = DriveConstants.kDefaultD;
+  private double rotationOffset;
 
 
   /** Creates a new DriveSubsystem.
@@ -112,6 +113,10 @@ public class DriveSubsystem extends SubsystemBase {
     motor1R.getPIDController().setReference((m_fwd / DriveConstants.kMaxRobotSpeed) * DriveConstants.kMaxRPM , ControlType.kVelocity);
   }
 
+  public void setCustomRotation() {
+    rotationOffset = ahrs.getRoll();
+  }
+
   public CANSparkMax getFrontLeftSparkMax() {
     return motor1L;
   }
@@ -186,6 +191,12 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public double getRotation() {
+    if (rotationOffset > 0){
+      return ahrs.getRoll() + rotationOffset;
+    }
+    else if (rotationOffset < 0){
+      return ahrs.getRoll() - rotationOffset;
+    }
     return ahrs.getRoll();
   }
 
@@ -231,6 +242,7 @@ public class DriveSubsystem extends SubsystemBase {
     m_drive.feed();
     SmartDashboard.putNumber("Angle", ahrs.getAngle());
     SmartDashboard.putNumber("Roll", ahrs.getRoll());
+    SmartDashboard.putNumber("Custom Roll", getRotation());
     SmartDashboard.putNumber("Pitch", ahrs.getPitch());
     SmartDashboard.putNumber("Encoder L", encoderL.getPosition());
     SmartDashboard.putNumber("Encoder R", encoderR.getPosition());

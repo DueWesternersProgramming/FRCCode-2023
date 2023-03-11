@@ -17,7 +17,9 @@ import frc.robot.commands.GrabberCommands.BaseArm.BaseArmUp;
 import frc.robot.commands.GrabberCommands.Claw.ClawClose;
 import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
 import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
+import frc.robot.commands.LightCommands.LEDMatch;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LightSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
@@ -35,9 +37,10 @@ public class Red1 extends SequentialCommandGroup {
      * @param m_turret
      * @param ending true = score, false = chargestation
      */
-    public Red1(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, TurretSubsystem m_turret, BooleanSupplier ending) {
+    public Red1(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, TurretSubsystem m_turret, LightSubsystem m_light, BooleanSupplier ending) {
         addCommands(
-      
+        new CalibrateGyro(m_drive),
+        new LEDMatch(m_light, 0),
         /**
          * "robot will start with claw backwards"
          * extend arm towards node 3C*/

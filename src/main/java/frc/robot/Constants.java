@@ -21,7 +21,7 @@ public final class Constants {
     public static final int kRight1MotorPort = 4;
     public static final int kRight2MotorPort = 5;
 
-    public static final double kSpeedMultiplier = 0.45;
+    public static final double kSpeedMultiplier = 0.85;
 
     public static final double kChargeBalanceTolerance = 15;
 
