@@ -33,7 +33,7 @@ public class DriveChargeBalance extends CommandBase {
   public void execute() {
     System.out.println("Looping");
     if (m_driveSubsystem.getRotation() < -3){
-      m_driveSubsystem.TankDrive(-0.45, -0.45);
+      m_driveSubsystem.TankDrive(-0.55, -0.55);
       System.out.println("Moving 1");
     }
     else if (m_driveSubsystem.getRotation() > DriveConstants.kChargeBalanceTolerance){

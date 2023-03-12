@@ -57,7 +57,7 @@ public class Red1 extends SequentialCommandGroup {
          /** drive forwarard towards the middle 
          */
         new DriveDistance(m_drive, -15, 0.10),
-        new DriveDistance(m_drive, 216, 0.1)
+        new DriveDistance(m_drive, 25, 0.075)
         
          /**
          * align robot  with object 1 

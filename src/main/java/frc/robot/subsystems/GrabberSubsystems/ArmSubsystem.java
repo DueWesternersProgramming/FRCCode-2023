@@ -3,6 +3,7 @@ package frc.robot.subsystems.GrabberSubsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,7 +16,9 @@ public class ArmSubsystem extends SubsystemBase{
     RelativeEncoder armEncoder = armMotor.getEncoder();
 
     public ArmSubsystem(){
-        armMotor.setIdleMode(IdleMode.kBrake);
+        armMotor.setIdleMode(IdleMode.kBrake); // -290
+        armMotor.setSoftLimit(SoftLimitDirection.kReverse, -290);
+        armMotor.enableSoftLimit(SoftLimitDirection.kReverse, true);
         resetEncoder();
     }
 

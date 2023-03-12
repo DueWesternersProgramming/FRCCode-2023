@@ -17,7 +17,9 @@ import frc.robot.commands.GrabberCommands.BaseArm.BaseArmUp;
 import frc.robot.commands.GrabberCommands.Claw.ClawClose;
 import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
 import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
+import frc.robot.commands.LightCommands.LEDMatch;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LightSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
@@ -34,7 +36,7 @@ public class Red2 extends SequentialCommandGroup {
      * @param m_claw
      * @param m_turret
      */
-    public Red2(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, TurretSubsystem m_turret) {
+    public Red2(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, TurretSubsystem m_turret, LightSubsystem m_light) {
         addCommands(
       
         /**
@@ -52,10 +54,12 @@ public class Red2 extends SequentialCommandGroup {
         //new ArmRetract(m_arm),
          /** drive forwarard towards the middle 
          */
-        new DriveDistance(m_drive, -15, 0.10),
+        new CalibrateGyro(m_drive),
+        new LEDMatch(m_light, 0),
+        new DriveDistance(m_drive, -15, 0.17),
         new WaitCommand(1),
-        new DriveDistance(m_drive, 10, 0.05),
-        new DriveDistance(m_drive, 14, 0.05),
+        new DriveDistance(m_drive, 10, 0.1),
+        new DriveDistance(m_drive, 15, 0.1),
         new DriveChargeBalance(m_drive)
          /**
          * align robot  with object 1 

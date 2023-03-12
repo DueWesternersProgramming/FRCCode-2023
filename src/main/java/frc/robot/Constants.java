@@ -22,6 +22,7 @@ public final class Constants {
     public static final int kRight2MotorPort = 5;
 
     public static final double kSpeedMultiplier = 0.85;
+    public static final double kSlowSpeedMultiplier = 0.4;
 
     public static final double kChargeBalanceTolerance = 15;
 
@@ -42,6 +43,7 @@ public final class Constants {
     public static final double kMaxRPM = 5676;
     public static final double kEncoderDistancePerPulse = (kWheelDiameterInches * Math.PI) / (double) kEncoderCPR;
     public static final double kMaxRobotSpeed = (kMaxRPM/60) * kGearRatio * (kWheelDiameterInches * Math.PI);
+
   }
 
   public static class ArmConstants {  

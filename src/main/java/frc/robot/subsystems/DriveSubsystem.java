@@ -29,11 +29,16 @@ public class DriveSubsystem extends SubsystemBase {
   private double PID_I = DriveConstants.kDefaultI;
   private double PID_D = DriveConstants.kDefaultD;
   private double rotationOffset;
+  private boolean fastSpeed = true;
 
 
   /** Creates a new DriveSubsystem.
    * @todo Fix error catching
    */
+
+   
+
+
   public DriveSubsystem() {
     try {
       motor1L = new CANSparkMax(DriveConstants.kLeft1MotorPort,CANSparkMax.MotorType.kBrushless);
@@ -73,8 +78,23 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void TankDrive(double left, double right){
-    m_drive.tankDrive(left * DriveConstants.kSpeedMultiplier, right * DriveConstants.kSpeedMultiplier);
+    if (fastSpeed){
+      m_drive.tankDrive(left * DriveConstants.kSpeedMultiplier, right * DriveConstants.kSpeedMultiplier);
   }
+    else {
+      m_drive.tankDrive(left * DriveConstants.kSlowSpeedMultiplier, right * DriveConstants.kSlowSpeedMultiplier);
+    }
+  }
+
+  public void toggleSpeed(){
+    
+    if (fastSpeed){
+      fastSpeed = false;
+  }
+  else{
+    fastSpeed = true;
+  }
+}
 
   private void updatePID() {
     motor1L.getPIDController().setP(PID_P);
