@@ -18,7 +18,7 @@ public class ArmSubsystem extends SubsystemBase{
     public ArmSubsystem(){
         armMotor.setIdleMode(IdleMode.kBrake); // -290
         armMotor.setSoftLimit(SoftLimitDirection.kReverse, -290);
-        armMotor.enableSoftLimit(SoftLimitDirection.kReverse, true);
+        armMotor.enableSoftLimit(SoftLimitDirection.kReverse, false);
         resetEncoder();
     }
 
