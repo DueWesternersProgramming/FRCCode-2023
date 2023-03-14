@@ -87,14 +87,30 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void toggleSpeed(){
-    
     if (fastSpeed){
       fastSpeed = false;
+    }
+    else{
+      fastSpeed = true;
+    }
   }
-  else{
-    fastSpeed = true;
+
+  public boolean toggleBrake(){
+    if (motor1L.getIdleMode().equals(IdleMode.kCoast)){
+      motor1L.setIdleMode(IdleMode.kBrake);
+      motor2L.setIdleMode(IdleMode.kBrake);
+      motor1R.setIdleMode(IdleMode.kBrake);
+      motor2R.setIdleMode(IdleMode.kBrake);
+      return true;
+    }
+    else{
+      motor1L.setIdleMode(IdleMode.kCoast);
+      motor2L.setIdleMode(IdleMode.kCoast);
+      motor1R.setIdleMode(IdleMode.kCoast);
+      motor2R.setIdleMode(IdleMode.kCoast);
+      return false;
+    }
   }
-}
 
   private void updatePID() {
     motor1L.getPIDController().setP(PID_P);

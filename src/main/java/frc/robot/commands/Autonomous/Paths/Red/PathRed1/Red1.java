@@ -41,6 +41,7 @@ public class Red1 extends SequentialCommandGroup {
         addCommands(
         new CalibrateGyro(m_drive),
         new LEDMatch(m_light, 0),
+        new setCoast(m_drive),
         /**
          * "robot will start with claw backwards"
          * extend arm towards node 3C*/

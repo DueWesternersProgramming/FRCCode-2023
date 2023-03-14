@@ -55,12 +55,13 @@ public class Red2 extends SequentialCommandGroup {
          /** drive forwarard towards the middle 
          */
         new CalibrateGyro(m_drive),
+        new setCoast(m_drive),
         new LEDMatch(m_light, 0),
         new DriveDistance(m_drive, -15, 0.17),
         new WaitCommand(1),
         new DriveDistance(m_drive, 10, 0.1),
         new DriveDistance(m_drive, 15, 0.1),
-        new DriveChargeBalance(m_drive)
+        new DriveChargeBalance(m_drive, m_light)
          /**
          * align robot  with object 1 
          * move robot fowarard 

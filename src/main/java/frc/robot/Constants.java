@@ -24,7 +24,7 @@ public final class Constants {
     public static final double kSpeedMultiplier = 0.85;
     public static final double kSlowSpeedMultiplier = 0.4;
 
-    public static final double kChargeBalanceTolerance = 15;
+    public static final double kChargeBalanceTolerance = 10;
 
     public static final double kMaxAccel = 12;
     public static final int kLeft = -1;

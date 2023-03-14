@@ -17,6 +17,7 @@ import frc.robot.commands.Autonomous.Paths.Blue.PathBlue3.*;
 import frc.robot.commands.DriveCommands.DriveChargeBalance;
 import frc.robot.commands.DriveCommands.TankDrive;
 import frc.robot.commands.DriveCommands.ToggleSpeeds;
+import frc.robot.commands.DriveCommands.toggleBrake;
 import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
 import frc.robot.commands.GrabberCommands.Claw.ClawClose;
@@ -106,8 +107,8 @@ public class RobotContainer {
     Trigger aButton = new JoystickButton(m_driverController, 1).onTrue(new LEDMatch(m_lightSubsystem, 2));
     Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new LEDMatch(m_lightSubsystem, 0));
     //Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem));
-    Trigger rbButton = new JoystickButton(m_driverController, 6).onTrue(new DriveChargeBalance(m_driveSubsystem));
-    Trigger uButton = new JoystickButton(m_driverController, 7); 
+    Trigger rbButton = new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem));
+    Trigger uButton = new JoystickButton(m_driverController, 7).onTrue(new toggleBrake(m_driveSubsystem, m_lightSubsystem)); 
     Trigger pButton = new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
     // The Buttons For the Asisst Controller will have a 2 after them      
     //Trigger yButton2 = new JoystickButton(m_asisstController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_asisstController.getRawAxis(3), () -> m_asisstController.getRawAxis(2)));
