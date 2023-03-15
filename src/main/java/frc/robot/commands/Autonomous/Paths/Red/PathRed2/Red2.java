@@ -1,22 +1,9 @@
 package frc.robot.commands.Autonomous.Paths.Red.PathRed2;
 
-import java.util.function.BooleanSupplier;
-
-import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+//import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.Constants.TurretConstants;
 import frc.robot.commands.DriveCommands.*;
-import frc.robot.commands.GrabberCommands.Arm.ArmExtend;
-import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
-import frc.robot.commands.GrabberCommands.Arm.ArmScore;
-import frc.robot.commands.GrabberCommands.BaseArm.BaseArmExtend;
-import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
-import frc.robot.commands.GrabberCommands.BaseArm.BaseArmPop;
-import frc.robot.commands.GrabberCommands.BaseArm.BaseArmUp;
-import frc.robot.commands.GrabberCommands.Claw.ClawClose;
-import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
-import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
 import frc.robot.commands.LightCommands.LEDMatch;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LightSubsystem;

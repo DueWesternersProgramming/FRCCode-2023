@@ -10,6 +10,7 @@ import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
+@Deprecated
 public class TurretTurnAuto extends CommandBase {
   private final TurretSubsystem m_turretSubsystem;
   private double m_angle, currentPos;
@@ -21,6 +22,7 @@ public class TurretTurnAuto extends CommandBase {
    * Creates a new TankDrive command.
    *
    * @param driveSubsystem The subsystem used by this command.
+   * @deprecated
    */
   public TurretTurnAuto(TurretSubsystem turretSubsystem, Double angle) {
     m_turretSubsystem = turretSubsystem;

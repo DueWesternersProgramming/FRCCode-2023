@@ -5,7 +5,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.DriveDistance;
 import frc.robot.commands.DriveCommands.TurnDegrees;
 import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
-import frc.robot.commands.GrabberCommands.BaseArm.BaseArmUp;
 import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
 import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
 import frc.robot.subsystems.DriveSubsystem;

@@ -5,7 +5,6 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.Constants.TurretConstants;
 import frc.robot.commands.Autonomous.AutoDoNothing;
 import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.Autonomous.Paths.Red.PathRed1.*;
@@ -22,9 +21,7 @@ import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
 import frc.robot.commands.GrabberCommands.Claw.ClawClose;
 import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
-import frc.robot.commands.GrabberCommands.Turret.*;
 import frc.robot.commands.LightCommands.LEDPitAlternate;
-import frc.robot.commands.VisionCommands.TurretTurnTarget;
 import frc.robot.commands.LightCommands.LEDMatch;
 import frc.robot.commands.LightCommands.LEDPit;
 import frc.robot.subsystems.*;

@@ -47,7 +47,7 @@ public class DriveChargeBalance extends CommandBase {
     else {
       m_driveSubsystem.TankDrive(0, 0);
       System.out.println("Stopping");
-    } // Figure out which is which and make sure that the standard getAngle is the correct angle for turndegrees
+    }
   }
 
   // Called once the command ends or is interrupted.

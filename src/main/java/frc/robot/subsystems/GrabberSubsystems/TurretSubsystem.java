@@ -15,6 +15,7 @@ public class TurretSubsystem extends SubsystemBase{
     CANSparkMax turretMotor = new CANSparkMax(TurretConstants.kTurretMotorPort,CANSparkMax.MotorType.kBrushless);
     RelativeEncoder turretEncoder = turretMotor.getEncoder();
 
+    @Deprecated
     public TurretSubsystem(){
         resetEncoder();
         TurretBrake();

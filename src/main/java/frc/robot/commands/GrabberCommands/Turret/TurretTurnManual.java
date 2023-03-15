@@ -11,6 +11,7 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
+@Deprecated
 public class TurretTurnManual extends CommandBase {
   private final TurretSubsystem m_turretSubsystem;
   static DoubleSupplier m_left, m_right;
@@ -19,6 +20,7 @@ public class TurretTurnManual extends CommandBase {
    * Creates a new TankDrive command.
    *
    * @param driveSubsystem The subsystem used by this command.
+   * @deprecated
    */
   public TurretTurnManual(TurretSubsystem turretSubsystem, DoubleSupplier left, DoubleSupplier right) {
     m_turretSubsystem = turretSubsystem;
