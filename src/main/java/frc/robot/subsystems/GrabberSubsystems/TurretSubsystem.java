@@ -1,6 +1,6 @@
 package frc.robot.subsystems.GrabberSubsystems;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.revrobotics.CANSparkMax;
@@ -40,9 +40,9 @@ public class TurretSubsystem extends SubsystemBase{
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Turret Pos", getEncoderPosition());
-        SmartDashboard.putNumber("Turret Speed", turretMotor.get());
-        SmartDashboard.putNumber("Turret Current", turretMotor.getOutputCurrent());
+        // SmartDashboard.putNumber("Turret Pos", getEncoderPosition());
+        // SmartDashboard.putNumber("Turret Speed", turretMotor.get());
+        // SmartDashboard.putNumber("Turret Current", turretMotor.getOutputCurrent());
     }
     
 }

@@ -200,6 +200,15 @@ public class DriveSubsystem extends SubsystemBase {
     motor2R.setIdleMode(IdleMode.kCoast);
   }
 
+  private boolean isBrake(){
+    if (motor1L.getIdleMode().equals(IdleMode.kBrake)){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   public void setMaxOutput(double maxOutput) {
     m_drive.setMaxOutput(maxOutput);
   }
@@ -288,5 +297,7 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Motor2L Current", motor2L.getOutputCurrent());
     SmartDashboard.putNumber("Motor1R Current", motor1R.getOutputCurrent());
     SmartDashboard.putNumber("Motor2R Current", motor2R.getOutputCurrent());
+    SmartDashboard.putBoolean("Fast Mode", fastSpeed);
+    SmartDashboard.putBoolean("Brake Mode", isBrake());
   }
 }
