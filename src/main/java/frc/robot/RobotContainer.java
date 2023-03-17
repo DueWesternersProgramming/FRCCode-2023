@@ -19,8 +19,7 @@ import frc.robot.commands.DriveCommands.ToggleSpeeds;
 import frc.robot.commands.DriveCommands.toggleBrake;
 import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
-import frc.robot.commands.GrabberCommands.Claw.ClawClose;
-import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
+import frc.robot.commands.GrabberCommands.Claw.ToggleIntake;
 import frc.robot.commands.LightCommands.LEDPitAlternate;
 import frc.robot.commands.LightCommands.LEDMatch;
 import frc.robot.commands.LightCommands.LEDPit;
@@ -45,7 +44,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
 
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  private final TurretSubsystem m_turretSubsystem = new TurretSubsystem();
+  //private final TurretSubsystem m_turretSubsystem = new TurretSubsystem();
   private final ClawSubsystem m_clawSubsystem = new ClawSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
   private final LightSubsystem m_lightSubsystem = new LightSubsystem();
@@ -75,8 +74,8 @@ public class RobotContainer {
     m_armSubsystem.setDefaultCommand(new ArmManuelMove(m_armSubsystem,
     () -> m_asisstController.getRawAxis(5)));
 
-    m_autoPositionChooser.setDefaultOption("Red 1", new Red1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem,m_lightSubsystem, () -> true));
-    m_autoPositionChooser.addOption("Red 2", new Red2(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, m_lightSubsystem));
+    m_autoPositionChooser.setDefaultOption("Red 1", new Red1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_lightSubsystem, () -> true));
+    m_autoPositionChooser.addOption("Red 2", new Red2(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_lightSubsystem));
     // m_autoPositionChooser.addOption("Red 3 Score", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> true));
     // m_autoPositionChooser.addOption("Red 1 Station", new Red1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem,m_lightSubsystem, () -> false));
     // m_autoPositionChooser.addOption("Red 3 Station", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
@@ -123,9 +122,9 @@ public class RobotContainer {
     Trigger dPovButton = new POVButton(m_driverController, 180);
     // POV(D-pad) Buttons for the Asisst Controller 
     Trigger uPovButton2 = new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));
-    Trigger rPovButton2 = new POVButton(m_asisstController, 90).onTrue(new ClawOpen(m_clawSubsystem));
-    Trigger lPovButton2 = new POVButton(m_asisstController, 270).onTrue(new ClawClose(m_clawSubsystem, 0));
-    Trigger dPovButton2 = new POVButton(m_asisstController, 180).onTrue(new ClawClose(m_clawSubsystem, 1));
+    Trigger rPovButton2 = new POVButton(m_asisstController, 90).onTrue(new ToggleIntake(m_clawSubsystem));
+    Trigger lPovButton2 = new POVButton(m_asisstController, 270);
+    Trigger dPovButton2 = new POVButton(m_asisstController, 180);
     }
 
   /**

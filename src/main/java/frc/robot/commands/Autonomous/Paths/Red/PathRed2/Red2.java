@@ -10,7 +10,6 @@ import frc.robot.subsystems.LightSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
-import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
 
 public class Red2 extends SequentialCommandGroup {
 
@@ -23,7 +22,7 @@ public class Red2 extends SequentialCommandGroup {
      * @param m_claw
      * @param m_turret
      */
-    public Red2(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, TurretSubsystem m_turret, LightSubsystem m_light) {
+    public Red2(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, LightSubsystem m_light) {
         addCommands(
       
         /**

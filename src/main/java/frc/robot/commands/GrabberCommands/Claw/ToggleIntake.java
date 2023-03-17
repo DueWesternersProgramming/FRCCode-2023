@@ -4,45 +4,40 @@
 
 package frc.robot.commands.GrabberCommands.Claw;
 
-import frc.robot.Constants.ClawConstants;
 import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ClawClose extends CommandBase {
+public class ToggleIntake extends CommandBase {
   private final ClawSubsystem m_clawSubsystem;
-  private int m_item;
   /**
    * Creates a new ClawClose command.
    *
    * @param driveSubsystem The subsystem used by this command.
-   * @param item 0 = cube, 1 = cone
+   * 
    */
-  public ClawClose(ClawSubsystem clawSubsystem, int item) {
+
+  public ToggleIntake(ClawSubsystem clawSubsystem) {
     m_clawSubsystem = clawSubsystem;
-    m_item = item;
     addRequirements(m_clawSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Initialize");
-    if (m_item == 0){
-      m_clawSubsystem.setPosition(ClawConstants.kClosedCube);
-      System.out.println("Cube");
+    if (Math.abs(m_clawSubsystem.getSpeed()) > 0){
+      m_clawSubsystem.IntakeOff();
     }
-    else if (m_item == 1) {
-      m_clawSubsystem.setPosition(ClawConstants.kClosedCone);
-      System.out.println("Cone");
+    else {
+      m_clawSubsystem.IntakeOn();
     }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  
+    
   }
 
   // Called once the command ends or is interrupted.

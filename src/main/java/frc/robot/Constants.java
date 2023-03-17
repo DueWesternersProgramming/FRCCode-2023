@@ -94,9 +94,11 @@ public final class Constants {
   }
 
   public static class ClawConstants{
-    public static final double kOpenPosition = 0.25;
-    public static final double kClosedCube = 0.4;
-    public static final double kClosedCone = 0.59;
+    //public static final double kOpenPosition = 0.25;
+    //public static final double kClosedCube = 0.4;
+    //public static final double kClosedCone = 0.59;
+    public static final int kClawMotorPort = 20;
+    public static final double kIntakeMotorSpeed = 0.3;
   }
 
   public static class BaseArmConstants{

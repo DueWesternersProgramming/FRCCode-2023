@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.DriveDistance;
 import frc.robot.commands.DriveCommands.TurnDegrees;
 import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
-import frc.robot.commands.GrabberCommands.Claw.ClawOpen;
-import frc.robot.commands.GrabberCommands.Turret.TurretTurnAuto;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
@@ -28,8 +26,7 @@ public class Red1Score extends SequentialCommandGroup {
             new PrintCommand("Red 1 Score"),
             new TurnDegrees(m_drive, 180, .5, 0, 0),
             new DriveDistance(m_drive, 133, 0.5),
-            new TurretTurnAuto(m_turret, (double) 180),
-            new ClawOpen(m_claw),
+            //new TurretTurnAuto(m_turret, (double) 180),
             new ArmRetract(m_arm)
 
         );
