@@ -2,15 +2,15 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.GrabberCommands.Claw;
+package frc.robot.commands.GrabberCommands.Intake;
 
-import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ToggleIntake extends CommandBase {
-  private final ClawSubsystem m_clawSubsystem;
+public class IntakeOff extends CommandBase {
+  private final IntakeSubsystem m_intakeSubsystem;
   /**
    * Creates a new ClawClose command.
    *
@@ -18,20 +18,15 @@ public class ToggleIntake extends CommandBase {
    * 
    */
 
-  public ToggleIntake(ClawSubsystem clawSubsystem) {
-    m_clawSubsystem = clawSubsystem;
-    addRequirements(m_clawSubsystem);
+  public IntakeOff(IntakeSubsystem intakeSubsystem) {
+    m_intakeSubsystem = intakeSubsystem;
+    addRequirements(m_intakeSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (Math.abs(m_clawSubsystem.getSpeed()) > 0){
-      m_clawSubsystem.IntakeOff();
-    }
-    else {
-      m_clawSubsystem.IntakeOn();
-    }
+    m_intakeSubsystem.intakeOff();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

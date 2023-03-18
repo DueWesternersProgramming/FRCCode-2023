@@ -2,55 +2,48 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.GrabberCommands.Arm;
+package frc.robot.commands.GrabberCommands.Intake;
 
-import frc.robot.Constants.ArmConstants;
-import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ArmRetract extends CommandBase {
-  private final ArmSubsystem m_armSubsystem;
-  private boolean finished;
-
+public class IntakeOn extends CommandBase {
+  private final IntakeSubsystem m_intakeSubsystem;
   /**
-   * Creates a new TankDrive command.
+   * Creates a new ClawClose command.
    *
-   * @param armsubsystem The subsystem used by this command.
+   * @param driveSubsystem The subsystem used by this command.
+   * 
    */
-  public ArmRetract(ArmSubsystem armSubsystem) {
-    m_armSubsystem = armSubsystem;
-    addRequirements(m_armSubsystem);
+
+  public IntakeOn(IntakeSubsystem intakeSubsystem) {
+    m_intakeSubsystem = intakeSubsystem;
+    addRequirements(m_intakeSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    finished = false;
+    m_intakeSubsystem.intakeOn();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_armSubsystem.getEncoderPosition() < ArmConstants.kDownPosition){
-      m_armSubsystem.runArm(ArmConstants.kArmSpeed);
-    }
-    else{
-      finished = true;
-    }
+    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_armSubsystem.runArm(0);
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return true;
   }
 }
-    

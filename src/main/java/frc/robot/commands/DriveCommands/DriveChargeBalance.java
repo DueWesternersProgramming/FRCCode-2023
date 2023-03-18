@@ -13,40 +13,56 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class DriveChargeBalance extends CommandBase {
   private final DriveSubsystem m_driveSubsystem;
   private final LightSubsystem m_lightSubsystem;
+  private boolean m_justChecking;
+  private boolean finished = false;
 
   /**
    * Creates a new TankDrive command.
    *
    * @param driveSubsystem The subsystem used by this command.
    */
-  public DriveChargeBalance(DriveSubsystem driveSubsystem, LightSubsystem lightSubsystem) {
+  public DriveChargeBalance(DriveSubsystem driveSubsystem, LightSubsystem lightSubsystem, boolean justChecking) {
     m_driveSubsystem = driveSubsystem;
     m_lightSubsystem = lightSubsystem;
+    m_justChecking = justChecking;
     addRequirements(m_driveSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_driveSubsystem.setBrake();
+    if (!m_justChecking){
+      m_driveSubsystem.setBrake();
+    }
+    finished = false;
     m_lightSubsystem.setColor(0, 255, 0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("Looping");
-    if (m_driveSubsystem.getRotation() < -3){
-      m_driveSubsystem.TankDrive(-0.55, -0.55);
-      System.out.println("Moving 1");
-    }
-    else if (m_driveSubsystem.getRotation() > DriveConstants.kChargeBalanceTolerance){
-      m_driveSubsystem.TankDrive(0.45, 0.45);   // If issues, slow down
-      System.out.println("Moving 2");
+    if (!m_justChecking){
+      System.out.println("Looping");
+      if (m_driveSubsystem.getRotation() < -3){
+        m_driveSubsystem.TankDrive(-0.55, -0.55);
+        System.out.println("Moving 1");
+      }
+      else if (m_driveSubsystem.getRotation() > DriveConstants.kChargeBalanceTolerance){
+        m_driveSubsystem.TankDrive(0.45, 0.45);   // If issues, slow down
+        System.out.println("Moving 2");
+      }
+      else {
+        m_driveSubsystem.TankDrive(0, 0);
+        System.out.println("Stopping");
+      }
     }
     else {
-      m_driveSubsystem.TankDrive(0, 0);
-      System.out.println("Stopping");
+      if (m_driveSubsystem.getRotation() < -3){
+        m_driveSubsystem.TankDrive(-0.55, -0.55);
+      }
+      else {
+        finished = true;
+      }
     }
   }
 
@@ -61,6 +77,6 @@ public class DriveChargeBalance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finished;
   }
 }

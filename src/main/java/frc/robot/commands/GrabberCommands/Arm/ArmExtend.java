@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class ArmExtend extends CommandBase {
   private final ArmSubsystem m_armSubsystem;
-  static double m_extention;
   private boolean finished;
 
   /**

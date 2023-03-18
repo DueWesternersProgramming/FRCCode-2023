@@ -79,34 +79,19 @@ public final class Constants {
 
   }
 
-  public static class TurretConstants {
-    public static final int kTurretMotorPort = 8;
-    public static final double kBumperDeadZone = 0.2;
-
-    public static final double k90Degrees = 3.25;
-    public static final double kNeg90Degrees = -3.25;
-    public static final double k0degrees = 0;
-
-    public static final double kTurretSpeed = 0.275;
-    public static final int kTurnRight = 1;
-    public static final int kTurnLeft = -1;
-    public static final double kTurretSpeedMultiplier = 0.33;
-  }
-
-  public static class ClawConstants{
-    //public static final double kOpenPosition = 0.25;
-    //public static final double kClosedCube = 0.4;
-    //public static final double kClosedCone = 0.59;
+  public static class IntakeConstants {
     public static final int kClawMotorPort = 20;
-    public static final double kIntakeMotorSpeed = 0.3;
+    public static final double kIntakeMotorSpeed = 0.1;
+    public static final double kIntakeReverseMotorSpeed = -0.35;
   }
 
-  public static class BaseArmConstants{
-    public static final int kBaseArmMotorPortL = 15;
-    public static final int kBaseArmMotorPortR = 55;
-    public static final double kBaseArmSpeedMultiplier = 0.45;
-    public static final double kBaseArmExtendedPosition = 10;
-    public static final double kBaseArmSpeed = 0.5;
-    public static final double kBaseArmRetractedPosition = 1;
+  public static class WristConstants {
+    public static final int kWristMotorPort = 256; /// NOT RIGHT!!!
+
+    public static final double kOutPosition = 40;
+    public static final double kInPosition = 0;
+    public static final double kArmSpeed = 0.2;
+
+    public static final int kWristSpeedMultiplier = 1;
   }
 }

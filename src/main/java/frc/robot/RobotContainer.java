@@ -7,19 +7,14 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autonomous.AutoDoNothing;
 import frc.robot.commands.Autonomous.AutoTest;
-import frc.robot.commands.Autonomous.Paths.Red.PathRed1.*;
-import frc.robot.commands.Autonomous.Paths.Red.PathRed2.*;
-// import frc.robot.commands.Autonomous.Paths.Red.PathRed3.*;
-// import frc.robot.commands.Autonomous.Paths.Blue.PathBlue1.*;
-// import frc.robot.commands.Autonomous.Paths.Blue.PathBlue2.*;
-// import frc.robot.commands.Autonomous.Paths.Blue.PathBlue3.*;
+import frc.robot.commands.Autonomous.Paths.*;
 import frc.robot.commands.DriveCommands.DriveChargeBalance;
 import frc.robot.commands.DriveCommands.TankDrive;
 import frc.robot.commands.DriveCommands.ToggleSpeeds;
 import frc.robot.commands.DriveCommands.toggleBrake;
 import frc.robot.commands.GrabberCommands.Arm.*;
-import frc.robot.commands.GrabberCommands.BaseArm.BaseArmManuelMove;
-import frc.robot.commands.GrabberCommands.Claw.ToggleIntake;
+import frc.robot.commands.GrabberCommands.Intake.*;
+import frc.robot.commands.GrabberCommands.Wrist.WristManuelMove;
 import frc.robot.commands.LightCommands.LEDPitAlternate;
 import frc.robot.commands.LightCommands.LEDMatch;
 import frc.robot.commands.LightCommands.LEDPit;
@@ -44,12 +39,11 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
 
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
-  //private final TurretSubsystem m_turretSubsystem = new TurretSubsystem();
-  private final ClawSubsystem m_clawSubsystem = new ClawSubsystem();
+  private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
   private final LightSubsystem m_lightSubsystem = new LightSubsystem();
   private final VisionSubsystem m_visionSubsystem = new VisionSubsystem();
-  private final ArmBaseSubsystem m_armBaseSubsystem = new ArmBaseSubsystem();
+  private final WristSubsystem m_wristSubsystem = new WristSubsystem();
   private final GenericHID m_driverController, m_asisstController;
   
   SendableChooser<Command> m_autoPositionChooser = new SendableChooser<>();
@@ -67,15 +61,15 @@ public class RobotContainer {
     m_driveSubsystem.setDefaultCommand(new TankDrive(m_driveSubsystem,
     () -> m_driverController.getRawAxis(1),
     () -> m_driverController.getRawAxis(5)));
-    
-    m_armBaseSubsystem.setDefaultCommand(new BaseArmManuelMove(m_armBaseSubsystem,
-    () -> m_asisstController.getRawAxis(1)));
 
     m_armSubsystem.setDefaultCommand(new ArmManuelMove(m_armSubsystem,
     () -> m_asisstController.getRawAxis(5)));
 
-    m_autoPositionChooser.setDefaultOption("Red 1", new Red1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_lightSubsystem, () -> true));
-    m_autoPositionChooser.addOption("Red 2", new Red2(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_lightSubsystem));
+    m_wristSubsystem.setDefaultCommand(new WristManuelMove(m_wristSubsystem,
+    () -> m_asisstController.getRawAxis(1)));
+
+    m_autoPositionChooser.setDefaultOption("Red 1", new Path1(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_lightSubsystem));
+    m_autoPositionChooser.addOption("Red 2", new Path2(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_lightSubsystem));
     // m_autoPositionChooser.addOption("Red 3 Score", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> true));
     // m_autoPositionChooser.addOption("Red 1 Station", new Red1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem,m_lightSubsystem, () -> false));
     // m_autoPositionChooser.addOption("Red 3 Station", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
@@ -103,13 +97,13 @@ public class RobotContainer {
     Trigger aButton = new JoystickButton(m_driverController, 1).onTrue(new LEDMatch(m_lightSubsystem, 2));
     Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new LEDMatch(m_lightSubsystem, 0));
     //Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem));
-    Trigger rbButton = new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem));
+    Trigger rbButton = new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false));
     Trigger uButton = new JoystickButton(m_driverController, 7).onTrue(new toggleBrake(m_driveSubsystem, m_lightSubsystem)); 
     Trigger pButton = new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
     // The Buttons For the Asisst Controller will have a 2 after them      
     //Trigger yButton2 = new JoystickButton(m_asisstController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_asisstController.getRawAxis(3), () -> m_asisstController.getRawAxis(2)));
     Trigger xButton2 = new JoystickButton(m_asisstController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem)); 
-    Trigger aButton2 = new JoystickButton(m_asisstController, 1); 
+    Trigger aButton2 = new JoystickButton(m_asisstController, 1);
     Trigger bButton2 = new JoystickButton(m_asisstController, 2);
     Trigger lbButton2 = new JoystickButton(m_asisstController, 5).onTrue(new ArmRetract(m_armSubsystem));
     Trigger rbButton2 = new JoystickButton(m_asisstController, 6).onTrue(new ArmExtend(m_armSubsystem)); 
@@ -122,8 +116,8 @@ public class RobotContainer {
     Trigger dPovButton = new POVButton(m_driverController, 180);
     // POV(D-pad) Buttons for the Asisst Controller 
     Trigger uPovButton2 = new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));
-    Trigger rPovButton2 = new POVButton(m_asisstController, 90).onTrue(new ToggleIntake(m_clawSubsystem));
-    Trigger lPovButton2 = new POVButton(m_asisstController, 270);
+    Trigger rPovButton2 = new POVButton(m_asisstController, 90).onTrue(new IntakeOn(m_intakeSubsystem));
+    Trigger lPovButton2 = new POVButton(m_asisstController, 270).onTrue(new IntakeOff(m_intakeSubsystem));
     Trigger dPovButton2 = new POVButton(m_asisstController, 180);
     }
 

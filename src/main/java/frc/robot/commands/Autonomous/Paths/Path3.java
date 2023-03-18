@@ -1,4 +1,4 @@
-package frc.robot.commands.Autonomous.Paths.Red.PathRed3;
+package frc.robot.commands.Autonomous.Paths;
 
 import java.util.function.BooleanSupplier;
 
@@ -6,12 +6,10 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
-import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
-import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
 
-public class Red3 extends SequentialCommandGroup {
+public class Path3 extends SequentialCommandGroup {
 
     
     /**
@@ -23,7 +21,7 @@ public class Red3 extends SequentialCommandGroup {
      * @param m_turret
      * @param ending true = score, false = chargestation
      */
-    public Red3(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, TurretSubsystem m_turret, BooleanSupplier ending) {
+    public Path3(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_claw, IntakeSubsystem m_intake, BooleanSupplier ending) {
         addCommands(
       
         /**

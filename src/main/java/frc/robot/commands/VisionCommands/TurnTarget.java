@@ -4,15 +4,15 @@
 
 package frc.robot.commands.VisionCommands;
 
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.VisionSubsystem;
-import frc.robot.subsystems.GrabberSubsystems.TurretSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
 /** An example command that uses an example subsystem. */
-public class TurretTurnTarget extends CommandBase {
+public class TurnTarget extends CommandBase {
   private final VisionSubsystem m_visionSubsystem;
-  private final TurretSubsystem m_TurretSubsystem;
+  private final DriveSubsystem m_driveSubsystem;
   private boolean finished = false;
 
   /**
@@ -20,10 +20,10 @@ public class TurretTurnTarget extends CommandBase {
    * @param turretSubsystem
    * @param visionSubsystem
    */
-  public TurretTurnTarget(TurretSubsystem turretSubsystem, VisionSubsystem visionSubsystem) {
+  public TurnTarget(DriveSubsystem driveSubsystem, VisionSubsystem visionSubsystem) {
     m_visionSubsystem = visionSubsystem;
-    m_TurretSubsystem = turretSubsystem;
-    addRequirements(m_TurretSubsystem);
+    m_driveSubsystem = driveSubsystem;
+    addRequirements(m_driveSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -39,10 +39,10 @@ public class TurretTurnTarget extends CommandBase {
     System.out.println(m_visionSubsystem.getyaw());
     if (m_visionSubsystem.hasTarget()){
       if (m_visionSubsystem.getyaw() > 1) {
-        m_TurretSubsystem.TurretTurn(-.34);
+        m_driveSubsystem.TankDrive(-0.34, 0.34);
       }
       else if(m_visionSubsystem.getyaw() < -1) {
-        m_TurretSubsystem.TurretTurn(.34);
+        m_driveSubsystem.TankDrive(0.34, -0.34);
       }
       else {
         finished = true;
@@ -53,7 +53,7 @@ public class TurretTurnTarget extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_TurretSubsystem.TurretTurn(0);
+    m_driveSubsystem.TankDrive(0, 0);
   }
 
   // Returns true when the command should end.

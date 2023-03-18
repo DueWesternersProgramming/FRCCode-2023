@@ -6,15 +6,15 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.ClawConstants;
+import frc.robot.Constants.IntakeConstants;;
 
 
-public class ClawSubsystem extends SubsystemBase{
+public class IntakeSubsystem extends SubsystemBase{
     
-    CANSparkMax intakeMotor = new CANSparkMax(ClawConstants.kClawMotorPort, MotorType.kBrushless);
+    CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.kClawMotorPort, MotorType.kBrushless);
     RelativeEncoder intakeEncoder = intakeMotor.getEncoder();
 
-    public ClawSubsystem(){
+    public IntakeSubsystem(){
        
     }
 
@@ -22,12 +22,12 @@ public class ClawSubsystem extends SubsystemBase{
         return intakeMotor.get();
     }
 
-    public void IntakeOn(){
-        intakeMotor.set(ClawConstants.kIntakeMotorSpeed);
+    public void intakeOn(){
+        intakeMotor.set(IntakeConstants.kIntakeMotorSpeed);
     }
 
-    public void IntakeOff(){
-        intakeMotor.set(ClawConstants.kIntakeMotorSpeed);
+    public void intakeOff(){
+        intakeMotor.set(0);
     }
 
     @Override

@@ -1,17 +1,15 @@
-package frc.robot.commands.Autonomous.Paths.Red.PathRed2;
+package frc.robot.commands.Autonomous.Paths;
 
 //import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.LightCommands.LEDMatch;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LightSubsystem;
-import frc.robot.subsystems.GrabberSubsystems.ArmBaseSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
-import frc.robot.subsystems.GrabberSubsystems.ClawSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
 
-public class Red2 extends SequentialCommandGroup {
+public class Path1 extends SequentialCommandGroup {
 
     
     /**
@@ -21,10 +19,13 @@ public class Red2 extends SequentialCommandGroup {
      * @param m_armBase
      * @param m_claw
      * @param m_turret
+     * @param ending true = score, false = chargestation
      */
-    public Red2(DriveSubsystem m_drive, ArmSubsystem m_arm, ArmBaseSubsystem m_armBase, ClawSubsystem m_claw, LightSubsystem m_light) {
+    public Path1(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_claw, LightSubsystem m_light) {
         addCommands(
-      
+        new CalibrateGyro(m_drive),
+        new LEDMatch(m_light, 0),
+        new setCoast(m_drive),
         /**
          * "robot will start with claw backwards"
          * extend arm towards node 3C*/
@@ -40,14 +41,9 @@ public class Red2 extends SequentialCommandGroup {
         //new ArmRetract(m_arm),
          /** drive forwarard towards the middle 
          */
-        new CalibrateGyro(m_drive),
-        new setCoast(m_drive),
-        new LEDMatch(m_light, 0),
-        new DriveDistance(m_drive, -15, 0.17),
-        new WaitCommand(1),
-        new DriveDistance(m_drive, 10, 0.1),
-        new DriveDistance(m_drive, 15, 0.1),
-        new DriveChargeBalance(m_drive, m_light)
+        new DriveDistance(m_drive, -15, 0.10),
+        new DriveDistance(m_drive, 25, 0.075)
+        
          /**
          * align robot  with object 1 
          * move robot fowarard 
