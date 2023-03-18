@@ -80,13 +80,13 @@ public final class Constants {
   }
 
   public static class IntakeConstants {
-    public static final int kClawMotorPort = 20;
+    public static final int kIntakeMotorPort = 15;
     public static final double kIntakeMotorSpeed = 0.1;
     public static final double kIntakeReverseMotorSpeed = -0.35;
   }
 
   public static class WristConstants {
-    public static final int kWristMotorPort = 256; /// NOT RIGHT!!!
+    public static final int kWristMotorPort = 50; /// NOT RIGHT!!!
 
     public static final double kOutPosition = 40;
     public static final double kInPosition = 0;

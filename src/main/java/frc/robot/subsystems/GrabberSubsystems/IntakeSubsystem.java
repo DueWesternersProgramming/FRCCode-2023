@@ -11,7 +11,7 @@ import frc.robot.Constants.IntakeConstants;;
 
 public class IntakeSubsystem extends SubsystemBase{
     
-    CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.kClawMotorPort, MotorType.kBrushless);
+    CANSparkMax intakeMotor = new CANSparkMax(IntakeConstants.kIntakeMotorPort, MotorType.kBrushless);
     RelativeEncoder intakeEncoder = intakeMotor.getEncoder();
 
     public IntakeSubsystem(){
