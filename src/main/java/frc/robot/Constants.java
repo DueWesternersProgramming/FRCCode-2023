@@ -86,11 +86,11 @@ public final class Constants {
   }
 
   public static class WristConstants {
-    public static final int kWristMotorPort = 50; /// NOT RIGHT!!!
+    public static final int kWristMotorPort = 50;
 
     public static final double kOutPosition = 40;
     public static final double kInPosition = 0;
-    public static final double kArmSpeed = 0.2;
+    public static final double kWristSpeed = 0.005;
 
     public static final int kWristSpeedMultiplier = 1;
   }

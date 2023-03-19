@@ -118,7 +118,7 @@ public class RobotContainer {
     Trigger uPovButton2 = new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));
     Trigger rPovButton2 = new POVButton(m_asisstController, 90).onTrue(new IntakeOn(m_intakeSubsystem));
     Trigger lPovButton2 = new POVButton(m_asisstController, 270).onTrue(new IntakeOff(m_intakeSubsystem));
-    Trigger dPovButton2 = new POVButton(m_asisstController, 180);
+    Trigger dPovButton2 = new POVButton(m_asisstController, 180).onTrue(new IntakeReverse(m_intakeSubsystem));
     }
 
   /**
