@@ -90,8 +90,8 @@ public final class Constants {
 
     public static final double kOutPosition = 40;
     public static final double kInPosition = 0;
-    public static final double kWristSpeed = 0.005;
+    public static final double kWristSpeed = 0.2;
 
-    public static final int kWristSpeedMultiplier = 1;
+    public static final int kWristSpeedMultiplier = 0.3;
   }
 }
