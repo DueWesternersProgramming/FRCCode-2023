@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import edu.wpi.first.wpilibj2.command.button.Trigger; 
+//import edu.wpi.first.wpilibj2.command.button.Trigger; 
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -92,33 +92,33 @@ public class RobotContainer {
 
   private void configureButttonBindings() {
     // The Buttons for the Driver Controller
-    Trigger yButton = new JoystickButton(m_driverController, 4).onTrue(new LEDMatch(m_lightSubsystem, 1)); 
-    Trigger xButton = new JoystickButton(m_driverController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem));
-    Trigger aButton = new JoystickButton(m_driverController, 1).onTrue(new LEDMatch(m_lightSubsystem, 2));
-    Trigger bButton = new JoystickButton(m_driverController, 2).onTrue(new LEDMatch(m_lightSubsystem, 0));
+    /*Trigger yButton =*/ new JoystickButton(m_driverController, 4).onTrue(new LEDMatch(m_lightSubsystem, 1)); 
+    /*Trigger xButton =*/ new JoystickButton(m_driverController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem));
+    /*Trigger aButton =*/ new JoystickButton(m_driverController, 1).onTrue(new LEDMatch(m_lightSubsystem, 2));
+    /*Trigger bButton =*/ new JoystickButton(m_driverController, 2).onTrue(new LEDMatch(m_lightSubsystem, 0));
     //Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem));
-    Trigger rbButton = new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false));
-    Trigger uButton = new JoystickButton(m_driverController, 7).onTrue(new toggleBrake(m_driveSubsystem, m_lightSubsystem)); 
-    Trigger pButton = new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
+    /*Trigger rbButton =*/ new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false));
+    /*Trigger uButton =*/ new JoystickButton(m_driverController, 7).onTrue(new toggleBrake(m_driveSubsystem, m_lightSubsystem)); 
+    /*Trigger pButton =*/ new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
     // The Buttons For the Asisst Controller will have a 2 after them      
-    //Trigger yButton2 = new JoystickButton(m_asisstController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_asisstController.getRawAxis(3), () -> m_asisstController.getRawAxis(2)));
-    Trigger xButton2 = new JoystickButton(m_asisstController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem)); 
-    Trigger aButton2 = new JoystickButton(m_asisstController, 1);
-    Trigger bButton2 = new JoystickButton(m_asisstController, 2);
-    Trigger lbButton2 = new JoystickButton(m_asisstController, 5).onTrue(new ArmRetract(m_armSubsystem));
-    Trigger rbButton2 = new JoystickButton(m_asisstController, 6).onTrue(new ArmExtend(m_armSubsystem)); 
-    Trigger uButton2 = new JoystickButton(m_asisstController, 7); 
-    Trigger pButton2 = new JoystickButton(m_asisstController, 8).onTrue(new ArmScore(m_armSubsystem)); 
+    //Trigger yButton2 =*/ new JoystickButton(m_asisstController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_asisstController.getRawAxis(3), () -> m_asisstController.getRawAxis(2)));
+    /*Trigger xButton2 =*/ new JoystickButton(m_asisstController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem)); 
+    /*Trigger aButton2 =*/ new JoystickButton(m_asisstController, 1);
+    /*Trigger bButton2 =*/ new JoystickButton(m_asisstController, 2);
+    /*Trigger lbButton2 =*/ new JoystickButton(m_asisstController, 5).onTrue(new ArmRetract(m_armSubsystem));
+    /*Trigger rbButton2 =*/ new JoystickButton(m_asisstController, 6).onTrue(new ArmExtend(m_armSubsystem)); 
+    /*Trigger uButton2 =*/ new JoystickButton(m_asisstController, 7); 
+    /*Trigger pButton2 =*/ new JoystickButton(m_asisstController, 8).onTrue(new ArmScore(m_armSubsystem)); 
     // POV(D-pad) Button for the Driver Controller 
     //Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.k0degrees));
     //Trigger rPovButton = new POVButton(m_driverController, 90).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.k90Degrees));
     //Trigger lPovButton = new POVButton(m_driverController, 270).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.kNeg90Degrees));
-    Trigger dPovButton = new POVButton(m_driverController, 180);
+    /*Trigger dPovButton =*/ new POVButton(m_driverController, 180);
     // POV(D-pad) Buttons for the Asisst Controller 
-    Trigger uPovButton2 = new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));
-    Trigger rPovButton2 = new POVButton(m_asisstController, 90).onTrue(new IntakeOn(m_intakeSubsystem));
-    Trigger lPovButton2 = new POVButton(m_asisstController, 270).onTrue(new IntakeOff(m_intakeSubsystem));
-    Trigger dPovButton2 = new POVButton(m_asisstController, 180).onTrue(new IntakeReverse(m_intakeSubsystem));
+    /*Trigger uPovButton2 =*/ new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));
+    /*Trigger rPovButton2 =*/ new POVButton(m_asisstController, 90).onTrue(new IntakeOn(m_intakeSubsystem));
+    /*Trigger lPovButton2 =*/ new POVButton(m_asisstController, 270).onTrue(new IntakeOff(m_intakeSubsystem));
+    /*Trigger dPovButton2 =*/ new POVButton(m_asisstController, 180).onTrue(new IntakeReverse(m_intakeSubsystem));
     }
 
   /**
