@@ -92,28 +92,28 @@ public class RobotContainer {
 
   private void configureButttonBindings() {
     // The Buttons for the Driver Controller
-    /*Trigger yButton =*/ new JoystickButton(m_driverController, 4).onTrue(new LEDMatch(m_lightSubsystem, 1)); 
-    /*Trigger xButton =*/ new JoystickButton(m_driverController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem));
-    /*Trigger aButton =*/ new JoystickButton(m_driverController, 1).onTrue(new LEDMatch(m_lightSubsystem, 2));
-    /*Trigger bButton =*/ new JoystickButton(m_driverController, 2).onTrue(new LEDMatch(m_lightSubsystem, 0));
+    /*Trigger yButton =*/ new JoystickButton(m_driverController, 4);
+    /*Trigger xButton =*/ new JoystickButton(m_driverController, 3);
+    /*Trigger aButton =*/ new JoystickButton(m_driverController, 1);
+    /*Trigger bButton =*/ new JoystickButton(m_driverController, 2);
     //Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem));
     /*Trigger rbButton =*/ new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false));
     /*Trigger uButton =*/ new JoystickButton(m_driverController, 7).onTrue(new toggleBrake(m_driveSubsystem, m_lightSubsystem)); 
     /*Trigger pButton =*/ new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
     // The Buttons For the Asisst Controller will have a 2 after them      
-    //Trigger yButton2 =*/ new JoystickButton(m_asisstController, 4).whileTrue(new TurretTurnManual(m_turretSubsystem, () -> m_asisstController.getRawAxis(3), () -> m_asisstController.getRawAxis(2)));
-    /*Trigger xButton2 =*/ new JoystickButton(m_asisstController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem)); 
-    /*Trigger aButton2 =*/ new JoystickButton(m_asisstController, 1);
-    /*Trigger bButton2 =*/ new JoystickButton(m_asisstController, 2);
-    /*Trigger lbButton2 =*/ new JoystickButton(m_asisstController, 5).onTrue(new ArmRetract(m_armSubsystem));
-    /*Trigger rbButton2 =*/ new JoystickButton(m_asisstController, 6).onTrue(new ArmExtend(m_armSubsystem)); 
+    /*Trigger yButton2 =*/ new JoystickButton(m_asisstController, 4).onTrue(new LEDMatch(m_lightSubsystem, 1)); 
+    /*Trigger xButton2 =*/ new JoystickButton(m_asisstController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem));
+    /*Trigger aButton2 =*/ new JoystickButton(m_asisstController, 1).onTrue(new LEDMatch(m_lightSubsystem, 2));
+    /*Trigger bButton2 =*/ new JoystickButton(m_asisstController, 2).onTrue(new LEDMatch(m_lightSubsystem, 0));
+    /*Trigger lbButton2 =*/ new JoystickButton(m_asisstController, 5);
+    /*Trigger rbButton2 =*/ new JoystickButton(m_asisstController, 6); 
     /*Trigger uButton2 =*/ new JoystickButton(m_asisstController, 7); 
-    /*Trigger pButton2 =*/ new JoystickButton(m_asisstController, 8).onTrue(new ArmScore(m_armSubsystem)); 
+    /*Trigger pButton2 =*/ new JoystickButton(m_asisstController, 8); 
     // POV(D-pad) Button for the Driver Controller 
-    /*Trigger uPovButton =*/ new POVButton(m_driverController, 0).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.4, () -> 0.4));
-    /*Trigger rPovButton =*/ new POVButton(m_driverController, 90).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.4, () -> -0.4));
-    /*Trigger lPovButton =*/ new POVButton(m_driverController, 270).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.4, () -> 0.4));
-    /*Trigger dPovButton =*/ new POVButton(m_driverController, 180).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.4, () -> -0.4));
+    /*Trigger uPovButton =*/ new POVButton(m_driverController, 0).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.8, () -> -0.8));
+    /*Trigger rPovButton =*/ new POVButton(m_driverController, 90).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.8, () -> 0.8));
+    /*Trigger lPovButton =*/ new POVButton(m_driverController, 270).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.8, () -> -0.8));
+    /*Trigger dPovButton =*/ new POVButton(m_driverController, 180).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.8, () -> 0.8));
     // POV(D-pad) Buttons for the Asisst Controller 
     /*Trigger uPovButton2 =*/ new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));
     /*Trigger rPovButton2 =*/ new POVButton(m_asisstController, 90).onTrue(new IntakeOn(m_intakeSubsystem));
