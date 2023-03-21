@@ -110,10 +110,10 @@ public class RobotContainer {
     /*Trigger uButton2 =*/ new JoystickButton(m_asisstController, 7); 
     /*Trigger pButton2 =*/ new JoystickButton(m_asisstController, 8).onTrue(new ArmScore(m_armSubsystem)); 
     // POV(D-pad) Button for the Driver Controller 
-    //Trigger uPovButton = new POVButton(m_driverController, 0).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.k0degrees));
-    //Trigger rPovButton = new POVButton(m_driverController, 90).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.k90Degrees));
-    //Trigger lPovButton = new POVButton(m_driverController, 270).onTrue(new TurretTurnAuto(m_turretSubsystem, TurretConstants.kNeg90Degrees));
-    /*Trigger dPovButton =*/ new POVButton(m_driverController, 180);
+    /*Trigger uPovButton =*/ new POVButton(m_driverController, 0).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.4, () -> 0.4));
+    /*Trigger rPovButton =*/ new POVButton(m_driverController, 90).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.4, () -> -0.4));
+    /*Trigger lPovButton =*/ new POVButton(m_driverController, 270).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.4, () -> 0.4));
+    /*Trigger dPovButton =*/ new POVButton(m_driverController, 180).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.4, () -> -0.4));
     // POV(D-pad) Buttons for the Asisst Controller 
     /*Trigger uPovButton2 =*/ new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));
     /*Trigger rPovButton2 =*/ new POVButton(m_asisstController, 90).onTrue(new IntakeOn(m_intakeSubsystem));
