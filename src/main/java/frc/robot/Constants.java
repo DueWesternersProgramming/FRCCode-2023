@@ -83,6 +83,7 @@ public final class Constants {
     public static final int kIntakeMotorPort = 15;
     public static final double kIntakeMotorSpeed = 0.1;
     public static final double kIntakeReverseMotorSpeed = -0.35;
+    public static final double kIntakeStallTolerance = 0.5; /// CHANGE THIS NUMBER
   }
 
   public static class WristConstants {

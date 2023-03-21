@@ -2,6 +2,7 @@ package frc.robot.subsystems.GrabberSubsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,7 +16,8 @@ public class IntakeSubsystem extends SubsystemBase{
     RelativeEncoder intakeEncoder = intakeMotor.getEncoder();
 
     public IntakeSubsystem(){
-       
+        intakeMotor.setIdleMode(IdleMode.kBrake);
+        resetEncoder();
     }
 
     public double getSpeed() {
@@ -32,6 +34,14 @@ public class IntakeSubsystem extends SubsystemBase{
 
     public void intakeOff(){
         intakeMotor.set(0);
+    }
+
+    public double getEncoderPosition() {
+        return intakeEncoder.getPosition();
+    }
+
+    public void resetEncoder() {
+        intakeEncoder.setPosition(0.0);
     }
 
     @Override
