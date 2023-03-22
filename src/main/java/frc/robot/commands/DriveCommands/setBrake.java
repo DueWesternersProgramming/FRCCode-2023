@@ -1,19 +1,22 @@
 package frc.robot.commands.DriveCommands;
 
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LightSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An intake command that uses the driveSubsystem. */
 public class setBrake extends CommandBase {
   private final DriveSubsystem m_driveSubsystem;
+  private final LightSubsystem m_lightSubsystem;
 
   /**
    * Creates a new StartIntake command.
    *
    * @param intakeSubsystem The subsystem used by this command.
    */
-  public setBrake(DriveSubsystem driveSubsystem) {
+  public setBrake(DriveSubsystem driveSubsystem, LightSubsystem lightSubsystem) {
     m_driveSubsystem = driveSubsystem;
+    m_lightSubsystem = lightSubsystem;
     addRequirements(m_driveSubsystem);
   }
 
@@ -22,6 +25,7 @@ public class setBrake extends CommandBase {
   public void initialize() {
 
     m_driveSubsystem.setBrake();
+    m_lightSubsystem.setColor(0, 255, 0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

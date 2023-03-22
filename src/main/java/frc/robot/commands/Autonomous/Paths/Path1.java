@@ -3,7 +3,6 @@ package frc.robot.commands.Autonomous.Paths;
 //import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands.*;
-import frc.robot.commands.LightCommands.LEDMatch;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LightSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
@@ -24,8 +23,8 @@ public class Path1 extends SequentialCommandGroup {
     public Path1(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_claw, LightSubsystem m_light) {
         addCommands(
         new CalibrateGyro(m_drive),
-        new LEDMatch(m_light, 0),
-        new setCoast(m_drive),
+        //new LEDMatch(m_light, 0),
+        new setCoast(m_drive, m_light),
         /**
          * "robot will start with claw backwards"
          * extend arm towards node 3C*/

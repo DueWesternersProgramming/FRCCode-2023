@@ -44,11 +44,11 @@ public class DriveChargeBalance extends CommandBase {
     if (!m_justChecking){
       System.out.println("Looping");
       if (m_driveSubsystem.getRotation() < -3){
-        m_driveSubsystem.TankDrive(-0.55, -0.55);
+        m_driveSubsystem.TankDrive(-0.45, -0.45);
         System.out.println("Moving 1");
       }
       else if (m_driveSubsystem.getRotation() > DriveConstants.kChargeBalanceTolerance){
-        m_driveSubsystem.TankDrive(0.45, 0.45);   // If issues, slow down
+        m_driveSubsystem.TankDrive(0.35, 0.35);   // If issues, slow down
         System.out.println("Moving 2");
       }
       else {

@@ -58,7 +58,7 @@ public final class Constants {
     
     public static final int kArmMotorPort = 17;
 
-    public static final int kArmSpeedMultiplier = 1;
+    public static final double kArmSpeedMultiplier = 0.5;
     
   }
 
