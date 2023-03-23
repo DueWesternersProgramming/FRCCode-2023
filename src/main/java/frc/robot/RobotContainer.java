@@ -111,8 +111,8 @@ public class RobotContainer {
     /*Trigger pButton2 =*/ new JoystickButton(m_asisstController, 8); 
     // POV(D-pad) Button for the Driver Controller 
     /*Trigger uPovButton =*/ new POVButton(m_driverController, 0).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.8, () -> -0.8));
-    /*Trigger rPovButton =*/ new POVButton(m_driverController, 90).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.8, () -> 0.8));
-    /*Trigger lPovButton =*/ new POVButton(m_driverController, 270).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.8, () -> -0.8));
+    /*Trigger rPovButton =*/ new POVButton(m_driverController, 90).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.7, () -> 0.7));
+    /*Trigger lPovButton =*/ new POVButton(m_driverController, 270).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.7, () -> -0.7));
     /*Trigger dPovButton =*/ new POVButton(m_driverController, 180).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.8, () -> 0.8));
     // POV(D-pad) Buttons for the Asisst Controller 
     /*Trigger uPovButton2 =*/ new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));
