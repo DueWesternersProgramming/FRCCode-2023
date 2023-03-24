@@ -28,7 +28,7 @@ public class DriveSubsystem extends SubsystemBase {
   private double PID_P = DriveConstants.kDefaultP;
   private double PID_I = DriveConstants.kDefaultI;
   private double PID_D = DriveConstants.kDefaultD;
-  private double rotationOffset;
+  private double pitchRotationOffset, rotationOffset;
   private boolean fastSpeed = true;
 
 
@@ -70,7 +70,7 @@ public class DriveSubsystem extends SubsystemBase {
       e.printStackTrace();
     }
     try {
-      ahrs = new AHRS(SerialPort.Port.kUSB);
+      ahrs = new AHRS(SerialPort.Port.kMXP);
     }
     catch (Exception e){
       System.out.println("Gyro error: " + e + "\n");
@@ -150,6 +150,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void setCustomRotation() {
+    pitchRotationOffset = ahrs.getPitch();
     rotationOffset = ahrs.getRoll();
   }
 
@@ -245,6 +246,16 @@ public class DriveSubsystem extends SubsystemBase {
     return ahrs.getRoll();
   }
 
+  public double getPitch() {
+    if (pitchRotationOffset > 0){
+      return ahrs.getPitch() + pitchRotationOffset;
+    }
+    else if (pitchRotationOffset < 0){
+      return ahrs.getPitch() - pitchRotationOffset;
+    }
+    return ahrs.getPitch();
+  }
+
   public double getTurnRate() {
     return ahrs.getRate();
   }
@@ -299,5 +310,7 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Motor2R Current", motor2R.getOutputCurrent());
     SmartDashboard.putBoolean("Fast Mode", fastSpeed);
     SmartDashboard.putBoolean("Brake Mode", isBrake());
+    SmartDashboard.putNumber("Custom Pitch", getPitch());
+    SmartDashboard.putNumber("Offset", pitchRotationOffset);
   }
 }
