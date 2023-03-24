@@ -2,6 +2,7 @@ package frc.robot.commands.Autonomous.Paths;
 
 //import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LightSubsystem;
@@ -40,8 +41,11 @@ public class Path1 extends SequentialCommandGroup {
         //new ArmRetract(m_arm),
          /** drive forwarard towards the middle 
          */
-        new DriveDistance(m_drive, -15, 0.10),
-        new DriveDistance(m_drive, 25, 0.075)
+        new DriveDistance(m_drive, -7, 0.1),
+        new WaitCommand(0.5),
+        new setBrake(m_drive, m_light),
+        new DriveDistance(m_drive, 48, 0.1),
+        new setCoast(m_drive, m_light)
         
          /**
          * align robot  with object 1 

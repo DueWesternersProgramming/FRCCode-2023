@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autonomous.AutoDoNothing;
+import frc.robot.commands.Autonomous.AutoDriveBalanceTest;
 import frc.robot.commands.Autonomous.AutoTest;
 import frc.robot.commands.Autonomous.Paths.*;
 import frc.robot.commands.DriveCommands.DriveChargeBalance;
@@ -81,6 +82,7 @@ public class RobotContainer {
     // m_autoPositionChooser.addOption("Blue 3 Station", new Blue3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
     m_autoPositionChooser.addOption("Do Nothing", new AutoDoNothing(m_driveSubsystem));
     m_autoPositionChooser.addOption("Calibrate Gryo", new AutoTest(m_driveSubsystem));
+    m_autoPositionChooser.addOption("AutoBalanceTest", new AutoDriveBalanceTest(m_driveSubsystem, m_lightSubsystem));
 
     Shuffleboard.getTab("Autonomous").add(m_autoPositionChooser);
 

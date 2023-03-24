@@ -47,7 +47,7 @@ public class Path2 extends SequentialCommandGroup {
         new DriveChargeBalance(m_drive, m_light, true),
         new setBrake(m_drive, m_light),
         new DriveDistance(m_drive, 12, 0.1),
-        new TurnDegrees(m_drive, 155, 0.05, 1, 0),
+        new TurnDegrees(m_drive, 155, 0.09, 1, 0),
         new DriveDistance(m_drive, 15, 0.1),
         new DriveChargeBalance(m_drive, m_light, false)
          /**

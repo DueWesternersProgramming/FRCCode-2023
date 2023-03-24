@@ -237,16 +237,16 @@ public class DriveSubsystem extends SubsystemBase {
 
   public double getRotation() {
     if (rotationOffset > 0){
-      return ahrs.getRoll() + rotationOffset;
+      return ahrs.getRoll() - rotationOffset;
     }
     else if (rotationOffset < 0){
-      return ahrs.getRoll() - rotationOffset;
+      return ahrs.getRoll() + rotationOffset;
     }
     return ahrs.getRoll();
   }
 
   public double getTurnRate() {
-    return -ahrs.getRate();
+    return ahrs.getRate();
   }
 
   public void restorePID_Defaults() {
