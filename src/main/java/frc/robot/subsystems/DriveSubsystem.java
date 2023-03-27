@@ -30,14 +30,12 @@ public class DriveSubsystem extends SubsystemBase {
   private double PID_D = DriveConstants.kDefaultD;
   private double pitchRotationOffset, rotationOffset;
   private boolean fastSpeed = true;
+  private int speed = 1; // 0 = slow, 1 = normal, 2 = fast
 
 
   /** Creates a new DriveSubsystem.
    * @todo Fix error catching
    */
-
-   
-
 
   public DriveSubsystem() {
     try {
@@ -78,21 +76,28 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void TankDrive(double left, double right){
-    if (fastSpeed){
-      m_drive.tankDrive(left * DriveConstants.kSpeedMultiplier, right * DriveConstants.kSpeedMultiplier);
-  }
+    if (speed == 1){
+      m_drive.tankDrive(left * DriveConstants.kNormalSpeedMultiplier, right * DriveConstants.kNormalSpeedMultiplier);
+    }
+    else if (speed == 2){
+      m_drive.tankDrive(left* DriveConstants.kFastSpeedMultiplier, right * DriveConstants.kFastSpeedMultiplier);
+    }
     else {
       m_drive.tankDrive(left * DriveConstants.kSlowSpeedMultiplier, right * DriveConstants.kSlowSpeedMultiplier);
     }
   }
 
   public void toggleSpeed(){
-    if (fastSpeed){
-      fastSpeed = false;
+    if (speed == 1){
+      speed = 0;
     }
-    else{
-      fastSpeed = true;
+    else if (speed == 0 || speed == 2) {
+      speed = 1;
     }
+  }
+
+  public void fastSpeed(){
+    speed = 2;
   }
 
   public boolean toggleBrake(){

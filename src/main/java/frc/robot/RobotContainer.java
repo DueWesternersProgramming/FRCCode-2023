@@ -5,20 +5,13 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autonomous.AutoDoNothing;
-import frc.robot.commands.Autonomous.AutoDriveBalanceTest;
-import frc.robot.commands.Autonomous.AutoTest;
+import frc.robot.commands.Autonomous.*;
 import frc.robot.commands.Autonomous.Paths.*;
-import frc.robot.commands.DriveCommands.DriveChargeBalance;
-import frc.robot.commands.DriveCommands.TankDrive;
-import frc.robot.commands.DriveCommands.ToggleSpeeds;
-import frc.robot.commands.DriveCommands.toggleBrake;
+import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.Intake.*;
 import frc.robot.commands.GrabberCommands.Wrist.WristManuelMove;
-import frc.robot.commands.LightCommands.LEDPitAlternate;
-import frc.robot.commands.LightCommands.LEDMatch;
-import frc.robot.commands.LightCommands.LEDPit;
+import frc.robot.commands.LightCommands.*;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -29,7 +22,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-//import edu.wpi.first.wpilibj2.command.button.Trigger; 
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -98,7 +90,7 @@ public class RobotContainer {
     /*Trigger xButton =*/ new JoystickButton(m_driverController, 3);
     /*Trigger aButton =*/ new JoystickButton(m_driverController, 1);
     /*Trigger bButton =*/ new JoystickButton(m_driverController, 2);
-    //Trigger lbButton = new JoystickButton(m_driverController, 5).onTrue(new TurretTurnTarget(m_turretSubsystem, m_visionSubsystem));
+    /*Trigger lbButton = */ new JoystickButton(m_driverController, 5).onTrue(new FastSpeed(m_driveSubsystem));
     /*Trigger rbButton =*/ new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false));
     /*Trigger uButton =*/ new JoystickButton(m_driverController, 7).onTrue(new toggleBrake(m_driveSubsystem, m_lightSubsystem)); 
     /*Trigger pButton =*/ new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
@@ -112,11 +104,11 @@ public class RobotContainer {
     /*Trigger uButton2 =*/ new JoystickButton(m_asisstController, 7); 
     /*Trigger pButton2 =*/ new JoystickButton(m_asisstController, 8); 
     // POV(D-pad) Button for the Driver Controller 
-    /*Trigger uPovButton =*/ new POVButton(m_driverController, 0).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.8, () -> -0.8));
+    /*Trigger uPovButton =*/ new POVButton(m_driverController, 0).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.9, () -> -0.9));
     /*Trigger rPovButton =*/ new POVButton(m_driverController, 90).whileTrue(new TankDrive(m_driveSubsystem, () -> -0.7, () -> 0.7));
     /*Trigger lPovButton =*/ new POVButton(m_driverController, 270).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.7, () -> -0.7));
-    /*Trigger dPovButton =*/ new POVButton(m_driverController, 180).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.8, () -> 0.8));
-    // POV(D-pad) Buttons for the Asisst Controller 
+    /*Trigger dPovButton =*/ new POVButton(m_driverController, 180).whileTrue(new TankDrive(m_driveSubsystem, () -> 0.9, () -> 0.9));
+    // POV(D-pad) Buttons for the Asisst Controller
     /*Trigger uPovButton2 =*/ new POVButton(m_asisstController, 0).onTrue(new LEDPit(m_lightSubsystem));
     /*Trigger rPovButton2 =*/ new POVButton(m_asisstController, 90).onTrue(new IntakeOn(m_intakeSubsystem));
     /*Trigger lPovButton2 =*/ new POVButton(m_asisstController, 270).onTrue(new IntakeOff(m_intakeSubsystem));
