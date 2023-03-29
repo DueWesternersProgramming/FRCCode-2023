@@ -32,7 +32,7 @@ public class IntakeOn extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    finished = false;
+    finished = true;
     m_intakeSubsystem.intakeOn();
     // previousPosition = Math.abs(m_intakeSubsystem.getEncoderPosition());
     // startStallTime = (LocalTime.now().getSecond() + 1);

@@ -13,18 +13,23 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class DriveChargeBalance extends CommandBase {
   private final DriveSubsystem m_driveSubsystem;
   private final LightSubsystem m_lightSubsystem;
-  private boolean m_justChecking;
-  private boolean finished = false;
+  private boolean m_justChecking, m_direction;
+  private boolean finished, started = false;
+  private double tolerance;
+
 
   /**
-   * Creates a new TankDrive command.
-   *
-   * @param driveSubsystem The subsystem used by this command.
+   * 
+   * @param driveSubsystem
+   * @param lightSubsystem
+   * @param justChecking Stops running when has reached top
+   * @param direction true = forward, false = bacward
    */
-  public DriveChargeBalance(DriveSubsystem driveSubsystem, LightSubsystem lightSubsystem, boolean justChecking) {
+  public DriveChargeBalance(DriveSubsystem driveSubsystem, LightSubsystem lightSubsystem, boolean justChecking, boolean direction) {
     m_driveSubsystem = driveSubsystem;
     m_lightSubsystem = lightSubsystem;
     m_justChecking = justChecking;
+    m_direction = direction;
     addRequirements(m_driveSubsystem);
   }
 
@@ -35,38 +40,78 @@ public class DriveChargeBalance extends CommandBase {
       m_driveSubsystem.setBrake();
     }
     finished = false;
-    m_lightSubsystem.setColor(0, 255, 0);
+    started = false;
+    if (m_direction){
+      m_lightSubsystem.setColor(0, 255, 0);
+    }
+    else {
+      m_lightSubsystem.setColor(0, 0, 255);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (!m_justChecking){
-      if (m_driveSubsystem.getRotation() > 3){
-        if (m_driveSubsystem.getRotation() < 9){
-          m_driveSubsystem.TankDrive(-0.235, -0.235);
-          System.out.println("Moving 1 Slow");
+    if (m_direction){
+      if (!m_justChecking){
+        if (started) {
+          tolerance = DriveConstants.kChargeForwardModifiedStartTolerance;
         }
         else {
+          tolerance = DriveConstants.kChargeForwardInitialStartTolerance;
+        }
+        if (m_driveSubsystem.getRotation() > tolerance){
           m_driveSubsystem.TankDrive(-0.45, -0.45);
-          System.out.println("Moving 1 Fast");
+          System.out.println("Moving 1");
+        }
+        else if (m_driveSubsystem.getRotation() < DriveConstants.kChargeBackwardBalanceTolerance){
+          m_driveSubsystem.TankDrive(0.425, 0.425);
+          System.out.println("Moving 2");
+          started = true;
+        }
+        else {
+          m_driveSubsystem.TankDrive(0, 0);
+          System.out.println("Stopping");
         }
       }
-      else if (m_driveSubsystem.getRotation() < DriveConstants.kChargeBalanceTolerance){
-        m_driveSubsystem.TankDrive(0.35, 0.35);   // If issues, slow down
-        System.out.println("Moving 2");
-      }
       else {
-        m_driveSubsystem.TankDrive(0, 0);
-        System.out.println("Stopping");
+        if (m_driveSubsystem.getRotation() > 3){
+          m_driveSubsystem.TankDrive(-0.75, -0.75);
+        }
+        else {
+          finished = true;
+        }
       }
     }
     else {
-      if (m_driveSubsystem.getRotation() > 3){
-        m_driveSubsystem.TankDrive(-0.60, -0.60);
+      if (!m_justChecking){
+        if (started) {
+          tolerance = DriveConstants.kChargeBackwardModifiedStartTolerance;
+        }
+        else {
+          tolerance = DriveConstants.kChargeBackwardInitialStartTolerance;
+        }
+        if (m_driveSubsystem.getRotation() < tolerance){
+          m_driveSubsystem.TankDrive(0.45, 0.45);
+          System.out.println("Moving 1 Backwards");
+        }
+        else if (m_driveSubsystem.getRotation() > DriveConstants.kChargeBackwardBalanceTolerance){
+          m_driveSubsystem.TankDrive(-0.425,-0.425);   // If issues, slow down
+          System.out.println("Moving 2 Backwards");
+          started = true;
+        }
+        else {
+          m_driveSubsystem.TankDrive(0, 0);
+          System.out.println("Stopping Backwards");
+        }
       }
       else {
-        finished = true;
+        if (m_driveSubsystem.getRotation() < -3){
+          m_driveSubsystem.TankDrive(0.85, 0.85);
+        }
+        else {
+          finished = true;
+        }
       }
     }
   }

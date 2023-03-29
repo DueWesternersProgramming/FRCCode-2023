@@ -9,7 +9,7 @@ import frc.robot.subsystems.LightSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
 
-public class Path2 extends SequentialCommandGroup {
+public class Path2LowScore extends SequentialCommandGroup {
 
     
     /**
@@ -20,7 +20,7 @@ public class Path2 extends SequentialCommandGroup {
      * @param m_claw
      * @param m_turret
      */
-    public Path2(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_claw, LightSubsystem m_light) {
+    public Path2LowScore(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_claw, LightSubsystem m_light) {
         addCommands(
         new CalibrateGyro(m_drive),
         new setCoast(m_drive, m_light),
@@ -44,12 +44,12 @@ public class Path2 extends SequentialCommandGroup {
         new WaitCommand(0.5),
         new DriveDistance(m_drive, 10, 0.1),
         new DriveDistance(m_drive, 15, 0.1),
-        new DriveChargeBalance(m_drive, m_light, true),
+        new DriveChargeBalance(m_drive, m_light, true, true),
         new setBrake(m_drive, m_light),
         new DriveDistance(m_drive, 14, 0.1),
         new TurnDegrees(m_drive, 155, 0.09, 1, 0),
         new DriveDistance(m_drive, 23, 0.13),
-        new DriveChargeBalance(m_drive, m_light, false)
+        new DriveChargeBalance(m_drive, m_light, false, true)
          /**
          * align robot  with object 1 
          * move robot fowarard 

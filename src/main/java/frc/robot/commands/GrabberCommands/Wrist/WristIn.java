@@ -32,8 +32,8 @@ public class WristIn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_wristSubsystem.getEncoderPosition() < WristConstants.kInPosition){
-      m_wristSubsystem.runWrist(WristConstants.kWristSpeed);
+    if (m_wristSubsystem.getEncoderPosition() > WristConstants.kInPosition){
+      m_wristSubsystem.runWrist(-WristConstants.kWristSpeed);
     }
     else{
       finished = true;

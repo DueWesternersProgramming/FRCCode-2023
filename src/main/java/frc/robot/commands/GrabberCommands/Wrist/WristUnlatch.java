@@ -9,16 +9,16 @@ import frc.robot.subsystems.GrabberSubsystems.WristSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class WristOut extends CommandBase {
+public class WristUnlatch extends CommandBase {
   private final WristSubsystem m_wristSubsystem;
   private boolean finished;
 
   /**
    * Creates a new TankDrive command.
    *
-   * @param armsubsystem The subsystem used by this command.
+   * @param wristSubsystem The subsystem used by this command.
    */
-  public WristOut(WristSubsystem wristSubsystem) {
+  public WristUnlatch(WristSubsystem wristSubsystem) {
     m_wristSubsystem = wristSubsystem;
     addRequirements(m_wristSubsystem);
   }
@@ -32,8 +32,8 @@ public class WristOut extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_wristSubsystem.getEncoderPosition() < WristConstants.kOutPosition){
-      m_wristSubsystem.runWrist(WristConstants.kWristSpeed);
+    if (m_wristSubsystem.getEncoderPosition() > WristConstants.kUnlatchPosition){
+      m_wristSubsystem.runWrist(-WristConstants.kWristSpeed);
     }
     else{
       finished = true;
