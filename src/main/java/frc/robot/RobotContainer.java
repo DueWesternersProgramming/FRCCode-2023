@@ -64,6 +64,7 @@ public class RobotContainer {
     m_autoPositionChooser.setDefaultOption("Red 1", new Path1(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("Red 2 Low", new Path2LowScore(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("Red 2 High", new Path2HighScore(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
+    m_autoPositionChooser.addOption("Red Side Pos Testing", new Path1Testing(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     // m_autoPositionChooser.addOption("Red 3 Score", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> true));
     // m_autoPositionChooser.addOption("Red 1 Station", new Red1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem,m_lightSubsystem, () -> false));
     // m_autoPositionChooser.addOption("Red 3 Station", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));

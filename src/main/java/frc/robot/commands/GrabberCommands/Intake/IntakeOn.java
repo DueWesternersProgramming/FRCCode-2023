@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class IntakeOn extends CommandBase {
   private final IntakeSubsystem m_intakeSubsystem;
   private double previousPosition;
-  private boolean finished = false;
+  //private boolean finished = false;
   private int startStallTime, nextStallTick, currentTime;
   /**
    * Creates a new ClawClose command.
@@ -32,7 +32,7 @@ public class IntakeOn extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    finished = true;
+    //finished = true;
     m_intakeSubsystem.intakeOn();
     // previousPosition = Math.abs(m_intakeSubsystem.getEncoderPosition());
     // startStallTime = (LocalTime.now().getSecond() + 1);
@@ -61,12 +61,12 @@ public class IntakeOn extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_intakeSubsystem.intakeOff();
+    //m_intakeSubsystem.intakeOff();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finished;
+    return true;
   }
 }
