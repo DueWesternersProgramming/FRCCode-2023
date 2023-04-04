@@ -32,16 +32,16 @@ public class TurnDegrees extends CommandBase {
    * Creates a new DefaultDrive.
    *
    * @param subsystem The drive subsystem this command wil run on.
-   * @param degrees The control input for driving forwards/backwards
+   * @param hoofs The control input for driving forwards/backwards
    * @param speed  The control input for turning
    * @param direction The direction of the turn. Right = 1, Left = -1
    * @param radius The radius of the turn
    */
-  public TurnDegrees(DriveSubsystem subsystem, double degrees, double speed, int direction, double radius) {
+  public TurnDegrees(DriveSubsystem subsystem, double hoofs, double speed, int direction, double radius) {
 
     //setup method variables
     m_drive = subsystem;
-    m_targetHeading = degrees;
+    m_targetHeading = hoofs;
     m_speed = speed;
     m_direction = direction;
     m_turnRadius = radius;
@@ -52,11 +52,11 @@ public class TurnDegrees extends CommandBase {
     addRequirements(m_drive);
   }
 
-  public TurnDegrees(DriveSubsystem subsystem, double degrees, double speed, int direction, double radius, double endPower) {
+  public TurnDegrees(DriveSubsystem subsystem, double hoofs, double speed, int direction, double radius, double endPower) {
 
     //setup method variables
     m_drive = subsystem;
-    m_targetHeading = degrees;
+    m_targetHeading = hoofs;
     m_speed = speed;
     m_direction = direction;
     m_turnRadius = radius;

@@ -9,7 +9,7 @@ import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ArmAutoExtend extends CommandBase {
+public class ArmAutoExtendHigh extends CommandBase {
   private final ArmSubsystem m_armSubsystem;
   private boolean finished;
 
@@ -18,7 +18,7 @@ public class ArmAutoExtend extends CommandBase {
    *
    * @param armSubsystem The subsystem used by this command.
    */
-  public ArmAutoExtend(ArmSubsystem armSubsystem) {
+  public ArmAutoExtendHigh(ArmSubsystem armSubsystem) {
     m_armSubsystem = armSubsystem;
     addRequirements(m_armSubsystem);
   }
@@ -32,7 +32,7 @@ public class ArmAutoExtend extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_armSubsystem.getEncoderPosition() > ArmConstants.kArmAutoPosition){
+    if (m_armSubsystem.getEncoderPosition() > ArmConstants.kArmAutoHighPosition){
       m_armSubsystem.runArm(-ArmConstants.kArmSpeed);
     }
     else{

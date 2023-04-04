@@ -1,25 +1,15 @@
 package frc.robot.commands.Autonomous.Paths;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 //import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.DriveCommands.*;
-import frc.robot.commands.GrabberCommands.Arm.ArmAutoExtend;
-import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
-import frc.robot.commands.GrabberCommands.Intake.IntakeOff;
-import frc.robot.commands.GrabberCommands.Intake.IntakeOn;
-import frc.robot.commands.GrabberCommands.Intake.IntakeReverse;
-import frc.robot.commands.GrabberCommands.Wrist.WristIn;
-import frc.robot.commands.GrabberCommands.Wrist.WristOut;
-import frc.robot.commands.GrabberCommands.Wrist.WristUnlatch;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LightSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
-import frc.robot.subsystems.GrabberSubsystems.WristSubsystem;
 
-public class Path2HighScore extends SequentialCommandGroup {
+public class PathMiddleLow extends SequentialCommandGroup {
 
     
     /**
@@ -30,10 +20,10 @@ public class Path2HighScore extends SequentialCommandGroup {
      * @param m_claw
      * @param m_turret
      */
-    public Path2HighScore(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_intake, WristSubsystem m_wrist, LightSubsystem m_light) {
+    public PathMiddleLow(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_claw, LightSubsystem m_light) {
         addCommands(
         new CalibrateGyro(m_drive),
-        //new setCoast(m_drive, m_light),
+        new setCoast(m_drive, m_light),
         //new LEDMatch(m_light, 0),
         /**
          * "robot will start with claw backwards"
@@ -50,22 +40,14 @@ public class Path2HighScore extends SequentialCommandGroup {
         //new ArmRetract(m_arm),
          /** drive forwarard towards the middle
          */
-
-        new IntakeOn(m_intake),
-        new WristUnlatch(m_wrist),
-        new ParallelCommandGroup(new ArmAutoExtend(m_arm), new WristOut(m_wrist)),
+        new DriveDistance(m_drive, -7, 0.1),
+        new WaitCommand(0.5),
+        new DriveDistance(m_drive, 10, 0.1),
+        new DriveDistance(m_drive, 15, 0.1),
+        new DriveChargeBalance(m_drive, m_light, true, true),
         new setBrake(m_drive, m_light),
-        new DriveDistance(m_drive, 12, 0.05),
-        new IntakeReverse(m_intake),
-        new WaitCommand(1),
-        new IntakeOff(m_intake),
-        new ParallelCommandGroup(new ArmAutoExtend(m_arm), new DriveDistance(m_drive, -12, 0.05)),
-        new ParallelCommandGroup(new WristIn(m_wrist), new ArmRetract(m_arm)),
-        new setCoast(m_drive, m_light),
-        new DriveDistance(m_drive, -10, 0.1),
-        new DriveChargeBalance(m_drive, m_light, true, false),
-        new setBrake(m_drive, m_light),
-        new DriveDistance(m_drive, -14, 0.1),
+        new DriveDistance(m_drive, 14, 0.1),
+        new TurnDegrees(m_drive, 155, 0.09, 1, 0),
         new DriveDistance(m_drive, 23, 0.13),
         new DriveChargeBalance(m_drive, m_light, false, true)
          /**

@@ -20,11 +20,11 @@ public class DriveDistance extends CommandBase {
    * Creates a new DriveDistance.
    *
    * @param drive  The drive subsystem on which this command will run
-   * @param inches The number of inches the robot will drive
+   * @param yeehaws The number of yeehaws the robot will drive
    * @param speed  The speed at which the robot will drive
    */
-  public DriveDistance(DriveSubsystem drive, double inches, double speed) {
-    m_distance = inches;
+  public DriveDistance(DriveSubsystem drive, double yeehaws, double speed) {
+    m_distance = yeehaws;
     m_maxSpeed = speed;
     m_drive = drive;
     m_timer = new Timer();

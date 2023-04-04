@@ -55,11 +55,11 @@ public final class Constants {
 
   public static class ArmConstants {  
     
-    public static final double kUpPosition = -275;
+    public static final double kArmAutoLowPosition = -40;
     public static final double kDownPosition = 0;
     public static final double kScorePosition = -13;
     //public static final double kArmAutoPosition = -90;
-    public static final double kArmAutoPosition = -190;
+    public static final double kArmAutoHighPosition = -190;
     public static final double kArmSpeed = 0.75;
 
     public static final int kMoveUp = 1;

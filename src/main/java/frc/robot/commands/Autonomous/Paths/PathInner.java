@@ -1,15 +1,26 @@
 package frc.robot.commands.Autonomous.Paths;
 
-import java.util.function.BooleanSupplier;
-
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 //import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.DriveCommands.*;
+import frc.robot.commands.GrabberCommands.Arm.ArmAutoExtendHigh;
+import frc.robot.commands.GrabberCommands.Arm.ArmAutoExtendLow;
+import frc.robot.commands.GrabberCommands.Arm.ArmRetract;
+import frc.robot.commands.GrabberCommands.Intake.IntakeOff;
+import frc.robot.commands.GrabberCommands.Intake.IntakeOn;
+import frc.robot.commands.GrabberCommands.Intake.IntakeReverse;
+import frc.robot.commands.GrabberCommands.Wrist.WristIn;
+import frc.robot.commands.GrabberCommands.Wrist.WristOut;
+import frc.robot.commands.GrabberCommands.Wrist.WristUnlatch;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LightSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
+import frc.robot.subsystems.GrabberSubsystems.WristSubsystem;
 
-public class Path3 extends SequentialCommandGroup {
+public class PathInner extends SequentialCommandGroup {
 
     
     /**
@@ -21,8 +32,9 @@ public class Path3 extends SequentialCommandGroup {
      * @param m_turret
      * @param ending true = score, false = chargestation
      */
-    public Path3(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_claw, IntakeSubsystem m_intake, BooleanSupplier ending) {
+    public PathInner(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_intake, WristSubsystem m_wrist, LightSubsystem m_light) {
         addCommands(
+            new CalibrateGyro(m_drive),
       
         /**
          * "robot will start with claw backwards"
@@ -39,8 +51,21 @@ public class Path3 extends SequentialCommandGroup {
         //new ArmRetract(m_arm),
          /** drive forwarard towards the middle 
          */
-        new DriveDistance(m_drive, -15, 0.10),
-        new DriveDistance(m_drive, 216, 0.15)
+        new IntakeOn(m_intake),
+        new WristUnlatch(m_wrist),
+        new WaitCommand(0.5),
+        new ParallelCommandGroup(new ArmAutoExtendHigh(m_arm), new WristOut(m_wrist)),
+        new setBrake(m_drive, m_light),
+        new DriveDistance(m_drive, 10, 0.05),
+        new IntakeReverse(m_intake),
+        new WaitCommand(1),
+        new IntakeOff(m_intake),
+        new ParallelCommandGroup(new ArmAutoExtendHigh(m_arm), new DriveDistance(m_drive, -12, 0.05)),
+        new ParallelCommandGroup(new WristIn(m_wrist), new ArmRetract(m_arm), new DriveDistance(m_drive, -46, 0.1)),
+        new WaitCommand(0.5),
+        new TurnDegrees(m_drive, 132, 0.09, 1, 0),
+        new ParallelCommandGroup(new ArmAutoExtendLow(m_arm), new WristOut(m_wrist))
+        //new setCoast(m_drive, m_light)
         
          /**
          * align robot  with object 1 
