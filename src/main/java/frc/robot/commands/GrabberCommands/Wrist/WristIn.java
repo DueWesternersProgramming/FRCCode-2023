@@ -33,7 +33,7 @@ public class WristIn extends CommandBase {
   @Override
   public void execute() {
     if (m_wristSubsystem.getEncoderPosition() > WristConstants.kInPosition){
-      m_wristSubsystem.runWrist(-WristConstants.kWristSpeed* 1.6);
+      m_wristSubsystem.runWrist(-WristConstants.kWristSpeed* 2);
     }
     else{
       finished = true;

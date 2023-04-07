@@ -65,7 +65,7 @@ public class DriveChargeBalance extends CommandBase {
           System.out.println("Moving 1");
         }
         else if (m_driveSubsystem.getRotation() < DriveConstants.kChargeForwardBalanceTolerance){
-          m_driveSubsystem.TankDrive(0.425, 0.425);
+          m_driveSubsystem.TankDrive(0.47, 0.47);
           System.out.println("Moving 2");
           started = true;
         }

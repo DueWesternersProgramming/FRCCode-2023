@@ -1,9 +1,8 @@
 package frc.robot.commands.Autonomous.Paths;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+//import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
-import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.GrabberCommands.Arm.ArmAutoExtendHigh;
@@ -20,7 +19,7 @@ import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.WristSubsystem;
 
-public class PathMiddleHigh extends SequentialCommandGroup {
+public class PathOuterBlue extends SequentialCommandGroup {
 
     
     /**
@@ -30,11 +29,11 @@ public class PathMiddleHigh extends SequentialCommandGroup {
      * @param m_armBase
      * @param m_claw
      * @param m_turret
+     * @param ending true = score, false = chargestation
      */
-    public PathMiddleHigh(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_intake, WristSubsystem m_wrist, LightSubsystem m_light) {
+    public PathOuterBlue(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_intake, WristSubsystem m_wrist, LightSubsystem m_light) {
         addCommands(
         new CalibrateGyro(m_drive),
-        //new setCoast(m_drive, m_light),
         //new LEDMatch(m_light, 0),
         /**
          * "robot will start with claw backwards"
@@ -49,23 +48,24 @@ public class PathMiddleHigh extends SequentialCommandGroup {
         //new WaitCommand(0.5),
         /** retract arm*/
         //new ArmRetract(m_arm),
-         /** drive forwarard towards the middle
+         /** drive forwarard towards the middle 
          */
-
         new IntakeOn(m_intake),
         new WristUnlatch(m_wrist),
-        new WaitCommand(0.15),
-        new ParallelCommandGroup(new ArmAutoExtendHigh(m_arm), new SequentialCommandGroup(new WaitCommand(0.25), new WristOut(m_wrist))), //new WristOut(m_wrist)
-        new setBrake(m_drive, m_light),
-        new DriveDistance(m_drive, 10, 0.07),
-        new IntakeReverse(m_intake),
         new WaitCommand(0.5),
+        new ParallelCommandGroup(new ArmAutoExtendHigh(m_arm), new WristOut(m_wrist)),
+        new setBrake(m_drive, m_light),
+        new DriveDistance(m_drive, 10, 0.05),
+        new IntakeReverse(m_intake),
+        new WaitCommand(1),
         new IntakeOff(m_intake),
-        new ParallelDeadlineGroup(new DriveDistance(m_drive, -8, 0.05), new ArmAutoExtendHigh(m_arm), new WristIn(m_wrist)),
-        new ParallelRaceGroup(new ArmRetract(m_arm), new TurnDegrees(m_drive, 132.5, 0.1, 1, 0)),
-        new DriveDistance(m_drive, 33, 0.3),
-        new DriveDistance(m_drive, 18, 0.15),
-        new DriveChargeBalance(m_drive, m_light, false, true)
+        new ParallelCommandGroup(new ArmAutoExtendHigh(m_arm), new DriveDistance(m_drive, -10, 0.05)), 
+        new ParallelCommandGroup(new WristIn(m_wrist), new ArmRetract(m_arm), new TurnDegrees(m_drive, -7, 0.09, -1, 0)),
+        new DriveDistance(m_drive, -46, 0.1),
+        new WaitCommand(0.5),
+        new TurnDegrees(m_drive, 155, 0.1, 1, 0),
+        new setCoast(m_drive, m_light)
+        
          /**
          * align robot  with object 1 
          * move robot fowarard 

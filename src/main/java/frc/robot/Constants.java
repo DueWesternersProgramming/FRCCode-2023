@@ -28,10 +28,10 @@ public final class Constants {
     public static final double kChargeForwardBalanceTolerance = -10;
     public static final double kChargeBackwardBalanceTolerance = 10;
 
-    public static final double kChargeForwardInitialStartTolerance = 3;
-    public static final double kChargeBackwardInitialStartTolerance = -3;
-    public static final double kChargeForwardModifiedStartTolerance = 5;
-    public static final double kChargeBackwardModifiedStartTolerance = -5;
+    public static final double kChargeForwardInitialStartTolerance = 4;
+    public static final double kChargeBackwardInitialStartTolerance = -4;
+    public static final double kChargeForwardModifiedStartTolerance = 6;
+    public static final double kChargeBackwardModifiedStartTolerance = -6;
 
     public static final double kMaxAccel = 12;
     public static final int kLeft = -1;
@@ -59,8 +59,8 @@ public final class Constants {
     public static final double kDownPosition = 0;
     public static final double kScorePosition = -13;
     //public static final double kArmAutoPosition = -90;
-    public static final double kArmAutoHighPosition = -190;
-    public static final double kArmSpeed = 0.75;
+    public static final double kArmAutoHighPosition = -210;
+    public static final double kArmSpeed = 0.90;
 
     public static final int kMoveUp = 1;
     public static final int kMoveDown = -1;
@@ -90,7 +90,7 @@ public final class Constants {
 
   public static class IntakeConstants {
     public static final int kIntakeMotorPort = 15;
-    public static final double kIntakeMotorSpeed = 0.11;
+    public static final double kIntakeMotorSpeed = 0.13;
     public static final double kIntakeReverseMotorSpeed = -0.15;
     public static final double kIntakeShootMotorSpeed = -0.6;
     public static final double kIntakeStallTolerance = 0.5; /// CHANGE THIS NUMBER

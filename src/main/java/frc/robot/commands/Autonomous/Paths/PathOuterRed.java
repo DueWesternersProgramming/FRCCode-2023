@@ -19,7 +19,7 @@ import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.WristSubsystem;
 
-public class PathOuter extends SequentialCommandGroup {
+public class PathOuterRed extends SequentialCommandGroup {
 
     
     /**
@@ -31,7 +31,7 @@ public class PathOuter extends SequentialCommandGroup {
      * @param m_turret
      * @param ending true = score, false = chargestation
      */
-    public PathOuter(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_intake, WristSubsystem m_wrist, LightSubsystem m_light) {
+    public PathOuterRed(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_intake, WristSubsystem m_wrist, LightSubsystem m_light) {
         addCommands(
         new CalibrateGyro(m_drive),
         //new LEDMatch(m_light, 0),
@@ -60,7 +60,7 @@ public class PathOuter extends SequentialCommandGroup {
         new WaitCommand(1),
         new IntakeOff(m_intake),
         new ParallelCommandGroup(new ArmAutoExtendHigh(m_arm), new DriveDistance(m_drive, -10, 0.05)), 
-        new ParallelCommandGroup(new WristIn(m_wrist), new ArmRetract(m_arm), new TurnDegrees(m_drive, -7, 0.09, -1, 0)),
+        new ParallelCommandGroup(new WristIn(m_wrist), new ArmRetract(m_arm), new TurnDegrees(m_drive, 7, 0.09, 1, 0)),
         new DriveDistance(m_drive, -46, 0.1),
         new WaitCommand(0.5),
         new TurnDegrees(m_drive, 155, 0.1, 1, 0),

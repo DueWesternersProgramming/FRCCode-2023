@@ -61,10 +61,12 @@ public class RobotContainer {
     m_wristSubsystem.setDefaultCommand(new WristManuelMove(m_wristSubsystem,
     () -> m_asisstController.getRawAxis(1)));
 
-    m_autoPositionChooser.setDefaultOption("PathOuter", new PathOuter(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
+    m_autoPositionChooser.setDefaultOption("PathOuterBlue", new PathOuterBlue(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
+    m_autoPositionChooser.addOption("PathOuterRed", new PathOuterRed(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("PathMiddle Low", new PathMiddleLow(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("PathMiddle High", new PathMiddleHigh(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("PathInner", new PathInner(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
+    m_autoPositionChooser.addOption("PathAny Score", new PathAnyScore(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     // m_autoPositionChooser.addOption("Red 3 Score", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> true));
     // m_autoPositionChooser.addOption("Red 1 Station", new Red1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem,m_lightSubsystem, () -> false));
     // m_autoPositionChooser.addOption("Red 3 Station", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
@@ -77,7 +79,7 @@ public class RobotContainer {
     m_autoPositionChooser.addOption("Do Nothing", new AutoDoNothing(m_driveSubsystem));
     m_autoPositionChooser.addOption("Calibrate Gryo", new AutoCalibrateGyro(m_driveSubsystem));
     m_autoPositionChooser.addOption("AutoBalanceTest", new AutoDriveBalanceTest(m_driveSubsystem, m_lightSubsystem));
-    m_autoPositionChooser.addOption("AutoTest", new AutoTest(m_driveSubsystem, m_visionSubsystem, m_wristSubsystem, m_lightSubsystem));
+    m_autoPositionChooser.addOption("AutoTest", new AutoTest(m_driveSubsystem, m_visionSubsystem, m_wristSubsystem, m_lightSubsystem, m_intakeSubsystem, m_armSubsystem));
 
     Shuffleboard.getTab("Autonomous").add(m_autoPositionChooser);
 
@@ -94,7 +96,7 @@ public class RobotContainer {
     /*Trigger aButton =*/ new JoystickButton(m_driverController, 1);
     /*Trigger bButton =*/ new JoystickButton(m_driverController, 2);
     /*Trigger lbButton = */ new JoystickButton(m_driverController, 5).onTrue(new FastSpeed(m_driveSubsystem));
-    /*Trigger rbButton =*/ new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false, false));
+    /*Trigger rbButton =*/ new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false, true));
     /*Trigger uButton =*/ new JoystickButton(m_driverController, 7).onTrue(new ToggleBrake(m_driveSubsystem, m_lightSubsystem)); 
     /*Trigger pButton =*/ new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
     // The Buttons For the Asisst Controller will have a 2 after them      

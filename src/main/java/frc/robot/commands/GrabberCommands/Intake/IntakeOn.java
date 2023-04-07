@@ -4,19 +4,19 @@
 
 package frc.robot.commands.GrabberCommands.Intake;
 
-import frc.robot.Constants.IntakeConstants;
+//import frc.robot.Constants.IntakeConstants;
 import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
 
-import java.time.LocalTime;
+//import java.time.LocalTime;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class IntakeOn extends CommandBase {
   private final IntakeSubsystem m_intakeSubsystem;
-  private double previousPosition;
+  //private double previousPosition;
   //private boolean finished = false;
-  private int startStallTime, nextStallTick, currentTime;
+  //private int startStallTime, nextStallTick, currentTime;
   /**
    * Creates a new ClawClose command.
    *
