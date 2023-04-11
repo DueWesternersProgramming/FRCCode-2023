@@ -12,6 +12,8 @@ import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.Intake.*;
 import frc.robot.commands.GrabberCommands.Wrist.WristManuelMove;
 import frc.robot.commands.LightCommands.*;
+import frc.robot.commands.VisionCommands.SetVisionPipeline;
+import frc.robot.commands.VisionCommands.TurnTarget;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.GrabberSubsystems.*;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -20,6 +22,7 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 
@@ -89,15 +92,15 @@ public class RobotContainer {
     /*Trigger yButton =*/ new JoystickButton(m_driverController, 4);
     /*Trigger xButton =*/ new JoystickButton(m_driverController, 3);
     /*Trigger aButton =*/ new JoystickButton(m_driverController, 1);
-    /*Trigger bButton =*/ new JoystickButton(m_driverController, 2);
+    /*Trigger bButton =*/ new JoystickButton(m_driverController, 2).whileTrue((new TurnTarget(m_driveSubsystem, m_visionSubsystem)));
     /*Trigger lbButton = */ new JoystickButton(m_driverController, 5).onTrue(new FastSpeed(m_driveSubsystem));
     /*Trigger rbButton =*/ new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false));
     /*Trigger uButton =*/ new JoystickButton(m_driverController, 7).onTrue(new toggleBrake(m_driveSubsystem, m_lightSubsystem)); 
     /*Trigger pButton =*/ new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
     // The Buttons For the Asisst Controller will have a 2 after them      
-    /*Trigger yButton2 =*/ new JoystickButton(m_asisstController, 4).onTrue(new LEDMatch(m_lightSubsystem, 1)); 
+    /*Trigger yButton2 =*/ new JoystickButton(m_asisstController, 4).onTrue(new ParallelCommandGroup(new LEDMatch(m_lightSubsystem, 1), new SetVisionPipeline(m_visionSubsystem, 1))); 
     /*Trigger xButton2 =*/ new JoystickButton(m_asisstController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem));
-    /*Trigger aButton2 =*/ new JoystickButton(m_asisstController, 1).onTrue(new LEDMatch(m_lightSubsystem, 2));
+    /*Trigger aButton2 =*/ new JoystickButton(m_asisstController, 1).onTrue(new ParallelCommandGroup(new LEDMatch(m_lightSubsystem, 2), new SetVisionPipeline(m_visionSubsystem, 0)));
     /*Trigger bButton2 =*/ new JoystickButton(m_asisstController, 2).onTrue(new LEDMatch(m_lightSubsystem, 0));
     /*Trigger lbButton2 =*/ new JoystickButton(m_asisstController, 5);
     /*Trigger rbButton2 =*/ new JoystickButton(m_asisstController, 6); 

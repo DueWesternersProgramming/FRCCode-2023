@@ -18,6 +18,8 @@ public class VisionSubsystem extends SubsystemBase{
 
         try{
             camera = new PhotonCamera("Limelight");
+            camera.setDriverMode(false);
+            setLedMode(VisionLEDMode.kOn);
         }
         catch (Exception e){
             System.out.println("Vision Error: " + e);
