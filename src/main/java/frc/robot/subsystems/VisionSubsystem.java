@@ -1,25 +1,19 @@
 package frc.robot.subsystems;
 
-import java.util.List;
-
-import org.photonvision.PhotonCamera;
-import org.photonvision.common.hardware.VisionLEDMode;
-import org.photonvision.targeting.PhotonPipelineResult;
-import org.photonvision.targeting.PhotonTrackedTarget;
-
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class VisionSubsystem extends SubsystemBase{
  
-    PhotonCamera camera;
+    NetworkTable limelightTableEntry; 
     
     public VisionSubsystem(){
 
         try{
-            camera = new PhotonCamera("Limelight");
-            camera.setDriverMode(false);
-            setLedMode(VisionLEDMode.kOn);
+            limelightTableEntry = NetworkTableInstance.getDefault().getTable("limelight");
+            IntializeLimelight();
         }
         catch (Exception e){
             System.out.println("Vision Error: " + e);
@@ -27,127 +21,96 @@ public class VisionSubsystem extends SubsystemBase{
 
     }
 
-    /**
-     * @param pipeline 0 is apriltag 1 is reflective 2 is shape
-     */
-    public void SetActivePipeline(int pipeline){
-        camera.setPipelineIndex(pipeline);
+    public void IntializeLimelight()
+    {
+        SetLedMode(0);
+        SetCamMode(0);
+        SetActivePipeline(0);
     }
 
-    public int getActivePipeline(){
-        return camera.getPipelineIndex();
-    }
+    public boolean HasValidTarget()
+    {
+        double tv = limelightTableEntry.getEntry("tv").getDouble(0);
 
-    public void setLedMode(VisionLEDMode ledmode){
-        camera.setLED(ledmode);
-    }
-
-    public VisionLEDMode getLedMode(){
-        return camera.getLEDMode();
-    }
-
-    public PhotonPipelineResult cameraResult(){
-        return camera.getLatestResult();
-    } 
-
-    public boolean hasTarget(){
-        if (cameraResult().hasTargets()){
+        if(tv == 1)
+        {
             return true;
         }
+
         return false;
     }
 
-    public List<PhotonTrackedTarget> getTargets(){
-        try{
-            if (hasTarget()){
-                return cameraResult().getTargets();
-            }
+    public double GetTargetHorizontalOffset()
+    {
+        if(HasValidTarget())
+        {
+            return limelightTableEntry.getEntry("tx").getDouble(0);
         }
-        catch (Exception e) {
-            System.out.println("Error: " + e);
-        }
-        return null;
+
+        return Double.NaN;
     }
 
-    public PhotonTrackedTarget getBestTarget(){
-        try{
-            if (hasTarget()){
-                return cameraResult().getBestTarget();
-            }
+    public double GetTargetVerticalOffset()
+    {
+        if(HasValidTarget())
+        {
+            return limelightTableEntry.getEntry("ty").getDouble(0);
         }
-        catch (Exception e){
-            System.out.println("Error: " + e);
-        }
-        return null;
+
+        return Double.NaN;
     }
 
-    public double getyaw(){
-        try{
-            if (hasTarget()){
-                return getBestTarget().getYaw();
-            }
+    public double GetTargetArea()
+    {
+        if(HasValidTarget())
+        {
+            return limelightTableEntry.getEntry("ta").getDouble(0);
         }
-        catch (Exception e){
-            System.out.println("Error: " + e);
-        }
-        return 0;
+
+        return Double.NaN;
     }
 
-    public double getpitch() {
-        try{
-            if (hasTarget()){
-                return getBestTarget().getPitch();
-            }
-        }
-        catch (Exception e){
-            System.out.println("Error: " + e);
-        }
-        return 0;
+
+
+    public double GetCamMode()
+    {
+        return limelightTableEntry.getEntry("camMode").getDouble(0);
     }
 
-    public double getarea() {
-        try{
-            if (hasTarget()){
-                return getBestTarget().getArea();
-            }
-        }
-        catch (Exception e){
-            System.out.println("Error: " + e);
-        }
-        return 0;
+    public double GetLedMode()
+    {
+        return limelightTableEntry.getEntry("ledMode").getDouble(0);
     }
 
-    public double getskew(){
-        try{
-            if (hasTarget()){
-                return getBestTarget().getSkew();
-            }
-        }
-        catch (Exception e){
-            System.out.println("Error: " + e);
-        }
-        return 0;
+    public double getActivePipeline()
+    {
+        return limelightTableEntry.getEntry("getpipe").getDouble(0);
     }
 
-    public int getTargetID(){
-        try{
-            if (hasTarget()){
-                return getBestTarget().getFiducialId();
-            }
-        }
-        catch (Exception e){
-            System.out.println("Error: " + e);
-        }
-        return 0;
+    public void SetCamMode(double camMode)
+    {
+        limelightTableEntry.getEntry("camMode").setNumber(camMode);
+    }
+
+    public void SetLedMode(double ledMode)
+    {
+        limelightTableEntry.getEntry("ledMode").setNumber(ledMode);
+    }
+
+    public void SetActivePipeline(int pipeline)
+    {
+        limelightTableEntry.getEntry("getpipe").setNumber(pipeline);
     }
 
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("yaw", getyaw());
-        SmartDashboard.putNumber("pitch", getpitch());
-        SmartDashboard.putNumber("skew", getskew());
-        SmartDashboard.putNumber("targetid", getTargetID());
-        SmartDashboard.putNumber("pipeline", getActivePipeline());
+        // SmartDashboard.putNumber("tv", limelightTableEntry.getEntry("tv").getDouble(0));
+        // SmartDashboard.putNumber("tx", limelightTableEntry.getEntry("tx").getDouble(0));
+        // SmartDashboard.putNumber("ty", limelightTableEntry.getEntry("ty").getDouble(0));
+        // SmartDashboard.putNumber("ta", limelightTableEntry.getEntry("ta").getDouble(0));
+        // SmartDashboard.putNumber("camMode", limelightTableEntry.getEntry("camMode").getDouble(-1));
+        // SmartDashboard.putNumber("ledmode", limelightTableEntry.getEntry("ledMode").getDouble(-1));
+        SmartDashboard.putNumber("pipeline", limelightTableEntry.getEntry("getpipe").getDouble(-1));
     }
 }

@@ -36,13 +36,13 @@ public class TurnTarget extends CommandBase {
   @Override
   public void execute() {
 
-    System.out.println(m_visionSubsystem.getyaw());
-    if (m_visionSubsystem.hasTarget()){
-      if (m_visionSubsystem.getyaw() > 0) {
+    System.out.println(m_visionSubsystem.GetTargetHorizontalOffset());
+    if (m_visionSubsystem.HasValidTarget()){
+      if (m_visionSubsystem.GetTargetHorizontalOffset() > 0) {
         m_driveSubsystem.TankDrive(-0.25, 0.25);
         System.out.println("Left");
       }
-      else if(m_visionSubsystem.getyaw() < -0) {
+      else if(m_visionSubsystem.GetTargetHorizontalOffset() < -0) {
         m_driveSubsystem.TankDrive(0.25, -0.25);
         System.out.println("Right");
       }
