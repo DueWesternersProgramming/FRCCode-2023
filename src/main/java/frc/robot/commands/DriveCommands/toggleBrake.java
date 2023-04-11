@@ -5,7 +5,7 @@ import frc.robot.subsystems.LightSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An intake command that uses the driveSubsystem. */
-public class toggleBrake extends CommandBase {
+public class ToggleBrake extends CommandBase {
   private final DriveSubsystem m_driveSubsystem;
   private final LightSubsystem m_lightSubsystem;
 
@@ -14,7 +14,7 @@ public class toggleBrake extends CommandBase {
    *
    * @param intakeSubsystem The subsystem used by this command.
    */
-  public toggleBrake(DriveSubsystem driveSubsystem, LightSubsystem lightSubsystem) {
+  public ToggleBrake(DriveSubsystem driveSubsystem, LightSubsystem lightSubsystem) {
     m_driveSubsystem = driveSubsystem;
     m_lightSubsystem = lightSubsystem;
     addRequirements(m_driveSubsystem);

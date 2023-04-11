@@ -38,14 +38,17 @@ public class TurnTarget extends CommandBase {
 
     System.out.println(m_visionSubsystem.getyaw());
     if (m_visionSubsystem.hasTarget()){
-      if (m_visionSubsystem.getyaw() > 1) {
-        m_driveSubsystem.TankDrive(-0.34, 0.34);
+      if (m_visionSubsystem.getyaw() > 0) {
+        m_driveSubsystem.TankDrive(-0.25, 0.25);
+        System.out.println("Left");
       }
-      else if(m_visionSubsystem.getyaw() < -1) {
-        m_driveSubsystem.TankDrive(0.34, -0.34);
+      else if(m_visionSubsystem.getyaw() < -0) {
+        m_driveSubsystem.TankDrive(0.25, -0.25);
+        System.out.println("Right");
       }
       else {
-        finished = true;
+        m_driveSubsystem.TankDrive(0, 0);
+        //finished = true;
       }
     }
   }

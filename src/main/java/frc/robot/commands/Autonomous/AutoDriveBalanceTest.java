@@ -9,7 +9,7 @@ public class AutoDriveBalanceTest extends SequentialCommandGroup{
     
     public AutoDriveBalanceTest(DriveSubsystem m_drive, LightSubsystem m_light) {
         addCommands(
-            new DriveChargeBalance(m_drive, m_light, false)
+            new DriveChargeBalance(m_drive, m_light, false, true)
         );
     }
 }

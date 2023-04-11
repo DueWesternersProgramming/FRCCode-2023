@@ -42,7 +42,7 @@ public class WristManuelMove extends CommandBase {
     if (Math.abs(m_speed.getAsDouble()) < OperatorConstants.kControllerDeadZone){
       m_speedModified = 0.0;
     }
-    m_wristSubsystem.runWrist(m_speedModified);
+    m_wristSubsystem.runWrist(m_speedModified * 1.4);
   }
 
   // Called once the command ends or is interrupted.

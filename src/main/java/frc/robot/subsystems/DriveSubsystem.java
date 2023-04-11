@@ -29,7 +29,6 @@ public class DriveSubsystem extends SubsystemBase {
   private double PID_I = DriveConstants.kDefaultI;
   private double PID_D = DriveConstants.kDefaultD;
   private double pitchRotationOffset, rotationOffset;
-  private boolean fastSpeed = true;
   private int speed = 1; // 0 = slow, 1 = normal, 2 = fast
 
 
@@ -313,7 +312,7 @@ public class DriveSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Motor2L Current", motor2L.getOutputCurrent());
     SmartDashboard.putNumber("Motor1R Current", motor1R.getOutputCurrent());
     SmartDashboard.putNumber("Motor2R Current", motor2R.getOutputCurrent());
-    SmartDashboard.putBoolean("Fast Mode", fastSpeed);
+    SmartDashboard.putNumber("Fast Mode", speed);
     SmartDashboard.putBoolean("Brake Mode", isBrake());
     SmartDashboard.putNumber("Custom Pitch", getPitch());
     SmartDashboard.putNumber("Offset", pitchRotationOffset);

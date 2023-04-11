@@ -39,9 +39,9 @@ public class WristSubsystem extends SubsystemBase{
 
     @Override
     public void periodic() {
-        SmartDashboard.putNumber("Arm Pos", getEncoderPosition());
-        SmartDashboard.putNumber("Arm Speed", getSpeed());
-        SmartDashboard.putNumber("Arm Current", wristMotor.getOutputCurrent());
+        SmartDashboard.putNumber("Wrist Pos", getEncoderPosition());
+        SmartDashboard.putNumber("Wrist Speed", getSpeed());
+        SmartDashboard.putNumber("Wrist Current", wristMotor.getOutputCurrent());
     }
 
 }

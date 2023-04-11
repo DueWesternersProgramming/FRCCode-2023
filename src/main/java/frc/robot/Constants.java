@@ -22,10 +22,16 @@ public final class Constants {
     public static final int kRight2MotorPort = 5;
 
     public static final double kFastSpeedMultiplier = 0.9;
-    public static final double kNormalSpeedMultiplier = 0.7;
-    public static final double kSlowSpeedMultiplier = 0.5;
+    public static final double kNormalSpeedMultiplier = 0.65;
+    public static final double kSlowSpeedMultiplier = 0.4;
 
-    public static final double kChargeBalanceTolerance = -10;
+    public static final double kChargeForwardBalanceTolerance = -10;
+    public static final double kChargeBackwardBalanceTolerance = 10;
+
+    public static final double kChargeForwardInitialStartTolerance = 4;
+    public static final double kChargeBackwardInitialStartTolerance = -4;
+    public static final double kChargeForwardModifiedStartTolerance = 6;
+    public static final double kChargeBackwardModifiedStartTolerance = -6;
 
     public static final double kMaxAccel = 12;
     public static final int kLeft = -1;
@@ -49,10 +55,12 @@ public final class Constants {
 
   public static class ArmConstants {  
     
-    public static final double kUpPosition = -275;
-    public static final double kDownPosition = -110;
+    public static final double kArmAutoLowPosition = -40;
+    public static final double kDownPosition = 0;
     public static final double kScorePosition = -13;
-    public static final double kArmSpeed = 0.75;
+    //public static final double kArmAutoPosition = -90;
+    public static final double kArmAutoHighPosition = -210;
+    public static final double kArmSpeed = 0.90;
 
     public static final int kMoveUp = 1;
     public static final int kMoveDown = -1;
@@ -82,17 +90,20 @@ public final class Constants {
 
   public static class IntakeConstants {
     public static final int kIntakeMotorPort = 15;
-    public static final double kIntakeMotorSpeed = 0.1;
+    public static final double kIntakeMotorSpeed = 0.13;
     public static final double kIntakeReverseMotorSpeed = -0.15;
+    public static final double kIntakeShootMotorSpeed = -0.6;
     public static final double kIntakeStallTolerance = 0.5; /// CHANGE THIS NUMBER
   }
 
   public static class WristConstants {
     public static final int kWristMotorPort = 50;
 
-    public static final double kOutPosition = 40;
+    //public static final double kOutPosition = 37;
+    public static final double kOutPosition = 100;
     public static final double kInPosition = 0;
-    public static final double kWristSpeed = 0.2;
+    public static final double kUnlatchPosition = -1.5;
+    public static final double kWristSpeed = 0.5;
 
     public static final double kWristSpeedMultiplier = 0.3;
   }
