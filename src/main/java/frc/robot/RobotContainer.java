@@ -103,9 +103,9 @@ public class RobotContainer {
     /*Trigger uButton =*/ new JoystickButton(m_driverController, 7).onTrue(new ToggleBrake(m_driveSubsystem, m_lightSubsystem)); 
     /*Trigger pButton =*/ new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
     // The Buttons For the Asisst Controller will have a 2 after them      
-    /*Trigger yButton2 =*/ new JoystickButton(m_asisstController, 4).onTrue(new ParallelCommandGroup(new LEDMatch(m_lightSubsystem, 1), new SetVisionPipeline(m_visionSubsystem, 1))); 
+    /*Trigger yButton2 =*/ new JoystickButton(m_asisstController, 4).onTrue(new ParallelCommandGroup(new SetVisionPipeline(m_visionSubsystem, 1), new LEDMatch(m_lightSubsystem, 1))); 
     /*Trigger xButton2 =*/ new JoystickButton(m_asisstController, 3).onTrue(new LEDPitAlternate(m_lightSubsystem));
-    /*Trigger aButton2 =*/ new JoystickButton(m_asisstController, 1).onTrue(new ParallelCommandGroup(new LEDMatch(m_lightSubsystem, 2), new SetVisionPipeline(m_visionSubsystem, 0)));
+    /*Trigger aButton2 =*/ new JoystickButton(m_asisstController, 1).onTrue(new ParallelCommandGroup(new SetVisionPipeline(m_visionSubsystem, 0), new LEDMatch(m_lightSubsystem, 2)));
     /*Trigger bButton2 =*/ new JoystickButton(m_asisstController, 2).onTrue(new LEDMatch(m_lightSubsystem, 0));
     /*Trigger lbButton2 =*/ new JoystickButton(m_asisstController, 5);
     /*Trigger rbButton2 =*/ new JoystickButton(m_asisstController, 6); 

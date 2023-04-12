@@ -38,17 +38,17 @@ public class TurnTarget extends CommandBase {
 
     System.out.println(m_visionSubsystem.GetTargetHorizontalOffset());
     if (m_visionSubsystem.HasValidTarget()){
-      if (m_visionSubsystem.GetTargetHorizontalOffset() > 0) {
+      if (m_visionSubsystem.GetTargetHorizontalOffset() > 0.5) {
         m_driveSubsystem.TankDrive(-0.25, 0.25);
         System.out.println("Left");
       }
-      else if(m_visionSubsystem.GetTargetHorizontalOffset() < -0) {
+      else if(m_visionSubsystem.GetTargetHorizontalOffset() < -0.5) {
         m_driveSubsystem.TankDrive(0.25, -0.25);
         System.out.println("Right");
       }
       else {
         m_driveSubsystem.TankDrive(0, 0);
-        //finished = true;
+        finished = true;
       }
     }
   }
