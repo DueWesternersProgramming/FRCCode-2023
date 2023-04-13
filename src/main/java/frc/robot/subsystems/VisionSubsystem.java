@@ -99,7 +99,7 @@ public class VisionSubsystem extends SubsystemBase{
 
     public void SetActivePipeline(int pipeline)
     {
-        limelightTableEntry.getEntry("getpipe").setNumber(pipeline);
+        limelightTableEntry.getEntry("pipeline").setNumber(pipeline);
     }
 
 
