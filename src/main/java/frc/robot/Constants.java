@@ -90,7 +90,7 @@ public final class Constants {
 
   public static class IntakeConstants {
     public static final int kIntakeMotorPort = 15;
-    public static final double kIntakeMotorSpeed = 0.13;
+    public static final double kIntakeMotorSpeed = 0.18;
     public static final double kIntakeReverseMotorSpeed = -0.15;
     public static final double kIntakeShootMotorSpeed = -0.6;
     public static final double kIntakeStallTolerance = 0.5; /// CHANGE THIS NUMBER
@@ -100,7 +100,7 @@ public final class Constants {
     public static final int kWristMotorPort = 50;
 
     //public static final double kOutPosition = 37;
-    public static final double kOutPosition = 100;
+    public static final double kOutPosition = 120;
     public static final double kInPosition = 0;
     public static final double kUnlatchPosition = -1.5;
     public static final double kWristSpeed = 0.5;
