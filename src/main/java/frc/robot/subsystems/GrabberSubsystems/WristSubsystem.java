@@ -18,6 +18,7 @@ public class WristSubsystem extends SubsystemBase{
 
     public WristSubsystem(){
         wristMotor.setIdleMode(IdleMode.kBrake);
+        wristMotor.setInverted(true);
         resetEncoder();
     }
 
