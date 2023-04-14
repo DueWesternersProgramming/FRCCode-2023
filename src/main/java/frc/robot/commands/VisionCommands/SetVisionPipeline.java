@@ -16,7 +16,7 @@ public class SetVisionPipeline extends CommandBase {
   /**
    *
    * @param driveSubsystem The subsystem used by this command.
-   * @param pipeline 0 = AprilTag, 1 = ReflectiveTape, 2 = ColorTarget
+   * @param pipeline 0 = Cube, 1 = Cone, 2 = Apriltag
    */
   public SetVisionPipeline(VisionSubsystem visionSubsystem, int pipeline) {
     m_visionSubsystem = visionSubsystem;

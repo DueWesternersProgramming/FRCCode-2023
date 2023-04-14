@@ -6,7 +6,9 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autonomous.*;
-import frc.robot.commands.Autonomous.Paths.*;
+import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathAnyScore;
+import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathMiddleHigh;
+import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathSides;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.Intake.*;
@@ -64,21 +66,9 @@ public class RobotContainer {
     m_wristSubsystem.setDefaultCommand(new WristManuelMove(m_wristSubsystem,
     () -> m_asisstController.getRawAxis(1)));
 
-    m_autoPositionChooser.setDefaultOption("PathOuterBlue", new PathOuterBlue(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
-    m_autoPositionChooser.addOption("PathOuterRed", new PathOuterRed(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
-    m_autoPositionChooser.addOption("PathMiddle Low", new PathMiddleLow(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_lightSubsystem));
+    m_autoPositionChooser.setDefaultOption("PathSides", new PathSides(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem, m_visionSubsystem));
     m_autoPositionChooser.addOption("PathMiddle High", new PathMiddleHigh(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
-    m_autoPositionChooser.addOption("PathInner", new PathInner(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("PathAny Score", new PathAnyScore(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
-    // m_autoPositionChooser.addOption("Red 3 Score", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> true));
-    // m_autoPositionChooser.addOption("Red 1 Station", new Red1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem,m_lightSubsystem, () -> false));
-    // m_autoPositionChooser.addOption("Red 3 Station", new Red3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
-    // m_autoPositionChooser.addOption("Blue 1 Score", new Blue1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> true));
-    // m_autoPositionChooser.addOption("Blue 2 Score", new Blue2(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> true));
-    // m_autoPositionChooser.addOption("Blue 3 Score", new Blue3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> true));
-    // m_autoPositionChooser.addOption("Blue 1 Station", new Blue1(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
-    // m_autoPositionChooser.addOption("Blue 2 Station", new Blue2(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
-    // m_autoPositionChooser.addOption("Blue 3 Station", new Blue3(m_driveSubsystem, m_armSubsystem, m_armBaseSubsystem, m_clawSubsystem, m_turretSubsystem, () -> false));
     m_autoPositionChooser.addOption("Do Nothing", new AutoDoNothing(m_driveSubsystem));
     m_autoPositionChooser.addOption("Calibrate Gryo", new AutoCalibrateGyro(m_driveSubsystem));
     m_autoPositionChooser.addOption("AutoBalanceTest", new AutoDriveBalanceTest(m_driveSubsystem, m_lightSubsystem));

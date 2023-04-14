@@ -1,4 +1,4 @@
-package frc.robot.commands.Autonomous.Paths;
+package frc.robot.commands.Autonomous.Paths.DistrictVersion;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;

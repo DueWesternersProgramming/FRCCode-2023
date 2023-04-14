@@ -28,7 +28,8 @@ public class DriveSubsystem extends SubsystemBase {
   private double PID_P = DriveConstants.kDefaultP;
   private double PID_I = DriveConstants.kDefaultI;
   private double PID_D = DriveConstants.kDefaultD;
-  private double pitchRotationOffset, rotationOffset;
+  private double pitchRotationOffset, rotationOffset, turnTargetMovementTotal;
+  private int turnTargetMovementDirection;
   private int speed = 1; // 0 = slow, 1 = normal, 2 = fast
 
 
@@ -156,6 +157,24 @@ public class DriveSubsystem extends SubsystemBase {
   public void setCustomRotation() {
     pitchRotationOffset = ahrs.getPitch();
     rotationOffset = ahrs.getRoll();
+  }
+
+  public void setTurnTargetMovementResult(double result) {
+    turnTargetMovementTotal = Math.abs(result);
+    if (result > 0){
+      turnTargetMovementDirection = 1;
+    }
+    else {
+      turnTargetMovementDirection = -1;
+    }
+  }
+
+  public double getTurnTargetMovementResult(){
+    return turnTargetMovementTotal;
+  }
+
+  public int getTurnTargetMovementDirection(){
+    return turnTargetMovementDirection;
   }
 
   public CANSparkMax getFrontLeftSparkMax() {

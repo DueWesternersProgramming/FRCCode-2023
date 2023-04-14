@@ -14,6 +14,7 @@ public class TurnTarget extends CommandBase {
   private final VisionSubsystem m_visionSubsystem;
   private final DriveSubsystem m_driveSubsystem;
   private boolean finished = false;
+  private double before, after;
 
   /**
    *
@@ -30,6 +31,7 @@ public class TurnTarget extends CommandBase {
   @Override
   public void initialize() {
     finished = false;
+    before = m_driveSubsystem.getGyroAngle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -57,6 +59,13 @@ public class TurnTarget extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_driveSubsystem.TankDrive(0, 0);
+    after = m_driveSubsystem.getGyroAngle();
+    if (after > before) {
+      m_driveSubsystem.setTurnTargetMovementResult(-(after - before));  // What needs to happen to reallign after running
+    }
+    else if (after < before){
+      m_driveSubsystem.setTurnTargetMovementResult(before - after);
+    }
   }
 
   // Returns true when the command should end.
