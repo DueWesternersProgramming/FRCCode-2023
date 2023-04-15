@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autonomous.*;
+import frc.robot.commands.Autonomous.Paths.DistrictVersion.PathInner;
 import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathAnyScore;
 import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathMiddleHigh;
 import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathSides;
@@ -66,7 +67,8 @@ public class RobotContainer {
     m_wristSubsystem.setDefaultCommand(new WristManuelMove(m_wristSubsystem,
     () -> m_asisstController.getRawAxis(1)));
 
-    m_autoPositionChooser.setDefaultOption("PathSides", new PathSides(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem, m_visionSubsystem));
+    m_autoPositionChooser.setDefaultOption("PathSides+", new PathSides(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem, m_visionSubsystem));
+    m_autoPositionChooser.addOption("PathSides", new PathInner(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("PathMiddle High", new PathMiddleHigh(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("PathAny Score", new PathAnyScore(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("Do Nothing", new AutoDoNothing(m_driveSubsystem));
@@ -87,7 +89,7 @@ public class RobotContainer {
     /*Trigger yButton =*/ new JoystickButton(m_driverController, 4);
     /*Trigger xButton =*/ new JoystickButton(m_driverController, 3);
     /*Trigger aButton =*/ new JoystickButton(m_driverController, 1);
-    /*Trigger bButton =*/ new JoystickButton(m_driverController, 2).whileTrue((new TurnTarget(m_driveSubsystem, m_visionSubsystem)));
+    /*Trigger bButton =*/ new JoystickButton(m_driverController, 2).whileTrue((new TurnTarget(m_driveSubsystem, m_visionSubsystem, 0.0)));
     /*Trigger lbButton = */ new JoystickButton(m_driverController, 5).onTrue(new FastSpeed(m_driveSubsystem));
     /*Trigger rbButton =*/ new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false, true));
     /*Trigger uButton =*/ new JoystickButton(m_driverController, 7).onTrue(new ToggleBrake(m_driveSubsystem, m_lightSubsystem)); 

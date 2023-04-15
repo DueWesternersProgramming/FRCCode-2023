@@ -55,7 +55,7 @@ public final class Constants {
 
   public static class ArmConstants {  
     
-    public static final double kArmAutoLowPosition = -40;
+    public static final double kArmAutoLowPosition = -45;
     public static final double kDownPosition = 0;
     public static final double kScorePosition = -13;
     //public static final double kArmAutoPosition = -90;
@@ -100,7 +100,7 @@ public final class Constants {
     public static final int kWristMotorPort = 50;
 
     //public static final double kOutPosition = 37;
-    public static final double kOutPosition = 120;
+    public static final double kOutPosition = 102;
     public static final double kInPosition = 0;
     public static final double kUnlatchPosition = -1.5;
     public static final double kWristSpeed = 0.5;
