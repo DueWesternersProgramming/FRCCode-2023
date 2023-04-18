@@ -15,7 +15,7 @@ public class DriveChargeBalance extends CommandBase {
   private final LightSubsystem m_lightSubsystem;
   private boolean m_justChecking, m_direction;
   private boolean finished, started = false;
-  private double tolerance;
+  private double tolerance, m_speedMultiplier;
 
 
   /**
@@ -25,11 +25,12 @@ public class DriveChargeBalance extends CommandBase {
    * @param justChecking Stops running when has reached top
    * @param direction true = forward, false = bacward
    */
-  public DriveChargeBalance(DriveSubsystem driveSubsystem, LightSubsystem lightSubsystem, boolean justChecking, boolean direction) {
+  public DriveChargeBalance(DriveSubsystem driveSubsystem, LightSubsystem lightSubsystem, boolean justChecking, boolean direction, double speedMultiplier) {
     m_driveSubsystem = driveSubsystem;
     m_lightSubsystem = lightSubsystem;
     m_justChecking = justChecking;
     m_direction = direction;
+    m_speedMultiplier = speedMultiplier;
     addRequirements(m_driveSubsystem);
   }
 
@@ -41,6 +42,7 @@ public class DriveChargeBalance extends CommandBase {
     }
     finished = false;
     started = false;
+    
     if (m_direction){
       m_lightSubsystem.setColor(0, 255, 0);
     }
@@ -61,11 +63,11 @@ public class DriveChargeBalance extends CommandBase {
           tolerance = DriveConstants.kChargeForwardInitialStartTolerance;
         }
         if (m_driveSubsystem.getRotation() > tolerance){
-          m_driveSubsystem.TankDrive(-0.45, -0.45);
+          m_driveSubsystem.TankDrive(-0.45 * m_speedMultiplier, -0.45 * m_speedMultiplier);
           System.out.println("Moving 1");
         }
         else if (m_driveSubsystem.getRotation() < DriveConstants.kChargeForwardBalanceTolerance){
-          m_driveSubsystem.TankDrive(0.47, 0.47);
+          m_driveSubsystem.TankDrive(0.47 * m_speedMultiplier, 0.47 * m_speedMultiplier);
           System.out.println("Moving 2");
           started = true;
         }
@@ -76,7 +78,7 @@ public class DriveChargeBalance extends CommandBase {
       }
       else {
         if (m_driveSubsystem.getRotation() > 3){
-          m_driveSubsystem.TankDrive(-0.75, -0.75);
+          m_driveSubsystem.TankDrive(-0.75 * m_speedMultiplier, -0.75 * m_speedMultiplier);
         }
         else {
           finished = true;
@@ -92,11 +94,11 @@ public class DriveChargeBalance extends CommandBase {
           tolerance = DriveConstants.kChargeBackwardInitialStartTolerance;
         }
         if (m_driveSubsystem.getRotation() < tolerance){
-          m_driveSubsystem.TankDrive(0.45, 0.45);
+          m_driveSubsystem.TankDrive(0.45 * m_speedMultiplier, 0.45 * m_speedMultiplier);
           System.out.println("Moving 1 Backwards");
         }
         else if (m_driveSubsystem.getRotation() > DriveConstants.kChargeBackwardBalanceTolerance){
-          m_driveSubsystem.TankDrive(-0.425,-0.425);   // If issues, slow down
+          m_driveSubsystem.TankDrive(-0.425 * m_speedMultiplier,-0.425 * m_speedMultiplier);   // If issues, slow down
           System.out.println("Moving 2 Backwards");
           started = true;
         }
@@ -107,7 +109,7 @@ public class DriveChargeBalance extends CommandBase {
       }
       else {
         if (m_driveSubsystem.getRotation() < -3){
-          m_driveSubsystem.TankDrive(0.85, 0.85);
+          m_driveSubsystem.TankDrive(0.85 * m_speedMultiplier, 0.85 * m_speedMultiplier);
         }
         else {
           finished = true;

@@ -80,7 +80,10 @@ public class DriveSubsystem extends SubsystemBase {
       m_drive.tankDrive(left * DriveConstants.kNormalSpeedMultiplier, right * DriveConstants.kNormalSpeedMultiplier);
     }
     else if (speed == 2){
-      m_drive.tankDrive(left* DriveConstants.kFastSpeedMultiplier, right * DriveConstants.kFastSpeedMultiplier);
+      m_drive.tankDrive(left * DriveConstants.kFastSpeedMultiplier, right * DriveConstants.kFastSpeedMultiplier);
+    }
+    else if (speed == 3){
+      m_drive.tankDrive(left * DriveConstants.kAutoSpeedMultiplier, right * DriveConstants.kAutoSpeedMultiplier);
     }
     else {
       m_drive.tankDrive(left * DriveConstants.kSlowSpeedMultiplier, right * DriveConstants.kSlowSpeedMultiplier);
@@ -91,13 +94,17 @@ public class DriveSubsystem extends SubsystemBase {
     if (speed == 1){
       speed = 0;
     }
-    else if (speed == 0 || speed == 2) {
+    else if (speed == 0 || speed == 2 || speed == 3) {
       speed = 1;
     }
   }
 
   public void fastSpeed(){
     speed = 2;
+  }
+
+  public void autoSpeed(){
+    speed = 3;
   }
 
   public boolean toggleBrake(){

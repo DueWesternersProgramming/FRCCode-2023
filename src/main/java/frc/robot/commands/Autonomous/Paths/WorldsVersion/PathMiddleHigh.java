@@ -65,7 +65,7 @@ public class PathMiddleHigh extends SequentialCommandGroup {
         new ParallelRaceGroup(new ArmRetract(m_arm), new TurnDegrees(m_drive, 132.5, 0.1, 1, 0)),
         new DriveDistance(m_drive, 33, 0.3),
         new DriveDistance(m_drive, 18, 0.15),
-        new DriveChargeBalance(m_drive, m_light, false, true)
+        new DriveChargeBalance(m_drive, m_light, false, true, 1)
          /**
          * align robot  with object 1 
          * move robot fowarard 

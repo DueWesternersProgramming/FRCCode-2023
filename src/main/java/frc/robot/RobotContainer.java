@@ -89,9 +89,9 @@ public class RobotContainer {
     /*Trigger yButton =*/ new JoystickButton(m_driverController, 4);
     /*Trigger xButton =*/ new JoystickButton(m_driverController, 3);
     /*Trigger aButton =*/ new JoystickButton(m_driverController, 1);
-    /*Trigger bButton =*/ new JoystickButton(m_driverController, 2).whileTrue((new TurnTarget(m_driveSubsystem, m_visionSubsystem, 0.0)));
+    /*Trigger bButton =*/ new JoystickButton(m_driverController, 2).whileTrue((new TurnTarget(m_driveSubsystem, m_visionSubsystem, 0.0, true)));
     /*Trigger lbButton = */ new JoystickButton(m_driverController, 5).onTrue(new FastSpeed(m_driveSubsystem));
-    /*Trigger rbButton =*/ new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false, true));
+    /*Trigger rbButton =*/ new JoystickButton(m_driverController, 6).whileTrue(new DriveChargeBalance(m_driveSubsystem, m_lightSubsystem, false, true, 0.86));
     /*Trigger uButton =*/ new JoystickButton(m_driverController, 7).onTrue(new ToggleBrake(m_driveSubsystem, m_lightSubsystem)); 
     /*Trigger pButton =*/ new JoystickButton(m_driverController, 8).onTrue(new ToggleSpeeds(m_driveSubsystem));
     // The Buttons For the Asisst Controller will have a 2 after them      

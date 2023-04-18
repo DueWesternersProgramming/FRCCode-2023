@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class TurnTarget extends CommandBase {
   private final VisionSubsystem m_visionSubsystem;
   private final DriveSubsystem m_driveSubsystem;
-  private boolean finished = false;
+  private boolean finished, m_finish = false;
   private double before, after, m_offset;
 
   /**
@@ -21,10 +21,11 @@ public class TurnTarget extends CommandBase {
    * @param turretSubsystem
    * @param visionSubsystem
    */
-  public TurnTarget(DriveSubsystem driveSubsystem, VisionSubsystem visionSubsystem, Double offset) {
+  public TurnTarget(DriveSubsystem driveSubsystem, VisionSubsystem visionSubsystem, Double offset, boolean finish) {
     m_visionSubsystem = visionSubsystem;
     m_driveSubsystem = driveSubsystem;
     m_offset = offset;
+    m_finish = finish;
     addRequirements(m_driveSubsystem);
   }
 
@@ -42,16 +43,18 @@ public class TurnTarget extends CommandBase {
     System.out.println(m_visionSubsystem.GetTargetHorizontalOffset());
     if (m_visionSubsystem.HasValidTarget()){
       if (m_visionSubsystem.GetTargetHorizontalOffset() > (1.5 + m_offset)) {
-        m_driveSubsystem.TankDrive(-0.40, 0.40);
+        m_driveSubsystem.TankDrive(-0.35, 0.35);
         System.out.println("Left");
       }
       else if(m_visionSubsystem.GetTargetHorizontalOffset() < (-1.5 + m_offset)) {
-        m_driveSubsystem.TankDrive(0.40, -0.40);
+        m_driveSubsystem.TankDrive(0.35, -0.35);
         System.out.println("Right");
       }
       else {
         m_driveSubsystem.TankDrive(0, 0);
-        //finished = true;
+        if (m_finish){
+          finished = true;
+        }
       }
     }
   }

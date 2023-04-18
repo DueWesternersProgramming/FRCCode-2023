@@ -2,7 +2,6 @@ package frc.robot.commands.Autonomous.Paths.WorldsVersion;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.commands.DriveCommands.*;
@@ -15,7 +14,6 @@ import frc.robot.commands.GrabberCommands.Intake.IntakeReverse;
 import frc.robot.commands.GrabberCommands.Wrist.WristIn;
 import frc.robot.commands.GrabberCommands.Wrist.WristOut;
 import frc.robot.commands.GrabberCommands.Wrist.WristUnlatch;
-import frc.robot.commands.VisionCommands.SetVisionPipeline;
 import frc.robot.commands.VisionCommands.TurnTarget;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LightSubsystem;
@@ -39,25 +37,20 @@ public class PathSides extends SequentialCommandGroup {
     public PathSides(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_intake, WristSubsystem m_wrist, LightSubsystem m_light, VisionSubsystem m_vision) {
         addCommands(
             new CalibrateGyro(m_drive),
-            new setBrake(m_drive, m_light),
 
-            new IntakeOn(m_intake),
-            new WristUnlatch(m_wrist),
-            new WaitCommand(0.5),
+            new ParallelCommandGroup(new IntakeOn(m_intake), new WristUnlatch(m_wrist), new SequentialCommandGroup(new setBrake(m_drive, m_light), new AutoSpeed(m_drive))),
+            new WaitCommand(0.25),
             new ParallelCommandGroup(new ArmAutoExtendHigh(m_arm), new WristOut(m_wrist)),
-            new setBrake(m_drive, m_light),
             new DriveDistance(m_drive, 10, 0.05),
             new IntakeReverse(m_intake),
-            new WaitCommand(1),
-            new IntakeOff(m_intake),
-            new ParallelCommandGroup(new ArmAutoExtendHigh(m_arm), new DriveDistance(m_drive, -12, 0.05)),
-            new ParallelCommandGroup(new WristIn(m_wrist), new ArmRetract(m_arm), new DriveDistance(m_drive, -46, 0.1)),
             new WaitCommand(0.5),
-            new TurnDegrees(m_drive, 132, 0.09, 1, 0),
-            new ParallelCommandGroup(new ArmAutoExtendLow(m_arm), new WristOut(m_wrist)),
-            new ParallelRaceGroup(new TurnTarget(m_drive, m_vision, 0.0), new WaitCommand(1)),
-            new IntakeOn(m_intake),
-            new DriveDistance(m_drive, 12, 0.1)
+            new ParallelCommandGroup(new IntakeOff(m_intake), new ArmAutoExtendHigh(m_arm), new DriveDistance(m_drive, -12, 0.05)),
+            new ParallelCommandGroup(new WristIn(m_wrist), new ArmRetract(m_arm), new DriveDistance(m_drive, -46, 0.1)),
+            //new WaitCommand(0.5),
+            new ParallelCommandGroup(new TurnDegrees(m_drive, 132, 0.09, 1, 0),new ArmAutoExtendLow(m_arm)),
+            new ParallelDeadlineGroup(new WristOut(m_wrist), new TurnTarget(m_drive, m_vision, 0.0, false), new IntakeOn(m_intake)),
+            new DriveDistance(m_drive, 12, 0.1),
+            new ToggleSpeeds(m_drive)
             
             // new DriveDistance(m_drive, -7, 0.1),
             // new WaitCommand(0.5),

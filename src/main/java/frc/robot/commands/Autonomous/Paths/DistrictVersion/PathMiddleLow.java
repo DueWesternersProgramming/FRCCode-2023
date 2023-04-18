@@ -44,12 +44,12 @@ public class PathMiddleLow extends SequentialCommandGroup {
         new WaitCommand(0.5),
         new DriveDistance(m_drive, 10, 0.1),
         new DriveDistance(m_drive, 15, 0.1),
-        new DriveChargeBalance(m_drive, m_light, true, true),
+        new DriveChargeBalance(m_drive, m_light, true, true, 1),
         new setBrake(m_drive, m_light),
         new DriveDistance(m_drive, 14, 0.1),
         new TurnDegrees(m_drive, 155, 0.09, 1, 0),
         new DriveDistance(m_drive, 23, 0.13),
-        new DriveChargeBalance(m_drive, m_light, false, true)
+        new DriveChargeBalance(m_drive, m_light, false, true, 1)
          /**
          * align robot  with object 1 
          * move robot fowarard 
