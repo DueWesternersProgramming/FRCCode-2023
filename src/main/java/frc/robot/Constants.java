@@ -31,7 +31,7 @@ public final class Constants {
 
     public static final double kChargeForwardInitialStartTolerance = 4;
     public static final double kChargeBackwardInitialStartTolerance = -4;
-    public static final double kChargeForwardModifiedStartTolerance = 6;
+    public static final double kChargeForwardModifiedStartTolerance = 8;
     public static final double kChargeBackwardModifiedStartTolerance = -6;
 
     public static final double kMaxAccel = 12;

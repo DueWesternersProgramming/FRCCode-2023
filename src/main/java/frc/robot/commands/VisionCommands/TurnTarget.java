@@ -14,7 +14,8 @@ public class TurnTarget extends CommandBase {
   private final VisionSubsystem m_visionSubsystem;
   private final DriveSubsystem m_driveSubsystem;
   private boolean finished, m_finish = false;
-  private double before, after, m_offset;
+  private double beforeAngle, afterAngle, m_offset;
+  private int beforeSpeed;
 
   /**
    *
@@ -33,7 +34,11 @@ public class TurnTarget extends CommandBase {
   @Override
   public void initialize() {
     finished = false;
-    before = m_driveSubsystem.getGyroAngle();
+    beforeAngle = m_driveSubsystem.getGyroAngle();
+    beforeSpeed = m_driveSubsystem.getSpeed();
+    if (m_driveSubsystem.getSpeed() != 1){
+      m_driveSubsystem.normalSpeed();
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -63,12 +68,13 @@ public class TurnTarget extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_driveSubsystem.TankDrive(0, 0);
-    after = m_driveSubsystem.getGyroAngle();
-    if (after > before) {
-      m_driveSubsystem.setTurnTargetMovementResult(-(after - before));  // What needs to happen to reallign after running
+    m_driveSubsystem.setSpeed(beforeSpeed);
+    afterAngle = m_driveSubsystem.getGyroAngle();
+    if (afterAngle > beforeAngle) {
+      m_driveSubsystem.setTurnTargetMovementResult(-(afterAngle - beforeAngle));  // What needs to happen to reallign after running
     }
-    else if (after < before){
-      m_driveSubsystem.setTurnTargetMovementResult(before - after);
+    else if (afterAngle < beforeAngle){
+      m_driveSubsystem.setTurnTargetMovementResult(beforeAngle - afterAngle);
     }
   }
 

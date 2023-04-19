@@ -54,9 +54,9 @@ public class DriveChargeBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (m_direction){
-      if (!m_justChecking){
-        if (started) {
+    if (m_direction){ // forwards
+      if (!m_justChecking){  // stopping
+        if (started) { // Has made it over once
           tolerance = DriveConstants.kChargeForwardModifiedStartTolerance;
         }
         else {
@@ -67,7 +67,7 @@ public class DriveChargeBalance extends CommandBase {
           System.out.println("Moving 1");
         }
         else if (m_driveSubsystem.getRotation() < DriveConstants.kChargeForwardBalanceTolerance){
-          m_driveSubsystem.TankDrive(0.47 * m_speedMultiplier, 0.47 * m_speedMultiplier);
+          m_driveSubsystem.TankDrive(0.42 * m_speedMultiplier, 0.42 * m_speedMultiplier);
           System.out.println("Moving 2");
           started = true;
         }
@@ -76,7 +76,7 @@ public class DriveChargeBalance extends CommandBase {
           System.out.println("Stopping");
         }
       }
-      else {
+      else { // not stopping
         if (m_driveSubsystem.getRotation() > 3){
           m_driveSubsystem.TankDrive(-0.75 * m_speedMultiplier, -0.75 * m_speedMultiplier);
         }
@@ -85,7 +85,7 @@ public class DriveChargeBalance extends CommandBase {
         }
       }
     }
-    else {
+    else { // backwards
       if (!m_justChecking){
         if (started) {
           tolerance = DriveConstants.kChargeBackwardModifiedStartTolerance;

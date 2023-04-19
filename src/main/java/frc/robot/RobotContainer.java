@@ -87,7 +87,7 @@ public class RobotContainer {
   private void configureButttonBindings() {
     // The Buttons for the Driver Controller
     /*Trigger yButton =*/ new JoystickButton(m_driverController, 4);
-    /*Trigger xButton =*/ new JoystickButton(m_driverController, 3);
+    /*Trigger xButton =*/ new JoystickButton(m_driverController, 3).whileTrue(new TurnTarget(m_driveSubsystem, m_visionSubsystem, 0.0, false));
     /*Trigger aButton =*/ new JoystickButton(m_driverController, 1);
     /*Trigger bButton =*/ new JoystickButton(m_driverController, 2).whileTrue((new TurnTarget(m_driveSubsystem, m_visionSubsystem, 0.0, true)));
     /*Trigger lbButton = */ new JoystickButton(m_driverController, 5).onTrue(new FastSpeed(m_driveSubsystem));

@@ -99,12 +99,24 @@ public class DriveSubsystem extends SubsystemBase {
     }
   }
 
+  public void setSpeed(int m_speed){
+    speed = m_speed; 
+  }
+
+  public void normalSpeed(){
+    speed = 1;
+  }
+
   public void fastSpeed(){
     speed = 2;
   }
 
   public void autoSpeed(){
     speed = 3;
+  }
+
+  public int getSpeed(){
+    return speed;
   }
 
   public boolean toggleBrake(){
