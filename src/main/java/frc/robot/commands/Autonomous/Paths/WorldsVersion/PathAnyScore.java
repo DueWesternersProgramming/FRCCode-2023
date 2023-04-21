@@ -42,9 +42,8 @@ public class PathAnyScore extends SequentialCommandGroup {
         new DriveDistance(m_drive, 10, 0.07),
         new IntakeReverse(m_intake),
         new WaitCommand(0.5),
-        new IntakeOff(m_intake),
-        new ParallelDeadlineGroup(new DriveDistance(m_drive, -10, 0.05), new ArmAutoExtendHigh(m_arm), new WristIn(m_wrist)),
-        new ArmRetract(m_arm)
+        new ParallelDeadlineGroup(new DriveDistance(m_drive, -8, 0.05), new ArmAutoExtendHigh(m_arm), new WristIn(m_wrist)),
+        new ParallelCommandGroup(new IntakeOff(m_intake), new ArmRetract(m_arm))
         );
 
     }

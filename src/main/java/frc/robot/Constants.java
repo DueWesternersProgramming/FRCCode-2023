@@ -26,7 +26,7 @@ public final class Constants {
     public static final double kSlowSpeedMultiplier = 0.4;
     public static final double kAutoSpeedMultiplier = 0.65;
 
-    public static final double kChargeForwardBalanceTolerance = -10;
+    public static final double kChargeForwardBalanceTolerance = -8;
     public static final double kChargeBackwardBalanceTolerance = 10;
 
     public static final double kChargeForwardInitialStartTolerance = 4;
@@ -68,7 +68,7 @@ public final class Constants {
     
     public static final int kArmMotorPort = 17;
 
-    public static final double kArmSpeedMultiplier = 0.5;
+    public static final double kArmSpeedMultiplier = 0.75;
     
   }
 
@@ -91,7 +91,7 @@ public final class Constants {
 
   public static class IntakeConstants {
     public static final int kIntakeMotorPort = 15;
-    public static final double kIntakeMotorSpeed = 0.18;
+    public static final double kIntakeMotorSpeed = 0.30;
     public static final double kIntakeReverseMotorSpeed = -0.15;
     public static final double kIntakeShootMotorSpeed = -0.6;
     public static final double kIntakeStallTolerance = 0.5; /// CHANGE THIS NUMBER

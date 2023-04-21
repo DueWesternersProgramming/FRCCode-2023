@@ -16,6 +16,7 @@ public class DriveChargeBalance extends CommandBase {
   private boolean m_justChecking, m_direction;
   private boolean finished, started = false;
   private double tolerance, m_speedMultiplier;
+  private double startedSpeed = 1;
 
 
   /**
@@ -42,6 +43,7 @@ public class DriveChargeBalance extends CommandBase {
     }
     finished = false;
     started = false;
+    startedSpeed = 1;
     
     if (m_direction){
       m_lightSubsystem.setColor(0, 255, 0);
@@ -58,21 +60,22 @@ public class DriveChargeBalance extends CommandBase {
       if (!m_justChecking){  // stopping
         if (started) { // Has made it over once
           tolerance = DriveConstants.kChargeForwardModifiedStartTolerance;
+          startedSpeed = 0.91;
         }
         else {
           tolerance = DriveConstants.kChargeForwardInitialStartTolerance;
         }
-        if (m_driveSubsystem.getRotation() > tolerance){
-          m_driveSubsystem.TankDrive(-0.45 * m_speedMultiplier, -0.45 * m_speedMultiplier);
+        if (m_driveSubsystem.getRotation() > tolerance){ // Forwards
+          m_driveSubsystem.TankDrive(-0.45 * m_speedMultiplier * startedSpeed, -0.45 * m_speedMultiplier * startedSpeed);
           System.out.println("Moving 1");
         }
-        else if (m_driveSubsystem.getRotation() < DriveConstants.kChargeForwardBalanceTolerance){
-          m_driveSubsystem.TankDrive(0.42 * m_speedMultiplier, 0.42 * m_speedMultiplier);
+        else if (m_driveSubsystem.getRotation() < DriveConstants.kChargeForwardBalanceTolerance){ // Backwards
+          m_driveSubsystem.TankDrive(0.4 * m_speedMultiplier * startedSpeed, 0.4 * m_speedMultiplier * startedSpeed);
           System.out.println("Moving 2");
-          started = true;
+          started = true; // Activate modified start value
         }
         else {
-          m_driveSubsystem.TankDrive(0, 0);
+          m_driveSubsystem.TankDrive(0, 0); // stop
           System.out.println("Stopping");
         }
       }
