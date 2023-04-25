@@ -9,7 +9,8 @@ import frc.robot.commands.Autonomous.*;
 import frc.robot.commands.Autonomous.Paths.DistrictVersion.PathInner;
 import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathAnyScore;
 import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathMiddleHigh;
-import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathSides;
+import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathSidesCone;
+import frc.robot.commands.Autonomous.Paths.WorldsVersion.PathSidesCube;
 import frc.robot.commands.DriveCommands.*;
 import frc.robot.commands.GrabberCommands.Arm.*;
 import frc.robot.commands.GrabberCommands.Intake.*;
@@ -67,7 +68,8 @@ public class RobotContainer {
     m_wristSubsystem.setDefaultCommand(new WristManuelMove(m_wristSubsystem,
     () -> m_asisstController.getRawAxis(1)));
 
-    m_autoPositionChooser.setDefaultOption("PathSides+", new PathSides(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem, m_visionSubsystem));
+    m_autoPositionChooser.setDefaultOption("PathSides+Cube", new PathSidesCube(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem, m_visionSubsystem));
+    m_autoPositionChooser.setDefaultOption("PathSides+Cone", new PathSidesCone(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem, m_visionSubsystem));
     m_autoPositionChooser.addOption("PathSides", new PathInner(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("PathMiddle High", new PathMiddleHigh(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));
     m_autoPositionChooser.addOption("PathAny Score", new PathAnyScore(m_driveSubsystem, m_armSubsystem, m_intakeSubsystem, m_wristSubsystem, m_lightSubsystem));

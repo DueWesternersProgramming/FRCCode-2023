@@ -22,7 +22,7 @@ import frc.robot.subsystems.GrabberSubsystems.ArmSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.IntakeSubsystem;
 import frc.robot.subsystems.GrabberSubsystems.WristSubsystem;
 
-public class PathSides extends SequentialCommandGroup {
+public class PathSidesCube extends SequentialCommandGroup {
 
     
     /**
@@ -34,7 +34,7 @@ public class PathSides extends SequentialCommandGroup {
      * @param m_turret
      * @param ending true = score, false = chargestation
      */
-    public PathSides(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_intake, WristSubsystem m_wrist, LightSubsystem m_light, VisionSubsystem m_vision) {
+    public PathSidesCube(DriveSubsystem m_drive, ArmSubsystem m_arm, IntakeSubsystem m_intake, WristSubsystem m_wrist, LightSubsystem m_light, VisionSubsystem m_vision) {
         addCommands(
             new CalibrateGyro(m_drive),
 
